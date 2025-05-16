@@ -10,9 +10,31 @@ import {
   StyleContainerBtn,
   Picture
 } from './HomePagesPlase.styled';
+import { devices } from 'styles';
+import { ImagesSource } from 'components/Images';
+import { CloudName } from 'utils/GlobalUtils';
 
 export const HomePagePlase = ({ title, description, styles, linkTo }) => {
   const imageName = title.toLowerCase();
+
+  const imgSizes = [
+    {
+      media: devices.desktop,
+      width: 818,
+      height: 540
+    },
+    {
+      media: devices.tablet,
+      width: 516,
+      height: 480
+    },
+    {
+      media: devices.mobile,
+      width: 356,
+      height: 218
+    }
+  ];
+
   return (
     <HomeSection styles={styles}>
       <Container>
@@ -21,60 +43,17 @@ export const HomePagePlase = ({ title, description, styles, linkTo }) => {
           <Text styles={styles}>{description}</Text>
 
           <Picture styles={styles}>
-            <source
-              srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-desktop.webp 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-desktop@2x.webp 2x`}
-              type="image/webp"
-              width={818}
-              height={540}
-              media="(min-width: 1440px)"
+            <ImagesSource
+              imageName={imageName}
+              page="home"
+              sizes={imgSizes}
+              type="jpg"
             />
-            <source
-              srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-desktop.jpg 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-desktop@2x.jpg 2x`}
-              width={818}
-              height={540}
-              media="(min-width: 1440px)"
-            />
-
-            <source
-              srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-tablet.webp 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-tablet@2x.webp 2x`}
-              type="image/webp"
-              width={516}
-              height={480}
-              media="(min-width: 1024px)"
-            />
-            <source
-              srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-tablet.jpg 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-tablet@2x.jpg 2x`}
-              width={516}
-              height={480}
-              media="(min-width: 1024px)"
-            />
-
-            <source
-              srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-mobile.webp 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-mobile@2x.webp 2x`}
-              type="image/webp"
-              width={356}
-              height={218}
-              media="(max-width: 1023px)"
-            />
-            <source
-              srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-mobile.jpg 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-mobile@2x.jpg 2x`}
-              type="image/webp"
-              width={356}
-              height={218}
-              media="(max-width: 1023px)"
-            />
-
             <CoffeeImg
               styles={styles}
               width={356}
               height={218}
-              src={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/home-webp/${imageName}-mobile.jpg`}
+              src={`${CloudName}home/${imageName}-mobile.jpg`}
               alt={title}
               onError={e => {
                 console.error('Image loading error:', e);

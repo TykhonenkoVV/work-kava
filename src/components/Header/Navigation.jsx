@@ -1,4 +1,4 @@
-import { Item, LinkItem, List } from './Header.styled';
+import { Item, LinkItem, List } from './Navigation.styled';
 
 export const Navigation = ({ action }) => {
   return (

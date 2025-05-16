@@ -4,12 +4,14 @@ import {
   DishItemBox,
   DishName,
   Price,
-  Currency,
-  ImageBox,
-  Img
+  Img,
+  PriceWrapper,
+  ButtonAddToCart
 } from './Dish.styled';
-import { ImagesSource } from './Images';
+import { ImagesSource } from '../../Images';
 import { Ingredients } from './Ingredients';
+import { CloudName } from 'utils/GlobalUtils';
+import { Svg } from 'components/SvgIcon/SvgIcon';
 
 export const Dish = ({
   data: { name, ingredients, price },
@@ -22,17 +24,15 @@ export const Dish = ({
 
   return (
     <DishItem isEven={isEven} styles={styles}>
-      <ImageBox isEven={isEven} styles={styles}>
-        <Picture isEven={isEven} styles={styles} title={title}>
-          <ImagesSource imageName={imageName} page='cafe' />
-          <Img
-            title={title}
-            src={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/cafe-webp/${imageName}.png`}
-            alt={name}
-          />
-        </Picture>
-      </ImageBox>
-
+      <Picture isEven={isEven} styles={styles} title={title}>
+        <ImagesSource imageName={imageName} page="cafe" />
+        <Img
+          title={title}
+          src={`${CloudName}cafe/${imageName}.png`}
+          alt={name}
+          isEven={isEven}
+        />
+      </Picture>
       <DishItemBox isEven={isEven} styles={styles}>
         <DishName styles={styles}>{name}</DishName>
         <Ingredients
@@ -41,11 +41,12 @@ export const Dish = ({
           styles={styles}
         />
       </DishItemBox>
-
-      <Price isEven={isEven} styles={styles}>
-        {price}
-        <Currency>₴</Currency>
-      </Price>
+      <PriceWrapper isEven={isEven} styles={styles}>
+        <ButtonAddToCart isEven={isEven} styles={styles}>
+          <Svg w={40} h={40} icon={'cart-02'} />
+        </ButtonAddToCart>
+        <Price>{price}₴</Price>
+      </PriceWrapper>
     </DishItem>
   );
 };

@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import { DarkSection } from 'components/App.styled';
-
-const url =
-  'https://res.cloudinary.com/dm3dq4juf/image/upload/v1697012573/WorkKava/';
+import { CloudName } from 'utils/GlobalUtils';
 
 export const SectionHero = styled(DarkSection)`
   padding-top: 180px;
@@ -15,11 +13,11 @@ export const SectionHero = styled(DarkSection)`
     props =>
       props.theme.useWebp
         ? `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-            url + page
-          }-webp/hero-mobil.webp)`
+            CloudName + page
+          }-webp/hero-mobile.webp)`
         : `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-            url + page
-          }/hero-mobil.png)`};
+            CloudName + page
+          }/hero-mobile.png)`};
 
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
@@ -28,11 +26,11 @@ export const SectionHero = styled(DarkSection)`
       props =>
         props.theme.useWebp
           ? `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-              url + page
-            }-webp/hero-mobil@2x.webp)`
+              CloudName + page
+            }-webp/hero-mobile_2x.webp)`
           : `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-              url + page
-            }/hero-mobil@2x.png)`};
+              CloudName + page
+            }/hero-mobile_2x.png)`};
   }
 
   @media screen and (${props => props.theme.devices.tablet}) {
@@ -42,8 +40,8 @@ export const SectionHero = styled(DarkSection)`
     background-image: ${({ page }) =>
       props =>
         props.theme.useWebp
-          ? `url(${url + page}-webp/hero-table.webp)`
-          : `url(${url + page}/hero-table.png)`};
+          ? `url(${CloudName + page}-webp/hero-tablet.webp)`
+          : `url(${CloudName + page}/hero-tablet.png)`};
 
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
@@ -51,8 +49,8 @@ export const SectionHero = styled(DarkSection)`
       background-image: ${({ page }) =>
         props =>
           props.theme.useWebp
-            ? `url(${url + page}-webp/hero-table@2x.webp)`
-            : `url(${url + page}/hero-table@2x.png)`};
+            ? `url(${CloudName + page}-webp/hero-tablet_2x.webp)`
+            : `url(${CloudName + page}/hero-tablet_2x.png)`};
     }
   }
 
@@ -63,8 +61,8 @@ export const SectionHero = styled(DarkSection)`
     background-image: ${({ page }) =>
       props =>
         props.theme.useWebp
-          ? `url(${url + page}-webp/hero.webp)`
-          : `url(${url + page}/hero.png)`};
+          ? `url(${CloudName + page}-webp/hero.webp)`
+          : `url(${CloudName + page}/hero.png)`};
 
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
@@ -72,8 +70,8 @@ export const SectionHero = styled(DarkSection)`
       background-image: ${({ page }) =>
         props =>
           props.theme.useWebp
-            ? `url(${url + page}-webp/hero@2x.webp)`
-            : `url(${url + page}/hero@2x.png)`};
+            ? `url(${CloudName + page}-webp/hero_2x.webp)`
+            : `url(${CloudName + page}/hero_2x.png)`};
     }
   }
 `;
@@ -165,7 +163,7 @@ export const DescrText = styled.p`
       right: 100%;
       width: 182px;
       height: 182px;
-      background-image: url('${url}dcors/four_zigzags_ffffff.svg');
+      background-image: url('${CloudName}decors/four_zigzags_ffffff.svg');
       background-repeat: no-repeat;
       background-size: cover;
     }

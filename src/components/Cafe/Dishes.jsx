@@ -1,5 +1,5 @@
 import { Container, CafeSection } from 'components/App.styled';
-import {Dish} from './Components/Dish';
+import { Dish } from './Components/Dish';
 import { Title, DishesList } from './Dishes.styled';
 
 export const Dishes = ({ title, dishes, styles, firstDishes }) => {
@@ -8,8 +8,10 @@ export const Dishes = ({ title, dishes, styles, firstDishes }) => {
   return (
     <CafeSection page="cafe" firstDishes={firstDishes} name={titleName}>
       <Container>
-        <Title styles={styles} name={titleName}>{title}</Title>
-        <DishesList>
+        <Title styles={styles} name={titleName}>
+          {title}
+        </Title>
+        <DishesList name={titleName}>
           {dishes.map(dish => (
             <Dish
               title={title}
@@ -24,5 +26,3 @@ export const Dishes = ({ title, dishes, styles, firstDishes }) => {
     </CafeSection>
   );
 };
-
-

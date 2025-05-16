@@ -11,7 +11,9 @@ import {
   InfoBox
 } from './CoworkingPlase.styled';
 import { BlueButton, WhiteButton } from 'styles/buttonStyles';
-import { ImagesSource } from 'components/Cafe/Components/Images';
+import { ImagesSource } from 'components/Images';
+import { CloudName } from 'utils/GlobalUtils';
+import { devices } from 'styles';
 
 export const CoworkingPlase = ({
   title,
@@ -23,6 +25,24 @@ export const CoworkingPlase = ({
 }) => {
   const imageName = title.toLowerCase().replace(/ /g, '-');
 
+  const imgSizes = [
+    {
+      media: devices.desktop,
+      width: 680,
+      height: 540
+    },
+    {
+      media: devices.tablet,
+      width: 492,
+      height: 480
+    },
+    {
+      media: devices.mobile,
+      width: 244,
+      height: 262
+    }
+  ];
+
   return (
     <CoworkingSection Coworkingstyles={styles}>
       <Container>
@@ -30,10 +50,17 @@ export const CoworkingPlase = ({
         <Box styles={styles}>
           <ImageBox styles={styles}>
             <Picture>
-              <ImagesSource imageName={imageName} page="coworking" />
+              <ImagesSource
+                imageName={imageName}
+                page="coworking"
+                sizes={imgSizes}
+                type="png"
+              />
               <Img
                 styles={styles}
-                src={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697884261/WorkKava/coworking-webp/${imageName}.png`}
+                width={244}
+                height={262}
+                src={`${CloudName}coworking/${imageName}-mobile.png`}
                 alt={title}
               />
             </Picture>

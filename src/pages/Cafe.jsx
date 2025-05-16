@@ -1,4 +1,4 @@
-import {Dishes} from 'components/Cafe/Dishes';
+import { Dishes } from 'components/Cafe/Dishes';
 
 const CoffeeClassicMenu = [
   {
@@ -22,7 +22,13 @@ const CoffeeClassicMenu = [
   {
     id: 4,
     name: 'Americano',
-    ingredients: { Coffee: '8 g', Water: '120 ml', 'Milk*': '' },
+    ingredients: { Coffee: '8 g', Water: '120 ml' },
+    price: '30'
+  },
+  {
+    id: 5,
+    name: 'Americano',
+    ingredients: { Coffee: '8 g', Water: '120 ml' },
     price: '30'
   }
 ];

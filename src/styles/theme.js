@@ -5,6 +5,14 @@ export const sizes = {
   desktop: '1440'
 };
 
+export const devices = {
+  onlymobile: `max-width: ${sizes.onlymobile}px`,
+  mobile: `min-width: ${sizes.mobile}px`,
+  tablet: `min-width: ${sizes.tablet}px`,
+  desktop: `min-width: ${sizes.desktop}px`,
+  retina: 'min-device-pixel-ratio: 2'
+};
+
 export const theme = Object.freeze({
   colors: {
     primary: '#1B253F',
@@ -36,17 +44,11 @@ export const theme = Object.freeze({
     validationError: '#ED4337'
   },
 
-  sizes: sizes,
+  sizes,
 
   useWebp: document.querySelector('html').classList.contains('webp'),
 
-  devices: {
-    onlymobile: `max-width: ${sizes.onlymobile}px`,
-    mobile: `min-width: ${sizes.mobile}px`,
-    tablet: `min-width: ${sizes.tablet}px`,
-    desktop: `min-width: ${sizes.desktop}px`,
-    retina: 'min-device-pixel-ratio: 2'
-  },
+  devices,
 
   baseTransition: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
 

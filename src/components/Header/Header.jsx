@@ -2,13 +2,16 @@ import { Link } from 'react-router-dom';
 import {
   ButtonStyled,
   ContainerHeader,
-  LinkPhone,
-  StyledHeader
+  LangButton,
+  CartButton,
+  StyledHeader,
+  UserButton
 } from './Header.styled';
 import { Svg } from 'components/SvgIcon/SvgIcon';
 import { useEffect, useState } from 'react';
 import { ModalNav } from './ModalNav';
 import { Navigation } from './Navigation';
+import { SettingsWrapper } from './SettingsWrapper';
 
 export const Header = () => {
   const [windowWidth, setWindowWidth] = useState();
@@ -30,9 +33,17 @@ export const Header = () => {
 
   const sizeLogoWidth = windowWidth >= 1440 ? 201 : 150;
   const sizeLogoHeight = windowWidth >= 1440 ? 46 : 32;
+  const stylyLogo =
+    windowWidth >= 1460
+      ? { marginRight: '50px' }
+      : windowWidth <= 1023
+      ? { marginRight: 'auto' }
+      : { marginRight: '24px' };
+
   const handleOpenModal = () => {
     setModalHeader(true);
   };
+
   const handleClosedModal = () => {
     setModalHeader(false);
   };
@@ -40,10 +51,11 @@ export const Header = () => {
   if (modalHeader) {
     return <ModalNav action={handleClosedModal} />;
   }
+
   return (
     <StyledHeader>
       <ContainerHeader>
-        <Link to="/" aria-label="Home">
+        <Link to="/" aria-label="Home" style={stylyLogo}>
           <Svg
             w={sizeLogoWidth}
             h={sizeLogoHeight}
@@ -54,10 +66,15 @@ export const Header = () => {
         {windowWidth >= 1024 ? (
           <>
             <Navigation />
-            <LinkPhone className="phone" href="tel:+380970000000">
-              <Svg w={32} h={32} icon={'phone'} />
-              097-000-00-00
-            </LinkPhone>
+            <SettingsWrapper>
+              <LangButton type="button" aria-label="language" />
+              <CartButton type="button" aria-label="cart">
+                <Svg w={40} h={40} icon={'cart'} aria-label="icon cart" />
+              </CartButton>
+              <UserButton type="button" aria-label="user profile">
+                <Svg w={40} h={40} icon={'avatar'} aria-label="icon user" />
+              </UserButton>
+            </SettingsWrapper>
           </>
         ) : (
           <ButtonStyled

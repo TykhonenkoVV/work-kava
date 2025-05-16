@@ -1,3 +1,4 @@
+import { ImagesSource } from 'components/Images';
 import {
   Currency,
   DishImage,
@@ -26,60 +27,15 @@ export const FastfoodItem = ({
       <DishTitle>{name}</DishTitle>
       <ImageWrapper>
         <picture>
-          <source
-            srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood/${image}.webp 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood-webp/${image}@2x.webp 2x`}
-            type="image/webp"
-            media="(min-width: 1440px)"
-            width="485"
-            height="246"
-          />
-          <source
-            srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood/${image}.png 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood/${image}@2x.png 2x`}
-            media="(min-width: 1440px)"
-            width="485"
-            height="246"
-          />
-          <source
-            srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood-webp/${image}-table.webp 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood-webp/${image}-table@2x.webp 2x`}
-            type="image/webp"
-            media="(min-width: 1024px)"
-            width="402"
-            height="186"
-          />
-          <source
-            srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood/${image}-table.png 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood/${image}-table@2x.png 2x`}
-            media="(min-width: 1024px)"
-            width="402"
-            height="186"
-          />
-
-          <source
-            srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood-webp/${image}-mobil.webp 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood-webp/${image}-mobil@2x.webp 2x`}
-            type="image/webp"
-            media="(max-width: 1024px)"
-            width="304"
-            height="186"
-          />
-
-          <source
-            srcSet={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood/${image}-mobil.png 1x,
-                        https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood/${image}-mobil@2x.png 2x`}
-            media="(max-width: 1024px)"
-            width="304"
-            height="186"
-          />
-
+          <ImagesSource imageName={image} page="fastfood" />
           <DishImage
             title={title}
-            src={`https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood/${image}.png`}
+            src={`https://res.cloudinary.com/dpg391xoj/image/upload/v1744579613/workkava/fastfood/${image}.png`}
             alt={name}
             width="485"
             height="246"
+            srcSet={`https://res.cloudinary.com/dpg391xoj/image/upload/v1744579613/workkava/fastfood/${image}.png 1x,
+              https://res.cloudinary.com/dpg391xoj/image/upload/v1744579613/workkava/fastfood/${image}.png 2x`}
           />
         </picture>
       </ImageWrapper>
