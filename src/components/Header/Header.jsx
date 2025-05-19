@@ -9,9 +9,9 @@ import {
 } from './Header.styled';
 import { Svg } from 'components/SvgIcon/SvgIcon';
 import { useEffect, useState } from 'react';
-import { ModalNav } from './ModalNav';
-import { Navigation } from './Navigation';
-import { SettingsWrapper } from './SettingsWrapper';
+import { ModalNav } from './Components/ModalNav';
+import { Navigation } from './Components/Navigation';
+import { SettingsWrapper } from './Components/SettingsWrapper';
 
 export const Header = () => {
   const [windowWidth, setWindowWidth] = useState();
@@ -77,13 +77,18 @@ export const Header = () => {
             </SettingsWrapper>
           </>
         ) : (
-          <ButtonStyled
-            type="button"
-            onClick={handleOpenModal}
-            aria-label="menu"
-          >
-            <Svg w={32} h={32} icon={'burger'} />
-          </ButtonStyled>
+          <>
+            <CartButton type="button" aria-label="cart">
+              <Svg w={32} h={32} icon={'cart'} aria-label="icon cart" />
+            </CartButton>
+            <ButtonStyled
+              type="button"
+              onClick={handleOpenModal}
+              aria-label="menu"
+            >
+              <Svg w={32} h={32} icon={'burger'} />
+            </ButtonStyled>
+          </>
         )}
       </ContainerHeader>
     </StyledHeader>

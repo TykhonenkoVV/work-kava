@@ -3,133 +3,138 @@ import styled from '@emotion/styled';
 export const DishTitle = styled.h3`
   position: relative;
   z-index: 2;
-  margin: 11px 0;
+  margin-right: -31px;
+  padding: 11px 31px 11px 0;
   font-size: 36px;
   font-weight: 400;
   line-height: 1;
   text-align: right;
   color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.lightBlue};
+  border-top-left-radius: 49px;
 
   @media screen and (${props => props.theme.devices.tablet}) {
-    margin: 9px 0;
-    font-size: 40px;
-  }
-
-  @media screen and (${props => props.theme.devices.desktop}) {
-    margin: 5px 0;
-    font-size: 48px;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: -11px;
-    right: -31px;
-    display: block;
-    width: calc(100% + 31px);
-    height: 58px;
-    background-color: ${props => props.theme.colors.lightBlue};
-    border-top-left-radius: 49px;
-
-    @media screen and (${props => props.theme.devices.tablet}) {
-      top: -9px;
-    }
-
-    @media screen and (${props => props.theme.devices.desktop}) {
-      top: -5px;
-    }
+    margin-right: -20px;
+    padding: 5px 20px 5px 0;
+    font-size: 30px;
+    border-top-left-radius: 40px;
   }
 `;
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.picture`
   position: relative;
   z-index: 2;
-  min-height: 186px;
-  margin-bottom: 24px;
+  display: block;
+  width: 304px;
+  height: 186px;
 
   @media screen and (${props => props.theme.devices.tablet}) {
-    margin-bottom: 19px;
+    width: 262px;
+    height: 121px;
   }
 
   @media screen and (${props => props.theme.devices.desktop}) {
-    margin-bottom: 8px;
-    min-height: 246px;
+    width: 320px;
+    height: 162px;
   }
 `;
 
 export const DishImage = styled.img`
   position: absolute;
 `;
-export const PriceWrapper = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 15px 36px;
 
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: 1;
-    width: 100%;
-    height: 155%;
-    border: 4px solid ${props => props.theme.colors.primary};
-    border-bottom-right-radius: 80px;
-  }
+export const PriceWrapper = styled.div`
+  margin-top: -68px;
+  padding: 12px;
+  border: 4px solid ${props => props.theme.colors.primary};
+  border-bottom-right-radius: 49px;
 
   @media screen and (${props => props.theme.devices.tablet}) {
-    padding: 0 15px 26px;
+    height: 338px;
+    margin-top: -53px;
+    padding-bottom: 0;
+    border-bottom-right-radius: 40px;
+  }
+  @media screen and (${props => props.theme.devices.desktop}) {
+    height: 406px;
+    margin-top: -62px;
+    padding-left: 16px;
+    padding-top: 16px;
+    padding-right: 16px;
   }
 `;
 
-export const PriceColumn = styled.div``;
+export const PriceColumnWrapper = styled.div`
+  display: flex;
+  column-gap: 16px;
+  margin-bottom: 22px;
+  @media screen and (${props => props.theme.devices.tablet}) {
+    margin-bottom: 16px;
+  }
+  @media screen and (${props => props.theme.devices.desktop}) {
+    column-gap: 20px;
+  }
+`;
+
+export const PriceColumn = styled.div`
+  flex-basis: calc((100% - 16px) / 2);
+  padding-top: 52px;
+  padding-bottom: 30px;
+  background-color: ${props => props.theme.colors.price_bgr};
+  ${props =>
+    props.isOdd
+      ? 'border-bottom-left-radius: 30px;'
+      : 'border-bottom-right-radius: 30px;'}
+  @media screen and (${props => props.theme.devices.desktop}) {
+    flex-basis: calc((100% - 20px) / 2);
+    padding-top: 56px;
+  }
+`;
 
 export const PriceText = styled.p`
   margin-bottom: 20px;
+  font-size: 20px;
   line-height: 1;
   text-align: center;
   color: ${props => props.theme.colors.white};
 
-  @media screen and (${props => props.theme.devices.tablet}) {
-    font-size: 40px;
-    margin-bottom: 15px;
-  }
-
   @media screen and (${props => props.theme.devices.desktop}) {
-    font-size: 48px;
-    margin-bottom: 14px;
+    font-size: 28px;
   }
 `;
 
 export const Price = styled.p`
   display: inline-block;
-  margin-right: 6px;
-  font-size: 70px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 1;
   text-align: center;
 
-  @media screen and (${props => props.theme.devices.tablet}) {
-    font-size: 80px;
-  }
-
   @media screen and (${props => props.theme.devices.desktop}) {
-    font-size: 100px;
-    margin-right: 4px;
+    font-size: 36px;
   }
 `;
 
-export const Currency = styled.span`
-  font-size: 35px;
+export const IngreientsBtn = styled.button`
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
   line-height: 1;
+  padding: 10px 34px;
+  color: ${props => props.theme.colors.primary};
+  border: 2px solid ${props => props.theme.colors.primary};
+  border-radius: 10px;
+`;
 
-  @media screen and (${props => props.theme.devices.tablet}) {
-    font-size: 40px;
-  }
-
+export const Ingredsents = styled.p`
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: left;
   @media screen and (${props => props.theme.devices.desktop}) {
-    font-size: 60px;
+    font-size: 20px;
   }
+`;
+
+export const Span = styled.span`
+  font-weight: 700;
 `;

@@ -1,4 +1,3 @@
-// import { Container } from 'components/App.styled';
 import { FastfoodList } from './FastfoodList';
 import {
   FastfoodContainer,

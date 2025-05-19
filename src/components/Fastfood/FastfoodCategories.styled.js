@@ -7,53 +7,6 @@ const getUrl = (props, type = '') => {
     : `https://res.cloudinary.com/dm3dq4juf/image/upload/v1697007040/WorkKava/fastfood/${props.bgImage}${type}.jpg`;
 };
 
-export const FastfoodContainer = styled(Container)`
-  position: relative;
-  z-index: 1;
-
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    left: 0px;
-    display: block;
-    width: 51px;
-    height: 40px;
-    background-color: ${props => props.theme.colors.accent};
-
-    @media screen and (${props => props.theme.devices.tablet}) {
-      width: 68px;
-      height: 60px;
-    }
-
-    @media screen and (${props => props.theme.devices.desktop}) {
-      width: 186px;
-      height: 70px;
-    }
-  }
-
-  @media screen and (${props => props.theme.devices.tablet}) {
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0px;
-      right: 4px;
-      z-index: -1;
-      width: 202px;
-      height: 202px;
-      background-image: url('https://res.cloudinary.com/dm3dq4juf/image/upload/v1697531015/WorkKava/dcors/four_zigzags_ffffff.svg');
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    &.odd {
-      &::after {
-        background-image: url('https://res.cloudinary.com/dm3dq4juf/image/upload/v1697531015/WorkKava/dcors/dots_1B253F.svg');
-      }
-    }
-  }
-`;
-
 export const FastfoodSection = styled(Section)`
   z-index: 2;
   margin: 0 auto;
@@ -148,12 +101,41 @@ export const FastfoodSection = styled(Section)`
   }
 `;
 
+export const FastfoodContainer = styled(Container)`
+  position: relative;
+  z-index: 1;
+
+  @media screen and (${props => props.theme.devices.tablet}) {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0px;
+      right: 4px;
+      z-index: -1;
+      width: 202px;
+      height: 202px;
+      background-image: url('https://res.cloudinary.com/dm3dq4juf/image/upload/v1697531015/WorkKava/dcors/four_zigzags_ffffff.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    &.odd {
+      &::after {
+        background-image: url('https://res.cloudinary.com/dm3dq4juf/image/upload/v1697531015/WorkKava/dcors/dots_1B253F.svg');
+      }
+    }
+  }
+`;
+
 export const Title = styled.h2`
   position: relative;
   margin-bottom: 50px;
   font-size: 40px;
   font-weight: 700;
   line-height: 1;
+  /* overflow: hidden; */
+  margin-left: -24px;
+  padding-left: 24px;
   text-align: left;
   color: ${props =>
     props.isEven ? props.theme.colors.white : props.theme.colors.primary};
@@ -163,11 +145,32 @@ export const Title = styled.h2`
   }
 
   @media screen and (${props => props.theme.devices.desktop}) {
+    margin-left: -138px;
+    padding-left: 138px;
     font-size: 70px;
   }
 
   &::first-letter {
+    display: block;
     color: ${props =>
       props.isEven ? props.theme.colors.primary : props.theme.colors.white};
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 10%,
+      rgba(220, 161, 53, 1) 10%,
+      rgba(220, 161, 53, 1) 90%,
+      rgba(0, 0, 0, 0) 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    margin-left: -24px;
+    padding-left: 24px;
+    overflow: hidden;
+
+    @media screen and (${props => props.theme.devices.desktop}) {
+      margin-left: -138px;
+      padding-left: 138px;
+    }
   }
 `;

@@ -47,6 +47,12 @@ export const CartButton = styled.button`
   &:focus {
     fill: ${props => props.theme.colors.whiteButtonHover};
   }
+
+  @media screen and (${props => props.theme.devices.onlymobile}) {
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+  }
 `;
 
 export const UserButton = styled.button`

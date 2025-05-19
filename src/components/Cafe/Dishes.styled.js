@@ -20,6 +20,8 @@ export const Title = styled.h2`
 
   @media screen and (${props => props.theme.devices.desktop}) {
     margin-bottom: 100px;
+    margin-left: -138px;
+    padding-left: 138px;
     font-size: 70px;
   }
 
@@ -43,6 +45,11 @@ export const Title = styled.h2`
         : props.theme.colors.lightBlue};
     margin-left: -24px;
     padding-left: 24px;
+
+    @media screen and (${props => props.theme.devices.desktop}) {
+      margin-left: -138px;
+      padding-left: 138px;
+    }
   }
 `;
 
@@ -56,7 +63,8 @@ export const DishesList = styled.ul`
     row-gap: 50px;
   }
   @media screen and (${props => props.theme.devices.desktop}) {
-    gap: 20px;
+    column-gap: 20px;
+    row-gap: 50px;
   }
   &::before {
     content: '';

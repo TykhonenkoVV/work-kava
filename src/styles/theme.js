@@ -18,6 +18,7 @@ export const theme = Object.freeze({
     primary: '#1B253F',
     white: '#FFFFFF',
     accent: '#DCA135',
+    price_bgr: '#B9811A',
 
     beige: '#E2D0AE',
     darkBeige: '#7E7262', // decorative elements

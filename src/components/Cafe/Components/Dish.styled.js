@@ -359,10 +359,6 @@ export const PriceWrapper = styled.div`
       props.isEven
         ? 'border-radius: 0 70px 70px 0;'
         : 'border-radius: 70px 0 0 70px;'};
-    /* ${props =>
-      props.styles === 'dark'
-        ? props.theme.colors.accent
-        : props.theme.colors.white} */
   }
 `;
 
@@ -387,7 +383,7 @@ export const ButtonAddToCart = styled.button`
         ? props.theme.colors.lightBlue
         : props.theme.colors.white};
   }
-  @media screen and (${props => props.theme.devices.tablet}) {
+  @media screen and (${props => props.theme.devices.desktop}) {
     top: ${props => (props.styles === 'dark' ? '30px' : '20px')};
     ${props =>
       props.isEven

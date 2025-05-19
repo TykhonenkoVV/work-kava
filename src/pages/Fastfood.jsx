@@ -7,23 +7,58 @@ const data = [
     dishes: [
       {
         id: 11,
-        name: 'Hamburger',
+        index: 0,
+        title: 'Hamburger',
         image: 'hamburger',
-        smallSize: 'Standard',
-        bigSize: 'Double',
-        smallPrice: '45',
-        bigPrice: '70',
-        currency: '₴ '
+        price_standart: '45',
+        price_double: '70',
+        currency: '₴',
+        ingredients:
+          'wheat bran and wheat flour bun, beef cutlet, fresh tomatoes, sweet and sour sauce, pickled cucumbers, onion, lettuce leaves'
       },
       {
         id: 12,
-        name: 'Cheeseburger',
+        index: 1,
+        title: 'Cheeseburger',
         image: 'cheeseburger',
-        smallSize: 'Standard',
-        bigSize: 'Double',
-        smallPrice: '52',
-        bigPrice: '80',
-        currency: '₴ '
+        price_standart: '52',
+        price_double: '80',
+        currency: '₴',
+        ingredients:
+          'wheat bran and wheat flour bun, beef cutlet, cheese, fresh tomatoes, sweet and sour sauce, pickled cucumbers, onion, lettuce leaves'
+      },
+      {
+        id: 13,
+        index: 2,
+        title: 'Black burger',
+        image: 'black-burger',
+        price_standart: '55',
+        price_double: '85',
+        currency: '₴',
+        ingredients:
+          'wheat bran and wheat flour bun with cuttlefish ink, beef cutlet, fresh tomatoes, sweet and sour sauce, pickled cucumbers, onion, lettuce leaves'
+      },
+      {
+        id: 14,
+        index: 3,
+        title: 'Black burger',
+        image: 'black-burger',
+        price_standart: '55',
+        price_double: '85',
+        currency: '₴',
+        ingredients:
+          'wheat bran and wheat flour bun with cuttlefish ink, beef cutlet, fresh tomatoes, sweet and sour sauce, pickled cucumbers, onion, lettuce leaves'
+      },
+      {
+        id: 15,
+        index: 4,
+        title: 'Black burger',
+        image: 'black-burger',
+        price_standart: '55',
+        price_double: '85',
+        currency: '₴',
+        ingredients:
+          'wheat bran and wheat flour bun with cuttlefish ink, beef cutlet, fresh tomatoes, sweet and sour sauce, pickled cucumbers, onion, lettuce leaves'
       }
     ],
 
@@ -35,23 +70,43 @@ const data = [
     dishes: [
       {
         id: 13,
-        name: 'Chicken roll',
+        index: 0,
+        title: 'Chicken roll',
         image: 'chicken-roll',
-        smallSize: 'Standard',
-        bigSize: 'XL',
-        smallPrice: '70',
-        bigPrice: '90',
-        currency: '₴ '
+        price_standart: '70',
+        price_xl: '90',
+        currency: '₴',
+        ingredients: ''
       },
       {
         id: 14,
-        name: 'Beef roll',
+        index: 1,
+        title: 'Beef roll',
         image: 'beef-roll',
-        smallSize: 'Standard',
-        bigSize: 'XL',
-        smallPrice: '75',
-        bigPrice: '95',
-        currency: '₴ '
+        price_standart: '75',
+        price_xl: '95',
+        currency: '₴',
+        ingredients: ''
+      },
+      {
+        id: 14,
+        index: 2,
+        title: 'Fish roll',
+        image: 'fish-roll',
+        price_standart: '75',
+        price_xl: '95',
+        currency: '₴',
+        ingredients: ''
+      },
+      {
+        id: 14,
+        index: 3,
+        title: 'Fish roll',
+        image: 'fish-roll',
+        price_standart: '75',
+        price_xl: '95',
+        currency: '₴',
+        ingredients: ''
       }
     ],
     backgroundImage: 'rolls'
@@ -62,23 +117,23 @@ const data = [
     dishes: [
       {
         id: 15,
-        name: 'Bavarian hotdog',
+        index: 0,
+        title: 'Bavarian hotdog',
         image: 'bavarian-hotdog',
-        smallSize: 'Standard',
-        bigSize: 'Double',
-        smallPrice: '40',
-        bigPrice: '60',
-        currency: '₴ '
+        price_standart: '40',
+        price_double: '60',
+        currency: '₴',
+        ingredients: ''
       },
       {
         id: 16,
-        name: 'French hotdog',
+        index: 1,
+        title: 'French hotdog',
         image: 'french-hotdog',
-        smallSize: 'Standard',
-        bigSize: 'Double',
-        smallPrice: '35',
-        bigPrice: '50',
-        currency: '₴ '
+        price_standart: '35',
+        price_double: '50',
+        currency: '₴',
+        ingredients: ''
       }
     ],
     backgroundImage: 'hotdogs'
