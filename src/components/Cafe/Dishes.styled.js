@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { CloudName } from 'utils/GlobalUtils';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const Title = styled.h2`
   position: relative;
@@ -78,10 +78,10 @@ export const DishesList = styled.ul`
     background-repeat: no-repeat;
     ${props =>
       props.name === 'coffee-classic'
-        ? `width: 94px; height: 85px; fill: ${props.theme.colors.darkBeige}; background-image: url(${CloudName}decors/coffee_bean_7E7262.svg);`
+        ? `width: 94px; height: 85px; fill: ${props.theme.colors.darkBeige}; background-image: url(${CLOUD_NAME}decors/coffee_bean_7E7262.svg);`
         : props.name === 'coffee-with-milk'
-        ? `width: 94px; height: 85px; fill: ${props.theme.colors.beige}; background-image: url(${CloudName}decors/coffee_bean_E2D0AE.svg);`
-        : `width: 94px; height: 95px;  fill: ${props.theme.colors.darkBeige}; background-image: url(${CloudName}decors/dots_7E7262.svg);`};
+        ? `width: 94px; height: 85px; fill: ${props.theme.colors.beige}; background-image: url(${CLOUD_NAME}decors/coffee_bean_E2D0AE.svg);`
+        : `width: 94px; height: 95px;  fill: ${props.theme.colors.darkBeige}; background-image: url(${CLOUD_NAME}decors/dots_7E7262.svg);`};
 
     @media screen and (${props => props.theme.devices.tablet}) {
       top: -166px;

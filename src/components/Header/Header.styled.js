@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Container } from 'components/App.styled';
-import img from '../../images/flag-uk.jpg';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const StyledHeader = styled.header`
   position: fixed;
@@ -17,7 +17,6 @@ export const StyledHeader = styled.header`
 
 export const ContainerHeader = styled(Container)`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   width: ${props => props.theme.sizes.mobile}px;
 `;
@@ -27,7 +26,7 @@ export const LangButton = styled.button`
   height: 40px;
   border: 2px solid #fff;
   border-radius: 10px;
-  background-image: url('${img}');
+  background-image: url('${CLOUD_NAME}/flags/flag-uk.jpg');
   background-position: center;
   transition: border-color ${props => props.theme.baseTransition};
 

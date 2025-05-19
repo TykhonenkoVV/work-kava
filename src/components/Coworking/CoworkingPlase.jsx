@@ -12,7 +12,7 @@ import {
 } from './CoworkingPlase.styled';
 import { BlueButton, WhiteButton } from 'styles/buttonStyles';
 import { ImagesSource } from 'components/Images';
-import { CloudName } from 'utils/GlobalUtils';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 import { devices } from 'styles';
 
 export const CoworkingPlase = ({
@@ -60,7 +60,7 @@ export const CoworkingPlase = ({
                 styles={styles}
                 width={244}
                 height={262}
-                src={`${CloudName}coworking/${imageName}-mobile.png`}
+                src={`${CLOUD_NAME}coworking/${imageName}-mobile.png`}
                 alt={title}
               />
             </Picture>

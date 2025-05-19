@@ -12,7 +12,7 @@ import {
 } from './HomePagesPlase.styled';
 import { devices } from 'styles';
 import { ImagesSource } from 'components/Images';
-import { CloudName } from 'utils/GlobalUtils';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const HomePagePlase = ({ title, description, styles, linkTo }) => {
   const imageName = title.toLowerCase();
@@ -53,7 +53,7 @@ export const HomePagePlase = ({ title, description, styles, linkTo }) => {
               styles={styles}
               width={356}
               height={218}
-              src={`${CloudName}home/${imageName}-mobile.jpg`}
+              src={`${CLOUD_NAME}home/${imageName}-mobile.jpg`}
               alt={title}
               onError={e => {
                 console.error('Image loading error:', e);

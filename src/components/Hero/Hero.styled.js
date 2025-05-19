@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { DarkSection } from 'components/App.styled';
-import { CloudName } from 'utils/GlobalUtils';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const SectionHero = styled(DarkSection)`
   padding-top: 180px;
@@ -13,10 +13,10 @@ export const SectionHero = styled(DarkSection)`
     props =>
       props.theme.useWebp
         ? `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-            CloudName + page
+            CLOUD_NAME + page
           }-webp/hero-mobile.webp)`
         : `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-            CloudName + page
+            CLOUD_NAME + page
           }/hero-mobile.png)`};
 
   @media screen and (min-device-pixel-ratio: 2),
@@ -26,10 +26,10 @@ export const SectionHero = styled(DarkSection)`
       props =>
         props.theme.useWebp
           ? `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-              CloudName + page
+              CLOUD_NAME + page
             }-webp/hero-mobile_2x.webp)`
           : `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-              CloudName + page
+              CLOUD_NAME + page
             }/hero-mobile_2x.png)`};
   }
 
@@ -40,8 +40,8 @@ export const SectionHero = styled(DarkSection)`
     background-image: ${({ page }) =>
       props =>
         props.theme.useWebp
-          ? `url(${CloudName + page}-webp/hero-tablet.webp)`
-          : `url(${CloudName + page}/hero-tablet.png)`};
+          ? `url(${CLOUD_NAME + page}-webp/hero-tablet.webp)`
+          : `url(${CLOUD_NAME + page}/hero-tablet.png)`};
 
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
@@ -49,8 +49,8 @@ export const SectionHero = styled(DarkSection)`
       background-image: ${({ page }) =>
         props =>
           props.theme.useWebp
-            ? `url(${CloudName + page}-webp/hero-tablet_2x.webp)`
-            : `url(${CloudName + page}/hero-tablet_2x.png)`};
+            ? `url(${CLOUD_NAME + page}-webp/hero-tablet_2x.webp)`
+            : `url(${CLOUD_NAME + page}/hero-tablet_2x.png)`};
     }
   }
 
@@ -61,8 +61,8 @@ export const SectionHero = styled(DarkSection)`
     background-image: ${({ page }) =>
       props =>
         props.theme.useWebp
-          ? `url(${CloudName + page}-webp/hero.webp)`
-          : `url(${CloudName + page}/hero.png)`};
+          ? `url(${CLOUD_NAME + page}-webp/hero.webp)`
+          : `url(${CLOUD_NAME + page}/hero.png)`};
 
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
@@ -70,8 +70,8 @@ export const SectionHero = styled(DarkSection)`
       background-image: ${({ page }) =>
         props =>
           props.theme.useWebp
-            ? `url(${CloudName + page}-webp/hero_2x.webp)`
-            : `url(${CloudName + page}/hero_2x.png)`};
+            ? `url(${CLOUD_NAME + page}-webp/hero_2x.webp)`
+            : `url(${CLOUD_NAME + page}/hero_2x.png)`};
     }
   }
 `;
@@ -163,7 +163,7 @@ export const DescrText = styled.p`
       right: 100%;
       width: 182px;
       height: 182px;
-      background-image: url('${CloudName}decors/four_zigzags_ffffff.svg');
+      background-image: url('${CLOUD_NAME}decors/four_zigzags_ffffff.svg');
       background-repeat: no-repeat;
       background-size: cover;
     }

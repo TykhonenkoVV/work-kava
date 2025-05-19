@@ -1,3 +1,4 @@
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 import {
   BackdropHeader,
   CloseButton,
@@ -7,7 +8,6 @@ import {
 import { Navigation } from './Navigation';
 import { Svg } from 'components/SvgIcon/SvgIcon';
 import { useEffect } from 'react';
-import flag from '../../../images/flag-uk.jpg';
 
 export const ModalNav = ({ action }) => {
   useEffect(() => {
@@ -28,7 +28,12 @@ export const ModalNav = ({ action }) => {
       </UserBtn>
       <Navigation action={action} />
       <LangBtn type="button">
-        <img width={40} height={40} src={flag} alt="flag" />
+        <img
+          width={40}
+          height={40}
+          src={`${CLOUD_NAME}/flags/flag-uk.jpg`}
+          alt="flag"
+        />
         English
       </LangBtn>
     </BackdropHeader>

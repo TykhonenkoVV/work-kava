@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { CloudName } from 'utils/GlobalUtils';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const Title = styled.h2`
   position: relative;
@@ -28,8 +28,8 @@ export const Title = styled.h2`
     top: 0;
     ${props =>
       props.styles === 'dark'
-        ? `left: 24px; background-image: url("${CloudName}decors/dots_ffffff.svg"); transform: rotate(180deg);`
-        : `right: 34px; background-image: url("${CloudName}decors/dots_7E7262.svg")`};
+        ? `left: 24px; background-image: url("${CLOUD_NAME}decors/dots_ffffff.svg"); transform: rotate(180deg);`
+        : `right: 34px; background-image: url("${CLOUD_NAME}decors/dots_7E7262.svg")`};
     background-size: contain;
 
     @media screen and (${props => props.theme.devices.tablet}) {
@@ -171,8 +171,8 @@ export const Description = styled.p`
 
     ${props =>
       props.styles === 'dark'
-        ? `background-image: url("${CloudName}decors/four_zigzags_ffffff.svg");`
-        : `background-image: url("${CloudName}decors/four_zigzags_7E7262.svg")`};
+        ? `background-image: url("${CLOUD_NAME}decors/four_zigzags_ffffff.svg");`
+        : `background-image: url("${CLOUD_NAME}decors/four_zigzags_7E7262.svg")`};
     background-size: contain;
 
     @media screen and (${props => props.theme.devices.desktop}) {

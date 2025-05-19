@@ -1,10 +1,5 @@
 import styled from '@emotion/styled';
-import coffee from '../../images/cafe-coworking/coffee.svg';
-import coffeeTablet from '../../images/cafe-coworking/Coffee_tablet.png';
-import twoZigzag from '../../images/cafe-coworking/two_zigzags.svg';
-import fastfoodFries from '../../images/fastfood/frenchFries.svg';
-import fastfoodFriesTablet from '../../images/fastfood/frenchFriesTablet.svg';
-import zigzag from '../../images/fastfood/zigzag.svg';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const Title = styled.h2`
   margin-bottom: 24px;
@@ -24,7 +19,9 @@ export const Title = styled.h2`
       width: 188px;
       height: 102px;
       background-image: ${props =>
-        props.styles === 'dark' ? `url(${zigzag});` : `url(${twoZigzag});`};
+        props.styles === 'dark'
+          ? `url(${CLOUD_NAME}/decors/zigzag.svg);`
+          : `url(${CLOUD_NAME}/decors/two_zigzags.svg);`};
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -72,8 +69,8 @@ export const CoffeContainer = styled.div`
         : 'width: 390px; height: 296px;'};
     background-image: ${props =>
       props.styles === 'dark'
-        ? `url(${fastfoodFriesTablet});`
-        : `url(${coffeeTablet});`};
+        ? `url(${CLOUD_NAME}/decors/fastfoodFriesTablet.svg);`
+        : `url(${CLOUD_NAME}/decors/coffeeTablet.svg);`};
     background-repeat: no-repeat;
     background-size: cover;
     @media screen and (${props => props.theme.devices.desktop}) {
@@ -84,7 +81,9 @@ export const CoffeContainer = styled.div`
           ? 'width: 454px; height: 401px;'
           : 'width: 540px; height: 430px;'};
       background-image: ${props =>
-        props.styles === 'dark' ? `url(${fastfoodFries});` : `url(${coffee});`};
+        props.styles === 'dark'
+          ? `url(${CLOUD_NAME}/decors/fastfoodFries.svg);`
+          : `url(${CLOUD_NAME}/decors/coffee.svg);`};
     }
   }
 `;

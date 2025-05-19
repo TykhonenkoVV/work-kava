@@ -2,7 +2,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { IMaskInput } from 'react-imask';
 import { Svg } from 'components/SvgIcon/SvgIcon';
-import sprite from 'images/sprite.svg';
+// import sprite from 'images/sprite.svg';
 import { HoursSelector } from './HoursSelector';
 import { BookType, GetBookingInfo } from 'utils/commonUtils';
 
@@ -20,8 +20,11 @@ import {
 
 import { ModalContent } from 'components/Modal/Modal.styled';
 import { BlueButton } from 'styles/buttonStyles';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const BookForm = ({ action, bookType }) => {
+  const sprite = `${CLOUD_NAME}decors/sprite`;
+
   const { price, title } = GetBookingInfo(bookType);
 
   const [phoneNumber, setphoneNumber] = useState('');

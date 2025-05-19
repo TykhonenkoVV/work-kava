@@ -12,7 +12,7 @@ import {
   Span
 } from './FastfoodItem.styled';
 import { devices } from 'styles';
-import { CloudName } from 'utils/GlobalUtils';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 import { useEffect, useState } from 'react';
 
 export const FastfoodItem = ({
@@ -71,12 +71,12 @@ export const FastfoodItem = ({
         />
         <img
           title={title}
-          src={`${CloudName}fastfood/${image}-mobile.png`}
+          src={`${CLOUD_NAME}fastfood/${image}-mobile.png`}
           alt={title}
           width="485"
           height="246"
-          srcSet={`${CloudName}fastfood/${image}-mobile.png 1x,
-              ${CloudName}fastfood/${image}-mobile.png 2x`}
+          srcSet={`${CLOUD_NAME}fastfood/${image}-mobile.png 1x,
+              ${CLOUD_NAME}fastfood/${image}-mobile.png 2x`}
         />
       </ImageWrapper>
       <PriceWrapper>

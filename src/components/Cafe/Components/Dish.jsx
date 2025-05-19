@@ -10,7 +10,7 @@ import {
 } from './Dish.styled';
 import { ImagesSource } from '../../Images';
 import { Ingredients } from './Ingredients';
-import { CloudName } from 'utils/GlobalUtils';
+import { CLOUD_NAME } from 'utils/GlobalUtils';
 import { Svg } from 'components/SvgIcon/SvgIcon';
 
 export const Dish = ({
@@ -28,7 +28,7 @@ export const Dish = ({
         <ImagesSource imageName={imageName} page="cafe" />
         <Img
           title={title}
-          src={`${CloudName}cafe/${imageName}.png`}
+          src={`${CLOUD_NAME}cafe/${imageName}.png`}
           alt={name}
           isEven={isEven}
         />
