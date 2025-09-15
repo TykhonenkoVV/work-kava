@@ -4,26 +4,39 @@ export const DropdownInput = styled.div`
   position: relative;
   z-index: 10000;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-height: 68px;
+  height: 48px;
   font-size: 24px;
   line-height: 1;
   color: ${props => props.theme.colors.darkGray};
-
-  padding: 16px;
-  border-radius: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
   border: 1.5px solid ${props => props.theme.colors.primary};
+  border-radius: 8px;
+  fill: ${props => props.theme.colors.darkGray};
+  outline: none;
 
   cursor: pointer;
 
-  transition: border-color ${props => props.theme.baseTransition};
+  transition: border-color ${props => props.theme.baseTransition},
+    color ${props => props.theme.baseTransition},
+    fill ${props => props.theme.baseTransition};
+
+  & svg {
+    transition: rotate ${props => props.theme.baseTransition};
+  }
+  & svg.rotate {
+    rotate: 180deg;
+  }
 
   &:hover,
   :focus,
   :active {
     border-color: ${props => props.theme.colors.accent};
-    outline: none;
+    color: ${props => props.theme.colors.accent};
+    fill: ${props => props.theme.colors.accent};
   }
   @media screen and (${props => props.theme.devices.tablet}) {
     font-size: 38px;

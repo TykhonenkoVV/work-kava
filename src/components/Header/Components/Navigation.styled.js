@@ -2,23 +2,27 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const List = styled.ul`
-  @media screen and (${props => props.theme.devices.onlymobile}) {
-    flex-direction: column;
-    align-items: center;
-
-    font-size: 30px;
+  @media screen and (${({ theme }) => theme.devices.onlymobile}) {
+    font-size: 32px;
+    row-gap: 16px;
   }
-
   display: flex;
-  column-gap: 40px;
-  row-gap: 16px;
-
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
   font-size: 24px;
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    height: 100%;
+    flex-direction: row;
+  }
 `;
 
 export const Item = styled.li`
   display: flex;
   align-items: center;
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    height: 100%;
+  }
 `;
 
 export const LinkItem = styled(NavLink)`
@@ -26,33 +30,36 @@ export const LinkItem = styled(NavLink)`
 
   display: flex;
   align-items: center;
-  height: 45px;
 
-  color: ${props => props.theme.colors.white};
+  color: ${({ theme }) => theme.colors.white};
 
-  transition: ${props => `color ${props.theme.baseTransition}`};
+  transition: ${({ theme }) => `color ${{ theme }.theme.baseTransition}`};
 
   :hover,
   :focus {
-    color: ${props => props.theme.colors.whiteButtonHover};
+    color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 
-  &.active {
-    @media screen and (${props => props.theme.devices.tablet}) {
-      height: 56px;
-
-      color: ${props => props.theme.colors.accent};
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    height: 100%;
+    padding-inline-start: 24px;
+    padding-inline-end: 24px;
+    &.active {
+      color: ${({ theme }) => theme.colors.accent};
 
       &::before {
         content: '';
         position: absolute;
         left: 0;
-        bottom: 0;
+        right: 0;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+        bottom: 12px;
 
-        width: 100%;
+        width: calc(100% - 48px);
 
         border-radius: 2px;
-        border-bottom: 4px solid ${props => props.theme.colors.accent};
+        border-block-end: 4px solid ${({ theme }) => theme.colors.accent};
       }
     }
   }

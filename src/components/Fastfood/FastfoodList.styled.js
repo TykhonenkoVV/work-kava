@@ -30,7 +30,7 @@ export const Item = styled.li`
   @media screen and (${props => props.theme.devices.tablet}) {
     flex-basis: calc((100% - 70px) / 3);
     padding: 20px;
-    &:nth-child(3n + 1) {
+    &:nth-of-type(3n + 1) {
       border-top-left-radius: 60px;
       &::after {
         content: '';
@@ -60,7 +60,7 @@ export const Item = styled.li`
         width: 384px;
       }
     }
-    &:nth-child(3n),
+    &:nth-of-type(3n),
     &:last-child {
       border-bottom-right-radius: 60px;
     }

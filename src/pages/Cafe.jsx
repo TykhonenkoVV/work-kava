@@ -1,4 +1,5 @@
 import { Dishes } from 'components/Cafe/Dishes';
+import { Hero } from 'components/Hero/Hero';
 
 const CoffeeClassicMenu = [
   {
@@ -88,6 +89,7 @@ const Desserts = [
 const Cafe = () => {
   return (
     <>
+      <Hero page="cafe" />
       <Dishes
         title="Coffee classic"
         dishes={CoffeeClassicMenu}

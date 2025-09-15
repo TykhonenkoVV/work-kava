@@ -3,11 +3,12 @@ import styled from '@emotion/styled';
 const Button = styled.button`
   display: flex;
   justify-content: center;
+  align-items: center;
   min-width: 100%;
-  padding: 25px;
+  height: 80px;
+  font-size: 30px;
   font-weight: 700;
   line-height: 1;
-  border-radius: 8px;
   z-index: 15;
 `;
 
@@ -32,17 +33,5 @@ export const WhiteButton = styled(Button)`
   &:hover,
   &:focus {
     background-color: ${props => props.theme.colors.whiteButtonHover};
-  }
-`;
-
-export const FooterButton = styled(WhiteButton)`
-  padding: 22px;
-  font-size: 24px;
-  max-width: 100%;
-
-  @media screen and (${props => props.theme.devices.desktop}) {
-    padding: 12px;
-    font-size: 30px;
-    line-height: 1.5;
   }
 `;

@@ -2,36 +2,35 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BlueButton, WhiteButton } from 'styles/buttonStyles';
 import { Container, HomeSection } from 'components/App.styled';
-import {
-  Title,
-  Text,
-  CoffeContainer,
-  CoffeeImg,
-  StyleContainerBtn,
-  Picture
-} from './HomePagesPlase.styled';
 import { devices } from 'styles';
 import { ImagesSource } from 'components/Images';
 import { CLOUD_NAME } from 'utils/GlobalUtils';
+import {
+  ContentContainer,
+  Picture,
+  StyleContainerBtn,
+  Text,
+  Title
+} from './HomePageContent.styled';
 
-export const HomePagePlase = ({ title, description, styles, linkTo }) => {
+export const HomePageContent = ({ title, description, styles, linkTo }) => {
   const imageName = title.toLowerCase();
 
   const imgSizes = [
     {
       media: devices.desktop,
-      width: 818,
-      height: 540
+      width: 730,
+      height: 714
     },
     {
       media: devices.tablet,
-      width: 516,
-      height: 480
+      width: 532,
+      height: 520
     },
     {
       media: devices.mobile,
-      width: 356,
-      height: 218
+      width: 358,
+      height: 238
     }
   ];
 
@@ -39,9 +38,8 @@ export const HomePagePlase = ({ title, description, styles, linkTo }) => {
     <HomeSection styles={styles}>
       <Container>
         <Title styles={styles}>{title}</Title>
-        <CoffeContainer styles={styles}>
+        <ContentContainer styles={styles}>
           <Text styles={styles}>{description}</Text>
-
           <Picture styles={styles}>
             <ImagesSource
               imageName={imageName}
@@ -49,15 +47,11 @@ export const HomePagePlase = ({ title, description, styles, linkTo }) => {
               sizes={imgSizes}
               type="jpg"
             />
-            <CoffeeImg
-              styles={styles}
-              width={356}
-              height={218}
-              src={`${CLOUD_NAME}home/${imageName}-mobile.jpg`}
+            <img
+              width={358}
+              height={238}
+              src={`${CLOUD_NAME}home/jpeg/home-${imageName}.jpg`}
               alt={title}
-              onError={e => {
-                console.error('Image loading error:', e);
-              }}
             />
           </Picture>
           <StyleContainerBtn styles={styles}>
@@ -71,7 +65,7 @@ export const HomePagePlase = ({ title, description, styles, linkTo }) => {
               </WhiteButton>
             )}
           </StyleContainerBtn>
-        </CoffeContainer>
+        </ContentContainer>
       </Container>
     </HomeSection>
   );

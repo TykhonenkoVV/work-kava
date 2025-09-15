@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
 
 export const FormTitle = styled.p`
+  margin-block-end: 26px;
   color: ${props => props.theme.colors.white};
 
   text-align: center;
-  font-size: 24px;
-  font-style: normal;
   font-weight: 400;
   line-height: 1;
 
@@ -14,31 +13,30 @@ export const FormTitle = styled.p`
     line-height: 1.875;
   }
 `;
+
 export const FormBox = styled.div`
-  gap: 38px;
+  gap: 27px;
   display: flex;
   flex-direction: column;
-  margin-top: 27px;
 
   @media screen and (${props => props.theme.devices.tablet}) {
     padding-left: 26px;
-    margin-top: 36px;
     gap: 40px;
     border-left: 5px solid ${props => props.theme.colors.white};
   }
 `;
 
 export const FormInput = styled.input`
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
   display: flex;
-  max-width: 366px;
-  width: 100%;
-  padding: 3px 16px;
   align-items: center;
-  border-radius: 4px;
+  width: 100%;
+  height: 40px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  max-width: 366px;
+  padding-inline-start: 16px;
+  padding-inline-end: 16px;
   color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.white};
   background-color: transparent;

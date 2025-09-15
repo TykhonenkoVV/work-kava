@@ -25,28 +25,54 @@ export const ContentWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   margin-bottom: 40px;
 `;
 
+export const InputWrapper = styled.label`
+  position: relative;
+  fill: ${props => props.theme.colors.darkGray};
+  transition: fill ${props => props.theme.baseTransition};
+  &:has(input:hover, input:focus, input:active) {
+    fill: ${props => props.theme.colors.accent};
+  }
+  & svg {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    pointer-events: none;
+    transition: rotate ${props => props.theme.baseTransition};
+    &.rotate {
+      left: unset;
+      right: 16px;
+    }
+  }
+  &[data-active='true'] svg.rotate {
+    rotate: 180deg;
+  }
+  &[data-picker='true'] {
+    position: relative;
+  }
+`;
+
 export const Input = styled.input`
-  display: block;
+  display: flex;
   width: 100%;
+  height: 48px;
   font-size: 24px;
   line-height: 1;
   color: ${props => props.theme.colors.primary};
+  outline: none;
+  padding-left: 60px;
 
-  padding: 16px 16px 16px 60px;
+  border: 1px solid ${props => props.theme.colors.primary};
   border-radius: 8px;
-  border: 1.5px solid ${props => props.theme.colors.primary};
 
   transition: border-color ${props => props.theme.baseTransition};
-
   &:hover,
   :focus,
   :active {
     border-color: ${props => props.theme.colors.accent};
-    outline: none;
   }
   @media screen and (${props => props.theme.devices.tablet}) {
     font-size: 28px;
@@ -82,16 +108,15 @@ export const CloseButton = styled.button`
   &:focus {
     fill: ${props => props.theme.colors.accent};
   }
-`;
-
-export const InputWrapper = styled.div`
-  position: relative;
+  &:hover,
+  &:focus {
+    fill: ${props => props.theme.colors.accent};
+  }
 `;
 
 export const UserIcon = styled.svg`
   position: absolute;
   top: 50%;
   left: 16px;
-  fill: ${props => props.theme.colors.darkGray};
   transform: translateY(-50%);
 `;

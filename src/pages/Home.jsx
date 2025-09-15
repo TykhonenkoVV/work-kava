@@ -1,5 +1,5 @@
 import { Hero } from 'components/Hero/Hero';
-import { HomePagePlase } from 'components/HomePages/HomePagePlase';
+import { HomePageContent } from 'components/HomePageContent/HomePageContent';
 
 const homePages = [
   {
@@ -38,7 +38,7 @@ const Home = () => {
     <>
       <Hero page="home" />
       {homePages.map((section, index) => (
-        <HomePagePlase
+        <HomePageContent
           key={section.id}
           id={section.id}
           title={section.title}

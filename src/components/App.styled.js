@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Section = styled.section`
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-block-start: 40px;
+  padding-block-end: 40px;
 
   ${props =>
     props.page === 'cafe' &&
@@ -11,8 +11,8 @@ export const Section = styled.section`
       : 'padding-top: 80px; padding-bottom: 80px;')};
 
   @media screen and (${props => props.theme.devices.desktop}) {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-block-start: 100px;
+    padding-block-end: 100px;
 
     ${props =>
       props.page === 'cafe' &&
@@ -27,7 +27,7 @@ export const DarkSection = styled(Section)`
 `;
 
 export const Container = styled.div`
-  padding: 0 24px;
+  padding: 0 28px;
   margin: 0 auto;
   text-align: center;
 
@@ -55,6 +55,7 @@ export const HomeSection = styled(Section)`
     props.styles === 'dark'
       ? props.theme.colors.white
       : props.theme.colors.primary};
+  overflow: hidden;
 `;
 
 export const CoworkingSection = styled(Section)`

@@ -1,21 +1,22 @@
+import { Fragment } from 'react';
 import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const ImagesSource = ({ imageName, page, sizes, type }) => {
   const span = i => {
-    let span = '';
-    i === 1 ? (span = '-tablet') : i === 2 ? (span = '-mobile') : (span = '');
+    let span = '-desktop';
+    i === 1 ? (span = '-tablet') : i === 2 ? (span = '') : (span = '-desktop');
     return span;
   };
 
   return (
     <>
       {sizes?.map((size, index) => (
-        <>
+        <Fragment key={index}>
           <source
-            srcSet={`${CLOUD_NAME}${page}-webp/${imageName}${span(
+            srcSet={`${CLOUD_NAME}${page}/webp/${page}-${imageName}${span(
               index
             )}.webp 1x,
-                ${CLOUD_NAME}${page}-webp/${imageName}${span(
+                ${CLOUD_NAME}${page}/webp/${page}-${imageName}${span(
               index
             )}_2x.webp 2x`}
             media={`(${size.media})`}
@@ -24,13 +25,17 @@ export const ImagesSource = ({ imageName, page, sizes, type }) => {
             type="image/webp"
           />
           <source
-            srcSet={`${CLOUD_NAME}${page}/${imageName}${span(index)}.${type} 1x,
-                ${CLOUD_NAME}${page}/${imageName}${span(index)}_2x.${type} 2x`}
+            srcSet={`${CLOUD_NAME}${page}/jpeg/${page}-${imageName}${span(
+              index
+            )}.${type} 1x,
+                ${CLOUD_NAME}${page}/jpeg/${page}-${imageName}${span(
+              index
+            )}_2x.${type} 2x`}
             media={`(${size.media})`}
             width={size.width}
             height={size.height}
           />
-        </>
+        </Fragment>
       ))}
     </>
   );

@@ -40,7 +40,7 @@ export const SocialLinksList = () => {
             rel="noopener noreferrer"
             aria-label={text}
           >
-            <Svg w={40} h={40} icon={icon} style={{ fill: '#fff' }}></Svg>
+            <Svg w={40} h={40} icon={icon}></Svg>
           </a>
         </LinkItem>
       ))}

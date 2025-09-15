@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
 import {
   ButtonStyled,
   ContainerHeader,
   LangButton,
   CartButton,
   StyledHeader,
-  UserButton
+  UserButton,
+  HederLogo
 } from './Header.styled';
 import { Svg } from 'components/SvgIcon/SvgIcon';
 import { useEffect, useState } from 'react';
@@ -31,15 +31,6 @@ export const Header = () => {
     };
   }, []);
 
-  const sizeLogoWidth = windowWidth >= 1440 ? 201 : 150;
-  const sizeLogoHeight = windowWidth >= 1440 ? 46 : 32;
-  const stylyLogo =
-    windowWidth >= 1460
-      ? { marginRight: '50px' }
-      : windowWidth <= 1023
-      ? { marginRight: 'auto' }
-      : { marginRight: '24px' };
-
   const handleOpenModal = () => {
     setModalHeader(true);
   };
@@ -55,21 +46,21 @@ export const Header = () => {
   return (
     <StyledHeader>
       <ContainerHeader>
-        <Link to="/" aria-label="Home" style={stylyLogo}>
+        <HederLogo to="/" aria-label="Home">
           <Svg
-            w={sizeLogoWidth}
-            h={sizeLogoHeight}
+            w={201}
+            h={46}
             icon={'logo'}
             aria-label="logotype work kava, go home"
           />
-        </Link>
+        </HederLogo>
         {windowWidth >= 1024 ? (
           <>
             <Navigation />
             <SettingsWrapper>
               <LangButton type="button" aria-label="language" />
               <CartButton type="button" aria-label="cart">
-                <Svg w={40} h={40} icon={'cart'} aria-label="icon cart" />
+                <Svg w={36} h={36} icon={'cart'} aria-label="icon cart" />
               </CartButton>
               <UserButton type="button" aria-label="user profile">
                 <Svg w={40} h={40} icon={'avatar'} aria-label="icon user" />
@@ -79,14 +70,14 @@ export const Header = () => {
         ) : (
           <>
             <CartButton type="button" aria-label="cart">
-              <Svg w={32} h={32} icon={'cart'} aria-label="icon cart" />
+              <Svg w={36} h={36} icon={'cart'} aria-label="icon cart" />
             </CartButton>
             <ButtonStyled
               type="button"
               onClick={handleOpenModal}
               aria-label="menu"
             >
-              <Svg w={32} h={32} icon={'burger'} />
+              <Svg w={36} h={36} icon={'burger'} />
             </ButtonStyled>
           </>
         )}

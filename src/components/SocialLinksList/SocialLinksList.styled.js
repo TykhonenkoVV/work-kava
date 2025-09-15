@@ -13,6 +13,9 @@ export const LinkItem = styled.li`
   background-color: ${props => props.theme.colors.primary};
   transition: ${props => `transform ${props.theme.baseTransition}`};
 
+  & svg {
+    fill: ${props => props.theme.colors.white};
+  }
   &:hover {
     transform: scale(1.2);
   }

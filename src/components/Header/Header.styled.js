@@ -1,55 +1,62 @@
 import styled from '@emotion/styled';
 import { Container } from 'components/App.styled';
+import { Link } from 'react-router-dom';
 import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const StyledHeader = styled.header`
-  position: fixed;
-  z-index: 5;
-
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
   height: 80px;
 
-  background-color: ${props => props.theme.colors.headerBackground};
+  background-color: ${({ theme }) => theme.colors.headerBackground};
+`;
+
+export const HederLogo = styled(Link)`
+  display: flex;
+  margin-inline-end: auto;
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    margin-inline-end: 24px;
+  }
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    margin-inline-end: 50px;
+  }
 `;
 
 export const ContainerHeader = styled(Container)`
   display: flex;
   align-items: center;
-  width: ${props => props.theme.sizes.mobile}px;
+  width: ${({ theme }) => theme.sizes.mobile}px;
 `;
 
 export const LangButton = styled.button`
   width: 40px;
   height: 40px;
-  border: 2px solid #fff;
-  border-radius: 10px;
+  border: 2px solid ${({ theme }) => theme.colors.white};
   background-image: url('${CLOUD_NAME}/flags/flag-uk.jpg');
   background-position: center;
-  transition: border-color ${props => props.theme.baseTransition};
+  transition: border-color ${({ theme }) => theme.baseTransition};
 
   &:hover,
   &:focus {
-    border-color: ${props => props.theme.colors.whiteButtonHover};
+    border-color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;
 
 export const CartButton = styled.button`
   width: 40px;
   height: 40px;
-  fill: #fff;
-  transition: fill ${props => props.theme.baseTransition};
+  border: 2px solid ${({ theme }) => theme.colors.white};
+  fill: ${({ theme }) => theme.colors.white};
+  transition: fill ${({ theme }) => theme.baseTransition};
 
   &:hover,
   &:focus {
-    fill: ${props => props.theme.colors.whiteButtonHover};
+    fill: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 
-  @media screen and (${props => props.theme.devices.onlymobile}) {
-    width: 32px;
-    height: 32px;
+  @media screen and (${({ theme }) => theme.devices.onlymobile}) {
     margin-right: 16px;
   }
 `;
@@ -57,23 +64,24 @@ export const CartButton = styled.button`
 export const UserButton = styled.button`
   width: 40px;
   height: 40px;
-  fill: #fff;
-  transition: fill ${props => props.theme.baseTransition};
+  fill: ${({ theme }) => theme.colors.white};
+  transition: fill ${({ theme }) => theme.baseTransition};
 
   &:hover,
   &:focus {
-    fill: ${props => props.theme.colors.whiteButtonHover};
+    fill: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;
 
 export const ButtonStyled = styled.button`
-  width: 32px;
-  height: 32px;
-  fill: ${props => props.theme.colors.white};
-  transition: fill ${props => props.theme.baseTransition};
+  width: 40px;
+  height: 40px;
+  border: 2px solid ${({ theme }) => theme.colors.white};
+  fill: ${({ theme }) => theme.colors.white};
+  transition: fill ${({ theme }) => theme.baseTransition};
 
   &:hover,
   &:focus {
-    fill: ${props => props.theme.colors.whiteButtonHover};
+    fill: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;

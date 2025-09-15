@@ -1,4 +1,5 @@
 import { FastfoodCategories } from 'components/Fastfood/FastfoodCategories';
+import { Hero } from 'components/Hero/Hero';
 
 const data = [
   {
@@ -89,7 +90,7 @@ const data = [
         ingredients: ''
       },
       {
-        id: 14,
+        id: 15,
         index: 2,
         title: 'Fish roll',
         image: 'fish-roll',
@@ -99,7 +100,7 @@ const data = [
         ingredients: ''
       },
       {
-        id: 14,
+        id: 16,
         index: 3,
         title: 'Fish roll',
         image: 'fish-roll',
@@ -141,7 +142,12 @@ const data = [
 ];
 
 const Fastfood = () => {
-  return <FastfoodCategories data={data} />;
+  return (
+    <>
+      <Hero page="fastfood" />
+      <FastfoodCategories data={data} />;
+    </>
+  );
 };
 
 export default Fastfood;

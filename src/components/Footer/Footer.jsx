@@ -1,24 +1,21 @@
-import { Logo } from "./components/Logo/Logo";
+import { Logo } from './components/Logo/Logo';
 import { Container } from 'components/App.styled';
-import { Section, FooterBox, FooterContainer } from "./Footer.styled";
-import { Contacts } from "./components/Contacts/Contacts";
-import { Socials } from "./components/Socials/Socials";
-import { SubscribeForm } from "./components/SubscribeForm/SubscribeForm";
+import { Section, FooterBox } from './Footer.styled';
+import { Contacts } from './components/Contacts/Contacts';
+import { Socials } from './components/Socials/Socials';
+import { SubscribeForm } from './components/SubscribeForm/SubscribeForm';
 
 export const Footer = () => {
-    return (
-        <Section>
-            <Container>
-                <FooterContainer>
-                    <FooterBox>
-                        <Logo />
-                        <Contacts />
-                    </FooterBox>
-                        <Socials />
-                        <SubscribeForm />
-                </FooterContainer>
-            </Container>
-        </Section>
-           
-    )
-} 
+  return (
+    <Section>
+      <Container>
+        <FooterBox>
+          <Logo />
+          <Contacts />
+        </FooterBox>
+        <Socials />
+        <SubscribeForm />
+      </Container>
+    </Section>
+  );
+};

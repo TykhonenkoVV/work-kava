@@ -3,146 +3,135 @@ import { DarkSection } from 'components/App.styled';
 import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const SectionHero = styled(DarkSection)`
-  padding-top: 180px;
-  padding-bottom: ${({ page }) => (page === 'home' ? '50px' : '210px')};
+  padding-block-start: 100px;
+  padding-block-end: 50px;
   background-repeat: no-repeat;
   background-color: #1b253f;
-  background-position: 50% top;
-  background-size: 414px;
+  background-size: cover;
+  background-position: right;
   background-image: ${({ page }) =>
-    props =>
-      props.theme.useWebp
-        ? `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-            CLOUD_NAME + page
-          }-webp/hero-mobile.webp)`
-        : `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-            CLOUD_NAME + page
-          }/hero-mobile.png)`};
+    ({ theme }) =>
+      theme.useWebp
+        ? `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}${page}/webp/${page}-hero.webp)`
+        : `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}${page}/jpeg/${page}-hero.jpg)`};
 
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
     background-image: ${({ page }) =>
-      props =>
-        props.theme.useWebp
-          ? `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-              CLOUD_NAME + page
-            }-webp/hero-mobile_2x.webp)`
-          : `linear-gradient(90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0) 100%), url(${
-              CLOUD_NAME + page
-            }/hero-mobile_2x.png)`};
+      ({ theme }) =>
+        theme.useWebp
+          ? `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}${page}/webp/${page}-hero_2x.webp)`
+          : `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}${page}/jpeg/${page}-hero_2x.jpg)`};
   }
 
   @media screen and (${props => props.theme.devices.tablet}) {
-    padding-top: 130px;
-    padding-bottom: ${({ page }) => (page === 'home' ? '50px' : '159px')};
-    background-size: 1024px;
+    padding-block-start: 40px;
+    padding-block-end: 40px;
     background-image: ${({ page }) =>
       props =>
         props.theme.useWebp
-          ? `url(${CLOUD_NAME + page}-webp/hero-tablet.webp)`
-          : `url(${CLOUD_NAME + page}/hero-tablet.png)`};
+          ? `url(${CLOUD_NAME}${page}/webp/${page}-hero-tablet.webp)`
+          : `url(${CLOUD_NAME}${page}/jpeg/${page}-hero-tablet.jpg)`};
 
+    background-size: contain;
+    background-position: center;
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
       background-image: ${({ page }) =>
         props =>
           props.theme.useWebp
-            ? `url(${CLOUD_NAME + page}-webp/hero-tablet_2x.webp)`
-            : `url(${CLOUD_NAME + page}/hero-tablet_2x.png)`};
+            ? `url(${CLOUD_NAME}${page}/webp/${page}-hero-tablet_2x.webp)`
+            : `url(${CLOUD_NAME}${page}/jpeg/${page}-hero-tablet_2x.jpg)`};
     }
   }
 
   @media screen and (${props => props.theme.devices.desktop}) {
-    padding-top: 180px;
-    padding-bottom: ${({ page }) => (page === 'home' ? '50px' : '258px')};
-    background-size: 1440px;
+    padding-block-start: 80px;
+    padding-block-end: 80px;
     background-image: ${({ page }) =>
       props =>
         props.theme.useWebp
-          ? `url(${CLOUD_NAME + page}-webp/hero.webp)`
-          : `url(${CLOUD_NAME + page}/hero.png)`};
-
+          ? `url(${CLOUD_NAME}${page}/webp/${page}-hero-desktop.webp)`
+          : `url(${CLOUD_NAME}${page}/jpeg/${page}-hero-desktop.png)`};
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
       background-image: ${({ page }) =>
         props =>
           props.theme.useWebp
-            ? `url(${CLOUD_NAME + page}-webp/hero_2x.webp)`
-            : `url(${CLOUD_NAME + page}/hero_2x.png)`};
+            ? `url(${CLOUD_NAME}${page}/webp/${page}-hero-desktop_2x.webp)`
+            : `url(${CLOUD_NAME}${page}/jpeg/${page}-hero-desktop_2x.png)`};
     }
-  }
-`;
-
-export const HeroContainer = styled.div`
-  margin: auto;
-
-  @media screen and (${props => props.theme.devices.mobile}) {
-    width: ${props => props.theme.sizes.mobile}px;
-  }
-
-  @media screen and (${props => props.theme.devices.tablet}) {
-    width: ${props => props.theme.sizes.tablet}px;
-  }
-
-  @media screen and (${props => props.theme.devices.desktop}) {
-    width: ${props => props.theme.sizes.desktop}px;
   }
 `;
 
 export const TextContainer = styled.div`
-  margin-bottom: ${({ page }) => (page === 'home' ? '120px' : '0')};
-  padding: 0 24px;
   color: ${props => props.theme.colors.white};
 
   @media screen and (${props => props.theme.devices.tablet}) {
-    width: 598px;
-    margin-bottom: ${({ page }) => (page === 'home' ? '69px' : '0')};
+    width: 520px;
     padding: 40px 24px;
+    padding-block-start: 40px;
+    padding-block-end: 40px;
+    padding-inline-start: 28px;
+    padding-inline-end: 28px;
+    margin-inline-start: -28px;
     background-color: rgba(27, 37, 63, 0.67);
   }
 
   @media screen and (${props => props.theme.devices.desktop}) {
-    width: ${({ page }) => (page === 'home' ? '764px' : '711px')};
-    margin-bottom: ${props => (props.page === 'home' ? '134px' : '0px')};
-    padding: ${({ page }) =>
-      page === 'home' ? '52px 52px 52px 138px' : '52px 108px 52px 138px'};
+    width: 764px;
+    margin-inline-start: -138px;
+    padding-inline-start: 138px;
+    padding-inline-end: 52px;
+    padding-block-start: 50px;
+    padding-block-end: 50px;
   }
 `;
 
 export const MainText = styled.h1`
-  margin-bottom: 50px;
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 1.5;
+  margin-block-end: 40px;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.6;
   text-align: left;
 
   @media screen and (${props => props.theme.devices.tablet}) {
-    margin-bottom: 40px;
-    font-size: ${({ page }) => (page === 'home' ? '60px' : '58px')};
-    line-height: normal;
+    font-size: 40px;
+    line-height: 1.2;
   }
 
   @media screen and (${props => props.theme.devices.desktop}) {
-    margin-bottom: ${({ page }) => (page === 'home' ? '20px' : '40px')};
-    font-size: ${({ page }) => (page === 'home' ? '70px' : '48px')};
+    font-size: 50px;
+    margin-block-end: 68px;
   }
 `;
 
 export const DescrText = styled.p`
   position: relative;
-  padding-left: 40px;
-  font-size: ${({ page }) => (page === 'home' ? '24px' : '20px')};
+  margin-block-end: 118px;
+  padding-inline-start: 32px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 1.5;
   text-align: left;
 
   @media screen and (${props => props.theme.devices.tablet}) {
     width: 412px;
-    font-size: 30px;
-    line-height: 1.2;
+    margin-block-end: 40px;
+    padding-inline-start: 40px;
+    font-size: 20px;
+    line-height: 1.8;
+  }
+
+  @media screen and (${props => props.theme.devices.desktop}) {
+    width: 402px;
+    height: 182px;
+    margin-block-end: 50px;
+    font-size: 26px;
+    line-height: 1.4;
   }
 
   &::before {
@@ -153,19 +142,5 @@ export const DescrText = styled.p`
     width: 5px;
     height: 100%;
     background-color: #fff;
-  }
-
-  @media screen and (${props => props.theme.devices.desktop}) {
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 100%;
-      width: 182px;
-      height: 182px;
-      background-image: url('${CLOUD_NAME}decors/four_zigzags_ffffff.svg');
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
   }
 `;

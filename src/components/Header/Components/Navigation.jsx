@@ -2,7 +2,7 @@ import { Item, LinkItem, List } from './Navigation.styled';
 
 export const Navigation = ({ action }) => {
   return (
-    <nav>
+    <nav style={{ height: '100%' }}>
       <List>
         <Item key="1">
           <LinkItem to="/" onClick={action}>

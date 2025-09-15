@@ -1,14 +1,10 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export const LogoWrapper = styled.div`
-    margin-bottom: 50px;
-    @media screen and (${props => props.theme.devices.tablet}){
-        margin-bottom: 36px;
-    }
-` 
-
-export const Link = styled(NavLink)`
-    display: flex;
-`
-
+export const StyledLink = styled(Link)`
+  height: 46px;
+  margin-block-end: 50px;
+  @media screen and (${props => props.theme.devices.tablet}) {
+    margin-block-end: 36px;
+  }
+`;

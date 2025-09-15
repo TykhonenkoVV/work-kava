@@ -32,7 +32,7 @@ export const theme = Object.freeze({
 
     lightBlue: '#3C4F82', //fastfood and cafe pages
 
-    headerBackground: 'rgba(0, 0, 0, 0.70)',
+    headerBackground: '#000000',
 
     darkButtonHover: '#3C4F82',
     whiteButtonHover: '#E2D0AE',
@@ -53,8 +53,7 @@ export const theme = Object.freeze({
 
   baseTransition: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
 
-  heroLinerGradient:
-    '90deg, rgba(27, 37, 63, 0.67) 56.77%, rgba(27, 37, 63, 0.00) 100%',
+  heroLinerGradient: '90deg, rgba(27, 37, 63, 0.6), rgba(27, 37, 63, 0.6)',
   blueRadialGradient:
     'radial-gradient(92.89% 118.32% at 0% -1.02%, #1b253f 0%, #3c4f82 100%)', // cafe page
   beigeRadialGradient:

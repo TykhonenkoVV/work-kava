@@ -7,7 +7,7 @@ export const BackdropHeader = styled(Backdrop)`
   flex-direction: column;
   padding: 180px 0 50px 0;
 
-  background-color: ${props => props.theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
 
   &::before {
     content: '';
@@ -29,13 +29,13 @@ export const CloseButton = styled.button`
   right: 32px;
   top: 32px;
 
-  fill: ${props => props.theme.colors.white};
+  fill: ${({ theme }) => theme.colors.white};
 
-  transition: fill ${props => props.theme.baseTransition};
+  transition: fill ${({ theme }) => theme.baseTransition};
 
   &:hover,
   &:focus {
-    fill: ${props => props.theme.colors.whiteButtonHover};
+    fill: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;
 
@@ -44,35 +44,37 @@ export const SetBtn = styled.button`
   justify-content: center;
   align-items: center;
   gap: 16px;
-  fill: ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors.white};
+  font-size: 32px;
+  line-height: 1.25;
+  fill: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const UserBtn = styled(SetBtn)`
   margin-bottom: 16px;
-  transition: fill ${props => props.theme.baseTransition},
-    color ${props => props.theme.baseTransition};
+  transition: fill ${({ theme }) => theme.baseTransition},
+    color ${({ theme }) => theme.baseTransition};
   &:hover {
-    fill: ${props => props.theme.colors.whiteButtonHover};
-    color: ${props => props.theme.colors.whiteButtonHover};
+    fill: ${({ theme }) => theme.colors.whiteButtonHover};
+    color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;
 
 export const LangBtn = styled(SetBtn)`
   margin-top: auto;
-  transition: color ${props => props.theme.baseTransition};
+  transition: color ${({ theme }) => theme.baseTransition};
   &:hover {
-    border-color: ${props => props.theme.colors.whiteButtonHover};
-    color: ${props => props.theme.colors.whiteButtonHover};
+    border-color: ${({ theme }) => theme.colors.whiteButtonHover};
+    color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
   & img {
     width: 40px;
     height: 40px;
-    border: 2px solid ${props => props.theme.colors.white};
+    border: 2px solid ${({ theme }) => theme.colors.white};
     border-radius: 10px;
-    transition: border-color ${props => props.theme.baseTransition};
+    transition: border-color ${({ theme }) => theme.baseTransition};
   }
   &:hover img {
-    border-color: ${props => props.theme.colors.whiteButtonHover};
+    border-color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;

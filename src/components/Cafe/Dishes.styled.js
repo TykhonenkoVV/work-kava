@@ -5,7 +5,6 @@ export const Title = styled.h2`
   position: relative;
   z-index: 2;
   margin-bottom: 50px;
-  font-family: Inter;
   font-size: 40px;
   font-weight: 700;
   line-height: 1;

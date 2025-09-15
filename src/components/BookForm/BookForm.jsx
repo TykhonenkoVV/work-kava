@@ -2,7 +2,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { IMaskInput } from 'react-imask';
 import { Svg } from 'components/SvgIcon/SvgIcon';
-// import sprite from 'images/sprite.svg';
 import { HoursSelector } from './HoursSelector';
 import { BookType, GetBookingInfo } from 'utils/commonUtils';
 
@@ -12,35 +11,36 @@ import {
   ErrorText,
   Form,
   FormTitle,
-  Input,
   InputWrapper,
-  PriceText,
-  UserIcon
+  Input,
+  PriceText
 } from './BookForm.styled';
 
 import { ModalContent } from 'components/Modal/Modal.styled';
 import { BlueButton } from 'styles/buttonStyles';
-import { CLOUD_NAME } from 'utils/GlobalUtils';
+import { Picker } from './Components/Picker/Picker';
 
 export const BookForm = ({ action, bookType }) => {
-  const sprite = `${CLOUD_NAME}decors/sprite`;
-
   const { price, title } = GetBookingInfo(bookType);
 
   const [phoneNumber, setphoneNumber] = useState('');
 
   const [bookingPrice, setBookingPrice] = useState(price);
 
+  const [isActive, setIsActive] = useState(false);
+
+  // const [selectedDate, setSelectedDay] = useState(new Date());
+
   const updatePrice = hours => {
     setBookingPrice(hours * price);
   };
+
   const {
     register,
     handleSubmit,
     control,
     formState: { errors }
   } = useForm();
-
   return (
     <ModalContent>
       <CloseButton type="button" aria-label="close" onClick={action}>
@@ -70,14 +70,17 @@ export const BookForm = ({ action, bookType }) => {
               })}
               placeholder="Enter your name"
             />
-            <UserIcon
-              width={28}
-              height={28}
-              aria-hidden="true"
-              role="presentation"
-            >
-              <use href={`${sprite}#icon-user`} />
-            </UserIcon>
+            <Svg
+              w={28}
+              h={28}
+              icon={'user'}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '16px',
+                transform: 'translateY(-50%)'
+              }}
+            />
           </InputWrapper>
 
           {errors.name?.message && (
@@ -103,16 +106,31 @@ export const BookForm = ({ action, bookType }) => {
                 />
               )}
             />
-            <UserIcon
-              width={28}
-              height={28}
-              aria-hidden="true"
-              role="presentation"
-            >
-              <use href={`${sprite}#icon-phone`} />
-            </UserIcon>
+            <Svg
+              w={28}
+              h={28}
+              icon={'phone'}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '16px',
+                transform: 'translateY(-50%)'
+              }}
+            />
           </InputWrapper>
           {errors.phone && <ErrorText>Please enter correct phone</ErrorText>}
+          <InputWrapper
+            data-picker
+            data-active={isActive || null}
+            onClick={e => {
+              setIsActive(!isActive);
+            }}
+          >
+            <Input type="text" readOnly="readonly" placeholder="Select date" />
+            <Svg w={28} h={28} icon={'calendar'} />
+            <Svg className="rotate" w={28} h={28} icon="arrow" />
+            <Picker />
+          </InputWrapper>
           <HoursSelector
             bookType={BookType.MeetingRoom}
             onHoursChanges={updatePrice}
