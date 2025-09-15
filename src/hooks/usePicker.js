@@ -12,6 +12,9 @@ const nextYear = year + 1;
 export const usePicker = ({ locale = 'default', firstWeekDayNumber = 2 }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+  //заглушка, убрать
+  console.log(selectedDate);
+
   const days = createMonthDays({
     locale,
     month,

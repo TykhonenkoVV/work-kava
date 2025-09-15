@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Svg } from '../../../SvgIcon/SvgIcon';
 import { StyledLink } from './Logo.styled';
 

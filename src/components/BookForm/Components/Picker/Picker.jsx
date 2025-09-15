@@ -2,7 +2,7 @@ import { usePicker } from 'hooks/usePicker';
 import { PickerBody, PickItem } from './Picker.styled';
 
 export const Picker = () => {
-  const { state, functions } = usePicker({
+  const { state } = usePicker({
     locale: 'de-DE',
     firstWeekDayNumber: 2
   });
