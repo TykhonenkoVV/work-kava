@@ -5,8 +5,10 @@ export const BackdropHeader = styled(Backdrop)`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 180px 0 50px 0;
-
+  padding-block-start: 180px;
+  padding-block-end: 50px;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
   background-color: ${({ theme }) => theme.colors.primary};
 
   &::before {
@@ -51,7 +53,7 @@ export const SetBtn = styled.button`
 `;
 
 export const UserBtn = styled(SetBtn)`
-  margin-bottom: 16px;
+  margin-block-end: 16px;
   transition: fill ${({ theme }) => theme.baseTransition},
     color ${({ theme }) => theme.baseTransition};
   &:hover {
@@ -61,7 +63,7 @@ export const UserBtn = styled(SetBtn)`
 `;
 
 export const LangBtn = styled(SetBtn)`
-  margin-top: auto;
+  margin-block-start: auto;
   transition: color ${({ theme }) => theme.baseTransition};
   &:hover {
     border-color: ${({ theme }) => theme.colors.whiteButtonHover};
@@ -71,7 +73,6 @@ export const LangBtn = styled(SetBtn)`
     width: 40px;
     height: 40px;
     border: 2px solid ${({ theme }) => theme.colors.white};
-    border-radius: 10px;
     transition: border-color ${({ theme }) => theme.baseTransition};
   }
   &:hover img {

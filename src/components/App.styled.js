@@ -10,7 +10,7 @@ export const Section = styled.section`
       ? 'padding-top: 160px; padding-bottom: 80px;'
       : 'padding-top: 80px; padding-bottom: 80px;')};
 
-  @media screen and (${props => props.theme.devices.desktop}) {
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
     padding-block-start: 100px;
     padding-block-end: 100px;
 
@@ -23,7 +23,7 @@ export const Section = styled.section`
 `;
 
 export const DarkSection = styled(Section)`
-  background-color: ${props => props.theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const Container = styled.div`
@@ -31,31 +31,43 @@ export const Container = styled.div`
   margin: 0 auto;
   text-align: center;
 
-  @media screen and (${props => props.theme.devices.mobile}) {
-    width: ${props => props.theme.sizes.mobile}px;
+  @media screen and (${({ theme }) => theme.devices.mobile}) {
+    width: ${({ theme }) => theme.sizes.mobile}px;
   }
 
-  @media screen and (${props => props.theme.devices.tablet}) {
-    width: ${props => props.theme.sizes.tablet}px;
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    width: ${({ theme }) => theme.sizes.tablet}px;
   }
 
-  @media screen and (${props => props.theme.devices.desktop}) {
-    width: ${props => props.theme.sizes.desktop}px;
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    width: ${({ theme }) => theme.sizes.desktop}px;
     padding: 0 138px;
   }
 `;
 
 export const HomeSection = styled(Section)`
-  background: ${props =>
-    props.styles === 'dark'
-      ? props.theme.colors.primary
-      : props.theme.colors.white};
+  position: relative;
+  background: ${({ styles, theme }) =>
+    styles === 'dark' ? theme.colors.primary : theme.colors.white};
 
-  color: ${props =>
-    props.styles === 'dark'
-      ? props.theme.colors.white
-      : props.theme.colors.primary};
+  color: ${({ styles, theme }) =>
+    styles === 'dark' ? theme.colors.white : theme.colors.primary};
   overflow: hidden;
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      ${({ styles }) => (styles === 'dark' ? 'right: 50%;' : 'left: 50%;')}
+      width: 100%;
+      height: 100%;
+      background-color: ${({ styles, theme }) =>
+        styles === 'dark'
+          ? theme.colors.darkSectionBefore
+          : theme.colors.lightSectionBefore};
+      z-index: 0;
+    }
+  }
 `;
 
 export const CoworkingSection = styled(Section)`
@@ -85,7 +97,7 @@ export const CafeSection = styled(Section)`
       return '#fff';
     }
   }};
-  @media screen and (${props => props.theme.devices.tablet}) {
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
     overflow: visible;
   }
 `;

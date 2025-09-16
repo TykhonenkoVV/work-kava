@@ -42,7 +42,10 @@ export const theme = Object.freeze({
 
     backdrop: 'rgba(0, 0, 0, 0.40)',
 
-    validationError: '#ED4337'
+    validationError: '#ED4337',
+
+    lightSectionBefore: '#A2A2A2',
+    darkSectionBefore: '#9AA4BE'
   },
 
   sizes,
