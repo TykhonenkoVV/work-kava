@@ -4,27 +4,33 @@ export const ContactsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex-grow: 1;
 
-  @media screen and (${props => props.theme.devices.desktop}) {
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    gap: 20px;
+    border-inline-start: 5px solid ${({ theme }) => theme.colors.white};
+    padding-inline-start: 19px;
+  }
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
     gap: 20px;
   }
 `;
 
 export const ContactsLink = styled.a`
-  color: ${props => props.theme.colors.white};
-  transition: color ${props => props.theme.baseTransition};
+  transition: color ${({ theme }) => theme.baseTransition};
   font-style: normal;
   display: flex;
   flex-direction: column;
 
-  @media screen and (${props => props.theme.devices.tablet}) {
-    text-align: start;
-    padding-left: 23px;
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
     justify-content: start;
+    text-align: start;
+    font-size: 20px;
+    line-height: 1.8;
   }
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.whiteButtonHover};
+    color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;

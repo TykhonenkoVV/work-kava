@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Container } from 'components/App.styled';
 
 export const Section = styled.footer`
   display: block;
@@ -8,10 +9,21 @@ export const Section = styled.footer`
   padding-inline-end: 0;
   font-size: 22px;
   line-height: 1.5;
-  background-color: ${props => props.theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.primary};
 
-  @media screen and (${props => props.theme.devices.desktop}) {
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
     padding: 100px 0 144px 0;
+    padding-block-start: 100px;
+    padding-block-end: 144px;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+  }
+`;
+
+export const FooterContainer = styled(Container)`
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    display: flex;
   }
 `;
 
@@ -20,13 +32,14 @@ export const FooterBox = styled.div`
   flex-direction: column;
   margin-block-end: 50px;
 
-  @media screen and (${props => props.theme.devices.tablet}) {
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
     text-align: start;
-    width: 267px;
-    margin-right: 56px;
+    width: 301px;
+    margin-block-end: 0;
+    margin-inline-end: 35px;
   }
 
-  @media screen and (${props => props.theme.devices.desktop}) {
-    margin-right: 93px;
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    margin-inline-end: 93px;
   }
 `;
