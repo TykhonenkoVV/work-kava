@@ -8,6 +8,12 @@ export const StyledContainer = styled(Container)`
     display: flex;
     z-index: 1;
   }
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    ${({ styles }) =>
+      styles === 'dark'
+        ? 'padding-inline-start: 67px;'
+        : 'padding-inline-end: 67px;'}
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -25,6 +31,12 @@ export const ContentContainer = styled.div`
         : 'padding-inline-end: 28px;'}
   }
   @media screen and (${({ theme }) => theme.devices.desktop}) {
+    flex-basis: calc(50% - 112.5px);
+    height: 600px;
+    ${({ styles }) =>
+      styles === 'dark'
+        ? 'padding-inline-start: 61px;'
+        : 'padding-inline-end: 61px;'}
   }
 
   &::before {
@@ -33,12 +45,12 @@ export const ContentContainer = styled.div`
     }
     content: '';
     position: absolute;
-    ${({ styles }) => (styles === 'dark' ? 'top: 191px;' : 'top: 235px;')};
-    ${({ styles }) => (styles === 'dark' ? 'right: -107px' : 'left: -54px;')};
+    ${({ styles }) => (styles === 'dark' ? 'top: 191px;' : 'bottom: 0;')};
+    ${({ styles }) => (styles === 'dark' ? 'right: -107px' : 'left: -89px;')};
     ${({ styles }) =>
       styles === 'dark'
         ? 'width: 443px; height: 443px;'
-        : 'width: 418px; height: 371px;'};
+        : 'width: 451px; height: 401px;'};
     background-image: ${({ styles }) =>
       styles === 'dark'
         ? `url(${CLOUD_NAME}decors/free.svg);`
@@ -47,13 +59,14 @@ export const ContentContainer = styled.div`
     background-size: contain;
     ${({ styles }) => styles === 'dark' && 'rotate: 348deg'};
     @media screen and (${({ theme }) => theme.devices.desktop}) {
-      ${({ styles }) => (styles === 'dark' ? 'top: 232px;' : 'top: 215px;')};
       ${({ styles }) =>
-        styles === 'dark' ? 'right: -252px' : 'left: -220px;'};
+        styles === 'dark' ? 'top: 232px;' : 'bottom: -309px;'};
+      ${({ styles }) =>
+        styles === 'dark' ? 'right: -252px' : 'left: -222px;'};
       ${({ styles }) =>
         styles === 'dark'
           ? 'width: 538px; height: 538px;'
-          : 'width: 627px; height: 556px;'};
+          : 'width: 626px; height: 556px;'};
     }
   }
 `;
@@ -69,6 +82,11 @@ export const Title = styled.h2`
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     margin-block-end: 30px;
     font-size: 56px;
+  }
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    margin-block-end: 70px;
+    font-size: 60px;
+    line-height: 1.1667;
   }
 `;
 
@@ -87,6 +105,14 @@ export const Text = styled.p`
     font-size: 20px;
     line-height: 1.8;
   }
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    ${({ styles }) =>
+      styles === 'dark'
+        ? 'padding-inline-end: 36px;border-right: 5px solid;'
+        : 'padding-inline-start: 36px;border-left: 5px solid;'};
+    font-size: 22px;
+    line-height: 1.636;
+  }
 `;
 
 export const Picture = styled.picture`
@@ -100,5 +126,13 @@ export const Picture = styled.picture`
     width: 532px;
     height: 520px;
     margin-block-end: 0;
+  }
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    flex-shrink: 1;
+    flex-basis: calc(50% + 112.5px);
+    width: 730px;
+    height: 714px;
+    margin-block-start: -57px;
+    margin-block-end: -57px;
   }
 `;

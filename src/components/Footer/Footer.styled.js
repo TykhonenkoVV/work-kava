@@ -13,17 +13,18 @@ export const Section = styled.footer`
   background-color: ${({ theme }) => theme.colors.primary};
 
   @media screen and (${({ theme }) => theme.devices.desktop}) {
-    padding: 100px 0 144px 0;
     padding-block-start: 100px;
-    padding-block-end: 144px;
-    padding-inline-start: 0;
-    padding-inline-end: 0;
+    padding-block-end: 100px;
   }
 `;
 
 export const FooterContainer = styled(Container)`
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     display: flex;
+    gap: 35px;
+  }
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    gap: 79px;
   }
 `;
 
@@ -34,12 +35,7 @@ export const FooterBox = styled.div`
 
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     text-align: start;
-    width: 301px;
+    width: 302px;
     margin-block-end: 0;
-    margin-inline-end: 35px;
-  }
-
-  @media screen and (${({ theme }) => theme.devices.desktop}) {
-    margin-inline-end: 93px;
   }
 `;

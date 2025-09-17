@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { BlueButton, WhiteButton } from 'styles/buttonStyles';
 import { HomeSection } from 'components/App.styled';
@@ -39,7 +38,7 @@ export const HomePageContent = ({ title, description, styles, linkTo }) => {
 
   return (
     <HomeSection styles={styles}>
-      <StyledContainer>
+      <StyledContainer styles={styles}>
         <ContentContainer styles={styles}>
           <Title styles={styles}>{title}</Title>
           <Text styles={styles}>{description}</Text>

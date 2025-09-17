@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const FormWrapper = styled.div`
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    flex-grow: 1;
+  }
+`;
+
 export const FormTitle = styled.p`
   margin-block-end: 26px;
   color: ${({ theme }) => theme.colors.white};
@@ -16,7 +22,7 @@ export const FormTitle = styled.p`
   }
 `;
 
-export const FormBox = styled.div`
+export const FormBox = styled.form`
   gap: 27px;
   display: flex;
   flex-direction: column;

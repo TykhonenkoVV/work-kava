@@ -24,14 +24,11 @@ export const Title = styled.p`
 `;
 
 export const IconsBox = styled.div`
+  display: flex;
+  justify-content: center;
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     flex-grow: 1;
     padding-inline-start: 19px;
-    margin-right: 35px;
     border-inline-start: 5px solid ${({ theme }) => theme.colors.white};
-  }
-
-  @media screen and (${({ theme }) => theme.devices.desktop}) {
-    margin-right: 94px;
   }
 `;

@@ -1,7 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { EmailRegex } from 'utils/GlobalUtils';
 import { WhiteButton } from 'styles/buttonStyles';
-import { FormInput, FormBox, FormTitle } from './SubscribeForm.styled';
+import {
+  FormInput,
+  FormBox,
+  FormTitle,
+  FormWrapper
+} from './SubscribeForm.styled';
 import { ErrorText } from 'components/BookForm/BookForm.styled';
 import { Confirm } from 'notiflix';
 
@@ -25,9 +30,9 @@ export const SubscribeForm = ({ action }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <FormWrapper>
       <FormTitle>Subscribe</FormTitle>
-      <FormBox>
+      <FormBox onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           type="text"
           {...register('email', {
@@ -49,6 +54,6 @@ export const SubscribeForm = ({ action }) => {
           Subscribe
         </WhiteButton>
       </FormBox>
-    </form>
+    </FormWrapper>
   );
 };
