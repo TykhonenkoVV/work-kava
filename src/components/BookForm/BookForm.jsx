@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { IMaskInput } from 'react-imask';
 import { Svg } from 'components/SvgIcon/SvgIcon';
 import { HoursSelector } from './HoursSelector';
-import { BookType, GetBookingInfo } from 'utils/commonUtils';
+import { GetBookingInfo } from 'utils/commonUtils';
 
 import {
   CloseButton,
@@ -15,7 +15,6 @@ import {
   Input,
   PriceText
 } from './BookForm.styled';
-
 import { ModalContent } from 'components/Modal/Modal.styled';
 import { BlueButton } from 'styles/buttonStyles';
 import { Picker } from './Components/Picker/Picker';
@@ -131,10 +130,7 @@ export const BookForm = ({ action, bookType }) => {
             <Svg className="rotate" w={28} h={28} icon="arrow" />
             <Picker />
           </InputWrapper>
-          <HoursSelector
-            bookType={BookType.MeetingRoom}
-            onHoursChanges={updatePrice}
-          />
+          <HoursSelector bookType={bookType} onHoursChanges={updatePrice} />
         </ContentWrapper>
         <PriceText>Price: {bookingPrice} ₴</PriceText>
 

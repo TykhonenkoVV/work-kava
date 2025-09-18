@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { Container } from 'components/App.styled';
 import { Link } from 'react-router-dom';
+import { Container } from 'styles/globalComponents.styled';
 import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const StyledHeader = styled.header`

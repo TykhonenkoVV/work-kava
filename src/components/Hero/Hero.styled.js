@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { DarkSection } from 'components/App.styled';
+import { DarkSection } from 'styles/globalComponents.styled';
 import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const SectionHero = styled(DarkSection)`

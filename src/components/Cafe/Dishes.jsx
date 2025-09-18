@@ -1,4 +1,4 @@
-import { Container, CafeSection } from 'components/App.styled';
+import { CafeSection, Container } from 'styles/globalComponents.styled';
 import { Dish } from './Components/Dish';
 import { Title, DishesList } from './Dishes.styled';
 

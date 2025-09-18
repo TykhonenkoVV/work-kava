@@ -1,6 +1,6 @@
+import { SocialLinksList } from 'components/Global/SocialLinksList/SocialLinksList';
 import { Icons, IconsBox } from './Socials.styled';
 import { Title } from './Socials.styled';
-import { SocialLinksList } from 'components/SocialLinksList/SocialLinksList';
 
 export const Socials = () => {
   return (

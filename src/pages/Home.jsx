@@ -1,7 +1,7 @@
 import { Hero } from 'components/Hero/Hero';
-import { HomePageContent } from 'components/HomePageContent/HomePageContent';
+import { PageContent } from 'components/PageContent/PageContent';
 
-const homePages = [
+const sections = [
   {
     id: '1',
     title: 'Cafe',
@@ -37,14 +37,15 @@ const Home = () => {
   return (
     <>
       <Hero page="home" />
-      {homePages.map((section, index) => (
-        <HomePageContent
+      {sections.map((section, index) => (
+        <PageContent
           key={section.id}
           id={section.id}
+          page="home"
           title={section.title}
           description={section.description}
-          linkTo={section.linkTo}
           styles={index % 2 !== 0 ? 'dark' : 'light'}
+          linkTo={section.linkTo}
         />
       ))}
     </>

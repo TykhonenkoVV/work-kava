@@ -1,6 +1,6 @@
-import { Container } from 'components/App.styled';
+import { Container } from 'styles/globalComponents.styled';
 import { SectionHero, MainText, DescrText, TextContainer } from './Hero.styled';
-import { SocialLinksList } from 'components/SocialLinksList/SocialLinksList';
+import { SocialLinksList } from 'components/Global/SocialLinksList/SocialLinksList';
 
 export const Hero = ({ page }) => {
   return (

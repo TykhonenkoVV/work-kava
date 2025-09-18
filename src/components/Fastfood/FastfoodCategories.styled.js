@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Section, Container } from 'components/App.styled';
+import { Container, Section } from 'styles/globalComponents.styled';
 
 const getUrl = (props, type = '') => {
   return props.theme.useWebp

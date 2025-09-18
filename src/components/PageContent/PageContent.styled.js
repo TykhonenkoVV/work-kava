@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Container } from 'components/App.styled';
+import { Container } from 'styles/globalComponents.styled';
 import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const StyledContainer = styled(Container)`
@@ -8,7 +8,7 @@ export const StyledContainer = styled(Container)`
     display: flex;
     z-index: 1;
   }
-  @media screen and (${({ theme }) => theme.devices.tablet}) {
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
     ${({ styles }) =>
       styles === 'dark'
         ? 'padding-inline-start: 67px;'
@@ -45,11 +45,12 @@ export const ContentContainer = styled.div`
     }
     content: '';
     position: absolute;
-    ${({ styles }) => (styles === 'dark' ? 'top: 191px;' : 'bottom: 0;')};
-    ${({ styles }) => (styles === 'dark' ? 'right: -107px' : 'left: -89px;')};
+    ${({ styles }) =>
+      styles === 'dark' ? 'bottom: -159px;' : 'bottom: -191px;'};
+    ${({ styles }) => (styles === 'dark' ? 'right: -56px' : 'left: -89px;')};
     ${({ styles }) =>
       styles === 'dark'
-        ? 'width: 443px; height: 443px;'
+        ? 'width: 350px; height: 401px;'
         : 'width: 451px; height: 401px;'};
     background-image: ${({ styles }) =>
       styles === 'dark'
@@ -57,15 +58,15 @@ export const ContentContainer = styled.div`
         : `url(${CLOUD_NAME}decors/coffee.svg);`};
     background-repeat: no-repeat;
     background-size: contain;
-    ${({ styles }) => styles === 'dark' && 'rotate: 348deg'};
+    ${({ styles }) => styles === 'dark' && 'rotate: 347deg'};
     @media screen and (${({ theme }) => theme.devices.desktop}) {
       ${({ styles }) =>
-        styles === 'dark' ? 'top: 232px;' : 'bottom: -309px;'};
+        styles === 'dark' ? 'bottom: -246px;' : 'bottom: -309px;'};
       ${({ styles }) =>
-        styles === 'dark' ? 'right: -252px' : 'left: -222px;'};
+        styles === 'dark' ? 'right: -185px' : 'left: -222px;'};
       ${({ styles }) =>
         styles === 'dark'
-          ? 'width: 538px; height: 538px;'
+          ? 'width: 468px; height: 536px;'
           : 'width: 626px; height: 556px;'};
     }
   }
@@ -84,9 +85,69 @@ export const Title = styled.h2`
     font-size: 56px;
   }
   @media screen and (${({ theme }) => theme.devices.desktop}) {
-    margin-block-end: 70px;
+    ${({ page }) =>
+      page === 'coworking'
+        ? 'margin-block-end: 20px;'
+        : 'margin-block-end: 70px;'}
     font-size: 60px;
     line-height: 1.1667;
+  }
+`;
+
+export const Number = styled.span`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 114px;
+  ${({ styles }) =>
+    styles === 'dark'
+      ? 'margin-inline-end: 16px; float: left;'
+      : 'margin-inline-start: 16px; float: right;'}
+  font-family: Impact;
+  font-size: 100px;
+  line-height: 1;
+
+  z-index: 1;
+
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    margin-block-end: 30px;
+    ${({ styles }) =>
+      styles === 'dark'
+        ? 'margin-inline-start: auto;margin-inline-end: 0;'
+        : 'margin-inline-start: 0;margin-inline-end: auto;'}
+  }
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    width: 265px;
+    height: 200px;
+    font-size: 200px;
+    margin-block-end: 20px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 142px;
+    height: 50px;
+    background: ${({ styles, theme }) =>
+      styles === 'dark' ? theme.colors.accent : theme.colors.darkBeige};
+    ${({ styles }) =>
+      styles === 'dark'
+        ? '-webkit-box-shadow: 8px -8px 0px 0px rgba(126,114,98,1); -moz-box-shadow: 8px -8px 0px 0px rgba(126,114,98,1); box-shadow: 8px -8px 0px 0px rgba(126,114,98,1);'
+        : '-webkit-box-shadow: 8px -8px 0px 0px rgba(206, 206, 206, 1); -moz-box-shadow: 8px -8px 0px 0px rgba(206, 206, 206, 1); box-shadow: 8px -8px 0px 0px rgba(206, 206, 206, 1);'}
+    @media screen and (${({ theme }) => theme.devices.desktop}) {
+      width: 250px;
+      height: 89px;
+      ${({ styles }) =>
+        styles === 'dark'
+          ? '-webkit-box-shadow: 15px -15px 0px 0px rgba(126,114,98,1); -moz-box-shadow: 15px -15px 0px 0px rgba(126,114,98,1); box-shadow: 15px -15px 0px 0px rgba(126,114,98,1);'
+          : '-webkit-box-shadow: 15px -15px 0px 0px rgba(206, 206, 206, 1); -moz-box-shadow: 15px -15px 0px 0px rgba(206, 206, 206, 1); box-shadow: 15px -15px 0px 0px rgba(206, 206, 206, 1);'}
+    }
   }
 `;
 

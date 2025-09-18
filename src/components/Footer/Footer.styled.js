@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Container } from 'components/App.styled';
+import { Container } from 'styles/globalComponents.styled';
 
 export const Section = styled.footer`
   display: block;

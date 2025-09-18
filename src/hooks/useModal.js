@@ -1,13 +1,33 @@
 import { useState, useEffect } from 'react';
 
-export const useModal = (initialState = false) => {
-  const [isModalOpen, setIsModalOpen] = useState(initialState);
+export const useModal = () => {
+  const [isModalOpen, setIsModalOpen] = useState({
+    workplace: false,
+    'meeting-room': false,
+    workshop: false
+  });
+
   useEffect(() => {
-    if (isModalOpen) {
+    const values = Object.values(isModalOpen);
+    const isOpen = values.some(val => val === true);
+    if (isOpen === true) {
       document.body.style.overflow = 'hidden';
     }
+    if (isOpen === false) {
+      document.body.style.overflow = 'visible';
+    }
   }, [isModalOpen]);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-  return { isModalOpen, openModal, closeModal };
+
+  const openModal = id => {
+    setIsModalOpen({ ...isModalOpen, [id]: true });
+  };
+  const closeModal = id => {
+    setIsModalOpen({ ...isModalOpen, [id]: false });
+  };
+
+  return {
+    isModalOpen,
+    openModal,
+    closeModal
+  };
 };
