@@ -45,7 +45,10 @@ export const theme = Object.freeze({
     validationError: '#ED4337',
 
     lightSectionBefore: '#A2A2A2',
-    darkSectionBefore: '#9AA4BE'
+    darkSectionBefore: '#9AA4BE',
+    firstSectionBackground: '#302305',
+    secondSectionBackground: '#857661',
+    thirdSectionBackground: '#e2d0ae'
   },
 
   sizes,
@@ -57,8 +60,6 @@ export const theme = Object.freeze({
   baseTransition: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
 
   heroLinerGradient: '90deg, rgba(27, 37, 63, 0.6), rgba(27, 37, 63, 0.6)',
-  blueRadialGradient:
-    'radial-gradient(92.89% 118.32% at 0% -1.02%, #1b253f 0%, #3c4f82 100%)', // cafe page
   beigeRadialGradient:
     'radial-gradient(148.54% 120.77% at 100% 0%, #5E4943 0%, #857661 100%)', // cafe page
   lightBeigeRadialGradient:

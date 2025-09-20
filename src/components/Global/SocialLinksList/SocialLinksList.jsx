@@ -1,4 +1,4 @@
-import { Svg } from 'components/SvgIcon/SvgIcon';
+import { SvgIcon } from '../SvgIcon/SvgIcon';
 import { LinkItem, Links } from './SocialLinksList.styled';
 
 const links = [
@@ -40,7 +40,7 @@ export const SocialLinksList = () => {
             rel="noopener noreferrer"
             aria-label={text}
           >
-            <Svg w={40} h={40} icon={icon}></Svg>
+            <SvgIcon w={40} h={40} icon={icon} />
           </a>
         </LinkItem>
       ))}

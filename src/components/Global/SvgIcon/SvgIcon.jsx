@@ -1,6 +1,6 @@
-import sprite from '../../images/sprite.svg';
+import sprite from '../../../images/sprite.svg';
 
-export const Svg = ({ w, h, icon, style, className }) => {
+export const SvgIcon = ({ w, h, icon, className }) => {
   return (
     <svg
       width={w}

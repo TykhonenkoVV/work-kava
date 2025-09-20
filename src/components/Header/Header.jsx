@@ -7,11 +7,11 @@ import {
   UserButton,
   HederLogo
 } from './Header.styled';
-import { Svg } from 'components/SvgIcon/SvgIcon';
 import { useEffect, useState } from 'react';
 import { ModalNav } from './Components/ModalNav';
 import { Navigation } from './Components/Navigation';
 import { SettingsWrapper } from './Components/SettingsWrapper';
+import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
 
 export const Header = () => {
   const [windowWidth, setWindowWidth] = useState();
@@ -47,7 +47,7 @@ export const Header = () => {
     <StyledHeader>
       <ContainerHeader>
         <HederLogo to="/" aria-label="Home">
-          <Svg
+          <SvgIcon
             w={201}
             h={46}
             icon={'logo'}
@@ -60,24 +60,24 @@ export const Header = () => {
             <SettingsWrapper>
               <LangButton type="button" aria-label="language" />
               <CartButton type="button" aria-label="cart">
-                <Svg w={36} h={36} icon={'cart'} aria-label="icon cart" />
+                <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
               </CartButton>
               <UserButton type="button" aria-label="user profile">
-                <Svg w={40} h={40} icon={'avatar'} aria-label="icon user" />
+                <SvgIcon w={40} h={40} icon={'avatar'} aria-label="icon user" />
               </UserButton>
             </SettingsWrapper>
           </>
         ) : (
           <>
             <CartButton type="button" aria-label="cart">
-              <Svg w={36} h={36} icon={'cart'} aria-label="icon cart" />
+              <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
             </CartButton>
             <ButtonStyled
               type="button"
               onClick={handleOpenModal}
               aria-label="menu"
             >
-              <Svg w={36} h={36} icon={'burger'} />
+              <SvgIcon w={36} h={36} icon={'burger'} />
             </ButtonStyled>
           </>
         )}

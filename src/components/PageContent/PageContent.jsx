@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { BlueButton, WhiteButton } from 'styles/buttonStyles';
-import { ImagesSource } from 'components/Images';
 import { CLOUD_NAME } from 'utils/GlobalUtils';
 import {
   ContentContainer,
@@ -13,6 +12,7 @@ import {
 import { useWindowWidth } from 'hooks/useWindowWidth';
 import { imgSizes } from 'utils/commonUtils';
 import { HomeSection } from 'styles/globalComponents.styled';
+import { ImagesSource } from 'components/Global/Images';
 
 export const PageContent = ({
   id,

@@ -1,10 +1,10 @@
-import { Svg } from '../../../SvgIcon/SvgIcon';
+import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
 import { StyledLink } from './Logo.styled';
 
 export const Logo = () => {
   return (
     <StyledLink to="/" aria-label="Home">
-      <Svg icon="logo" w={201} h={46} />
+      <SvgIcon icon="logo" w={201} h={46} />
     </StyledLink>
   );
 };

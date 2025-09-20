@@ -82,24 +82,20 @@ export const CoworkingSection = styled(Section)`
       : props.theme.colors.primary};
 `;
 
-export const CafeSection = styled(Section)`
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
-  background: ${props => {
-    if (props.name === 'coffee-classic') {
-      return props.theme.blueRadialGradient;
-    } else if (props.name === 'coffee-with-milk') {
-      return props.theme.beigeRadialGradient;
-    } else if (props.name === 'desserts') {
-      return props.theme.lightBeigeRadialGradient;
+export const DishesSection = styled(Section)`
+  background: ${({ name, theme }) => {
+    if (name === 'coffee-classic' || name === 'burgers') {
+      return theme.colors.firstSectionBackground;
+    } else if (name === 'coffee-with-milk' || name === 'rolls') {
+      return theme.colors.secondSectionBackground;
+    } else if (name === 'desserts' || name === 'hot-dogs') {
+      return theme.colors.thirdSectionBackground;
     } else {
       return '#fff';
     }
   }};
-  @media screen and (${({ theme }) => theme.devices.tablet}) {
-    overflow: visible;
+  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    padding-block-start: 30px;
+    padding-block-end: 30px;
   }
 `;
-
-export const CafeContainer = styled(Container)``;

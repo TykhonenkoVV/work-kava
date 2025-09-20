@@ -1,7 +1,6 @@
 import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { IMaskInput } from 'react-imask';
-import { Svg } from 'components/SvgIcon/SvgIcon';
 import { HoursSelector } from './HoursSelector';
 import { GetBookingInfo } from 'utils/commonUtils';
 
@@ -18,6 +17,7 @@ import {
 import { ModalContent } from 'components/Modal/Modal.styled';
 import { BlueButton } from 'styles/buttonStyles';
 import { Picker } from './Components/Picker/Picker';
+import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
 
 export const BookForm = ({ action, bookType }) => {
   const { price, title } = GetBookingInfo(bookType);
@@ -43,7 +43,7 @@ export const BookForm = ({ action, bookType }) => {
   return (
     <ModalContent>
       <CloseButton type="button" aria-label="close" onClick={action}>
-        <Svg w={36} h={36} icon="close" />
+        <SvgIcon w={36} h={36} icon="close" />
       </CloseButton>
       <Form
         onSubmit={handleSubmit(data => {
@@ -69,7 +69,7 @@ export const BookForm = ({ action, bookType }) => {
               })}
               placeholder="Enter your name"
             />
-            <Svg
+            <SvgIcon
               w={28}
               h={28}
               icon={'user'}
@@ -105,7 +105,7 @@ export const BookForm = ({ action, bookType }) => {
                 />
               )}
             />
-            <Svg
+            <SvgIcon
               w={28}
               h={28}
               icon={'phone'}
@@ -126,8 +126,8 @@ export const BookForm = ({ action, bookType }) => {
             }}
           >
             <Input type="text" readOnly="readonly" placeholder="Select date" />
-            <Svg w={28} h={28} icon={'calendar'} />
-            <Svg className="rotate" w={28} h={28} icon="arrow" />
+            <SvgIcon w={28} h={28} icon={'calendar'} />
+            <SvgIcon className="rotate" w={28} h={28} icon="arrow" />
             <Picker />
           </InputWrapper>
           <HoursSelector bookType={bookType} onHoursChanges={updatePrice} />

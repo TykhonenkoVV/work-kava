@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
-import { Layout } from './Layout';
+import { Layout } from './Global/Layout';
 
 const HomePage = lazy(() => import('pages/Home.jsx'));
 const CafePage = lazy(() => import('pages/Cafe.jsx'));

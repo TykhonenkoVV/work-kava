@@ -18,6 +18,38 @@ export const imgSizes = [
   }
 ];
 
+export const homeSections = [
+  {
+    id: '1',
+    title: 'Cafe',
+    description:
+      'Work with taste! Delicious aromatic coffee for every taste prepared ' +
+      'by an experienced barista, as well as elegant desserts made with ' +
+      "love by our confectioners. It's all waiting for you in our coffee " +
+      'shop.',
+    linkTo: '/cafe'
+  },
+  {
+    id: '2',
+    title: 'Fastfood',
+    description:
+      'Time for lunch, but not much time? Our fast food is at your service. ' +
+      'Fast, high quality, tasty. Own baking and certified products. Great ' +
+      'choice for every taste.',
+    linkTo: '/fastfood'
+  },
+  {
+    id: '3',
+    title: 'Coworking',
+    description:
+      'Work with taste! Delicious aromatic coffee for every taste prepared ' +
+      'by an experienced barista, as well as elegant desserts made with ' +
+      "love by our confectioners. It's all waiting for you in our coffee " +
+      'shop.',
+    linkTo: '/coworking'
+  }
+];
+
 export const coworkingSections = [
   {
     id: '01',
@@ -63,3 +95,12 @@ export const GetBookingInfo = bookType => {
       throw new Error('Not supported book type');
   }
 };
+
+export const backgroundColors = [
+  '#ffffff',
+  '#bdff99',
+  '#ffc999',
+  '#f1c2f2',
+  '#d8f1fe',
+  '#f5ffb9'
+];

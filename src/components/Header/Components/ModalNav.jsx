@@ -6,8 +6,8 @@ import {
   UserBtn
 } from './ModalNav.styled';
 import { Navigation } from './Navigation';
-import { Svg } from 'components/SvgIcon/SvgIcon';
 import { useEffect } from 'react';
+import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
 
 export const ModalNav = ({ action }) => {
   useEffect(() => {
@@ -20,10 +20,10 @@ export const ModalNav = ({ action }) => {
   return (
     <BackdropHeader>
       <CloseButton type="button" onClick={action} aria-label="close">
-        <Svg w={36} h={36} icon="close" />
+        <SvgIcon w={36} h={36} icon="close" />
       </CloseButton>
       <UserBtn type="button">
-        <Svg w={40} h={40} icon={'avatar'} aria-label="icon user" />
+        <SvgIcon w={40} h={40} icon={'avatar'} aria-label="icon user" />
         Sign Up
       </UserBtn>
       <Navigation action={action} />

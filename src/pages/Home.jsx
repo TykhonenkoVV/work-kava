@@ -1,37 +1,6 @@
 import { Hero } from 'components/Hero/Hero';
 import { PageContent } from 'components/PageContent/PageContent';
-
-const sections = [
-  {
-    id: '1',
-    title: 'Cafe',
-    description:
-      'Work with taste! Delicious aromatic coffee for every taste prepared ' +
-      'by an experienced barista, as well as elegant desserts made with ' +
-      "love by our confectioners. It's all waiting for you in our coffee " +
-      'shop.',
-    linkTo: '/cafe'
-  },
-  {
-    id: '2',
-    title: 'Fastfood',
-    description:
-      'Time for lunch, but not much time? Our fast food is at your service. ' +
-      'Fast, high quality, tasty. Own baking and certified products. Great ' +
-      'choice for every taste.',
-    linkTo: '/fastfood'
-  },
-  {
-    id: '3',
-    title: 'Coworking',
-    description:
-      'Work with taste! Delicious aromatic coffee for every taste prepared ' +
-      'by an experienced barista, as well as elegant desserts made with ' +
-      "love by our confectioners. It's all waiting for you in our coffee " +
-      'shop.',
-    linkTo: '/coworking'
-  }
-];
+import { homeSections as sections } from 'utils/commonUtils';
 
 const Home = () => {
   return (

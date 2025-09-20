@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Svg } from 'components/SvgIcon/SvgIcon';
 
 import {
   DropdownContent,
   DropdownInput,
   DropdownItem
 } from './HoursSelector.styled';
+import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
 
 const dataSource = [
   {
@@ -52,7 +52,12 @@ export const HoursSelector = ({ onHoursChanges }) => {
       }}
     >
       {selected.text}
-      <Svg className={isActive ? 'rotate' : ''} w={28} h={28} icon="arrow" />
+      <SvgIcon
+        className={isActive ? 'rotate' : ''}
+        w={28}
+        h={28}
+        icon="arrow"
+      />
       <DropdownContent className={isActive ? '' : 'hidden'}>
         {dataSource.map(({ value, text }) => (
           <DropdownItem

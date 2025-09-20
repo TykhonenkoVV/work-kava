@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
-  //   persistReducer,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -9,25 +9,23 @@ import {
   PURGE,
   REGISTER
 } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-// import { authReducer } from './auth/slice';
-// import { filtersReducer } from './filter/filterSlice';
-// import { boardsReducer } from './boards/slice';
-// import { columnsReducer } from './columns/slice';
+import storage from 'redux-persist/lib/storage';
+import { authReducer } from './auth/slice';
+import { cafeReducer } from './cafe/slice';
+import { fastFoodReducer } from './fastfood/slice';
 
-// const authPersistConfig = {
-//   key: 'auth',
-//   storage,
-//   whitelist: ['accessToken', 'refreshToken']
-// };
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['accessToken', 'refreshToken']
+};
 
 export const store = configureStore({
-  //   reducer: {
-  //     auth: persistReducer(authPersistConfig, authReducer),
-  //     filters: filtersReducer,
-  //     boards: boardsReducer,
-  //     columns: columnsReducer
-  //   },
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    cafe: cafeReducer,
+    fastFood: fastFoodReducer
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

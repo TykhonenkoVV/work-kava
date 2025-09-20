@@ -3,3 +3,5 @@ export const EmailRegex =
 
 export const CLOUD_NAME =
   'https://res.cloudinary.com/dpg391xoj/image/upload/workkava/';
+
+export const BASE_URL = 'http://localhost:3001';
