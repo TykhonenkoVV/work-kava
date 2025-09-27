@@ -57,10 +57,7 @@ export const GlobalStyles = css`
     margin: 0;
     font-family: 'Roboto Mono', sans-serif;
     font-style: normal;
-    /* font-weight: 400;
-    font-size: 30px;
-    line-height: 1.2; */
-    background-color: ${theme.colors.white};
+    background-color: ${theme.colors.primary};
     color: ${theme.colors.primary};
   }
 

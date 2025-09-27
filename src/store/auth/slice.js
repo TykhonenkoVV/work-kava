@@ -1,3 +1,4 @@
+import { userLocal } from 'services/services';
 import {
   logIn,
   logOut,
@@ -15,7 +16,8 @@ const initialState = {
     email: '',
     avatarURL: '',
     avatarURLsmall: '',
-    theme: 'dark'
+    theme: 'dark',
+    local: userLocal()
   },
   accessToken: null,
   refreshToken: null,
@@ -26,7 +28,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: 'wk-auth',
   initialState,
   reducers: {
     forcedLogout: state => {
@@ -35,12 +37,16 @@ const authSlice = createSlice({
         email: '',
         avatarURL: '',
         avatarURLsmall: '',
-        theme: 'dark'
+        theme: 'dark',
+        local: userLocal()
       };
       state.refreshToken = null;
       state.accessToken = null;
       state.isLoggedIn = false;
       state.error = { message: '', status: '' };
+    },
+    changeLocal: (state, { payload }) => {
+      state.user.local = payload;
     }
   },
   extraReducers: buider => {
@@ -153,5 +159,5 @@ const authSlice = createSlice({
       });
   }
 });
-export const { forcedLogout } = authSlice.actions;
+export const { forcedLogout, changeLocal } = authSlice.actions;
 export const authReducer = authSlice.reducer;

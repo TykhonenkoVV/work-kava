@@ -1,35 +1,34 @@
 import {
   ButtonStyled,
   ContainerHeader,
-  LangButton,
   CartButton,
   StyledHeader,
   UserButton,
   HederLogo
 } from './Header.styled';
 import { useEffect, useState } from 'react';
-import { ModalNav } from './Components/ModalNav';
-import { Navigation } from './Components/Navigation';
-import { SettingsWrapper } from './Components/SettingsWrapper';
 import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
+import { useDispatch } from 'react-redux';
+import { useModal } from 'hooks/useModal';
+import { useWindowWidth } from 'hooks/useWindowWidth';
+import { Navigation } from './Components/Navigation/Navigation';
+import { SettingsWrapper } from './Components/SettingsWrapper/SettingsWrapper';
+import { ModalNav } from './Components/ModalNav/ModalNav';
+import { changeLocal } from 'store/auth/slice';
+import { LangBlock } from './Components/LangBlock/LangBlock';
 
 export const Header = () => {
-  const [windowWidth, setWindowWidth] = useState();
+  const dispatch = useDispatch();
+
+  const { isModalOpen, toggleModal, closeModal } = useModal();
   const [modalHeader, setModalHeader] = useState(false);
+  const [newLocal, setNewLocal] = useState(false);
+
+  const windowWidth = useWindowWidth();
 
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+    if (newLocal) dispatch(changeLocal(newLocal));
+  }, [dispatch, newLocal]);
 
   const handleOpenModal = () => {
     setModalHeader(true);
@@ -39,9 +38,10 @@ export const Header = () => {
     setModalHeader(false);
   };
 
-  if (modalHeader) {
-    return <ModalNav action={handleClosedModal} />;
-  }
+  const handleLangClick = e => {
+    closeModal('langMenu');
+    setNewLocal(e.target.id);
+  };
 
   return (
     <StyledHeader>
@@ -58,7 +58,11 @@ export const Header = () => {
           <>
             <Navigation />
             <SettingsWrapper>
-              <LangButton type="button" aria-label="language" />
+              <LangBlock
+                isModalOpen={isModalOpen.langMenu}
+                handleLangClick={handleLangClick}
+                toggleModal={() => toggleModal('langMenu')}
+              />
               <CartButton type="button" aria-label="cart">
                 <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
               </CartButton>
@@ -82,6 +86,14 @@ export const Header = () => {
           </>
         )}
       </ContainerHeader>
+      {modalHeader && (
+        <ModalNav
+          action={handleClosedModal}
+          isModalOpen={isModalOpen.langMenu}
+          handleLangClick={handleLangClick}
+          toggleModal={() => toggleModal('langMenu')}
+        />
+      )}
     </StyledHeader>
   );
 };

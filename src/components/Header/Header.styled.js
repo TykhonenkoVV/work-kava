@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { Container } from 'styles/globalComponents.styled';
-import { CLOUD_NAME } from 'utils/GlobalUtils';
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -28,20 +27,6 @@ export const ContainerHeader = styled(Container)`
   display: flex;
   align-items: center;
   width: ${({ theme }) => theme.sizes.mobile}px;
-`;
-
-export const LangButton = styled.button`
-  width: 40px;
-  height: 40px;
-  border: 2px solid ${({ theme }) => theme.colors.white};
-  background-image: url('${CLOUD_NAME}/flags/flag-uk.jpg');
-  background-position: center;
-  transition: border-color ${({ theme }) => theme.baseTransition};
-
-  &:hover,
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.whiteButtonHover};
-  }
 `;
 
 export const CartButton = styled.button`

@@ -1,27 +1,32 @@
+import { useSelector } from 'react-redux';
 import { Item, LinkItem, List } from './Navigation.styled';
+import { selectUser } from 'store/auth/selectors';
+import { lang } from 'lang/lang';
 
 export const Navigation = ({ action }) => {
+  const { local } = useSelector(selectUser);
+
   return (
     <nav style={{ height: '100%' }}>
       <List>
         <Item key="1">
           <LinkItem to="/" onClick={action}>
-            Home
+            {lang[local].home}
           </LinkItem>
         </Item>
         <Item key="2">
           <LinkItem to="/cafe" onClick={action}>
-            Cafe
+            {lang[local].cafe}
           </LinkItem>
         </Item>
         <Item key="3">
           <LinkItem to="/fastfood" onClick={action}>
-            Fastfood
+            {lang[local].fastfood}
           </LinkItem>
         </Item>
         <Item key="4">
           <LinkItem to="/coworking" onClick={action}>
-            Coworking
+            {lang[local].coworking}
           </LinkItem>
         </Item>
       </List>

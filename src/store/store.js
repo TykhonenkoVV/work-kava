@@ -15,7 +15,7 @@ import { cafeReducer } from './cafe/slice';
 import { fastFoodReducer } from './fastfood/slice';
 
 const authPersistConfig = {
-  key: 'auth',
+  key: 'wk-auth',
   storage,
   whitelist: ['accessToken', 'refreshToken']
 };
