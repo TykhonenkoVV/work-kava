@@ -127,7 +127,7 @@ export const DescrText = styled.p`
   }
 
   @media screen and (${props => props.theme.devices.desktop}) {
-    width: 402px;
+    width: 418px;
     height: 182px;
     margin-block-end: 50px;
     font-size: 26px;

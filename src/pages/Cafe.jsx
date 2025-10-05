@@ -24,22 +24,17 @@ const Cafe = () => {
     <>
       <Hero page="cafe" />
       {coffeeClassic.length > 0 && (
-        <Dishes
-          title="Coffee classic"
-          dishes={coffeeClassic}
-          styles="light"
-          firstDishes={true}
-        />
+        <Dishes title="coffee_classic" dishes={coffeeClassic} styles="light" />
       )}
       {coffeeWithMilk.length > 0 && (
         <Dishes
-          title="Coffee with milk"
+          title="coffee_with_milk"
           dishes={coffeeWithMilk}
           styles="light"
         />
       )}
       {desserts.length > 0 && (
-        <Dishes title="Desserts" dishes={desserts} styles="dark" />
+        <Dishes title="desserts" dishes={desserts} styles="dark" />
       )}
     </>
   );

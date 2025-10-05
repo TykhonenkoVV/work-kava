@@ -41,24 +41,22 @@ export const PriceWrapper = styled.div`
 `;
 
 export const DishName = styled.h3`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1;
   color: ${({ theme }) => theme.colors.primary};
 
   @media screen and (${({ theme }) => theme.devices.tablet}) {
-    font-size: 30px;
-  }
-  @media screen and (${({ theme }) => theme.devices.desktop}) {
+    font-size: 24px;
   }
 `;
 
 export const Price = styled.p`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1;
   @media screen and (${({ theme }) => theme.devices.tablet}) {
-    font-size: 30px;
+    font-size: 24px;
   }
 
   @media screen and (${({ theme }) => theme.devices.desktop}) {

@@ -8,13 +8,13 @@ export const ErrorText = styled.p`
 
 export const StyledAuthForm = styled.form`
   width: 100%;
-  &.sign-up {
+  &[data-id='sign-up'] {
     margin-inline-end: calc(-100% - 28px);
     &[data-active='true'] {
       margin-inline-end: 0;
     }
   }
-  &.sign-in {
+  &[data-id='sign-in'] {
     margin-inline-start: calc(-100% - 28px);
     &[data-active='true'] {
       margin-inline-start: 0;
@@ -43,7 +43,7 @@ export const AuthWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-block-end: 20px;
-  &.sign-in {
+  &[data-id='sign-in'] {
     margin-block-end: 52px;
   }
 `;

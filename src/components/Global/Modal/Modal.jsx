@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Backdrop } from './Modal.styled.js';
+import { Backdrop, ModalContent } from './Modal.styled.js';
 
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ onClose, children }) => {
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'visible';
     };
   });
 
@@ -31,7 +29,9 @@ export const Modal = ({ onClose, children }) => {
   };
 
   return createPortal(
-    <Backdrop onClick={handleBackdropClick}>{children}</Backdrop>,
+    <Backdrop onClick={handleBackdropClick}>
+      <ModalContent>{children}</ModalContent>
+    </Backdrop>,
     modalRoot
   );
 };

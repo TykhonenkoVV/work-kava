@@ -76,13 +76,13 @@ export const Title = styled.h2`
   margin-block-end: 38px;
   ${({ styles }) =>
     styles === 'dark' ? 'text-align: right' : 'text-align: left'};
-  font-size: 48px;
+  font-size: 42px;
   line-height: 1;
   position: relative;
 
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     margin-block-end: 30px;
-    font-size: 56px;
+    font-size: 52px;
   }
   @media screen and (${({ theme }) => theme.devices.desktop}) {
     ${({ page }) =>

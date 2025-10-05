@@ -5,7 +5,8 @@ export const useModal = () => {
     workplace: false,
     'meeting-room': false,
     workshop: false,
-    langMenu: false
+    langMenu: false,
+    auth: false
   });
 
   const getScrollbarWidth = () =>

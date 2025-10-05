@@ -16,14 +16,18 @@ import { BlueButton } from 'styles/buttonStyles';
 import { iconsStyles } from 'utils/commonUtils';
 import { useState } from 'react';
 import { validate } from 'utils/ValidateForm';
+import { lang } from 'lang/lang';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'store/auth/selectors';
 
 export const AuthForm = ({
   forwardedRef,
   dataActive,
   onChangeAuth,
   text,
-  className
+  dataId
 }) => {
+  const { locale } = useSelector(selectUser);
   const [state, setState] = useState({
     username: '',
     email: '',
@@ -41,30 +45,33 @@ export const AuthForm = ({
     e.preventDefault();
     const formData = new FormData(forwardedRef?.current);
     const objFormData = Object.fromEntries(formData);
-    console.log(objFormData);
+    setErrors(validate(objFormData, locale));
+  };
 
-    // validate(objFormData);
-    setErrors(validate(objFormData));
+  const handleChangeAuth = e => {
+    forwardedRef?.current?.reset();
+    setErrors({});
+    onChangeAuth(e);
   };
 
   return (
     <StyledAuthForm
       data-active={dataActive}
-      className={className}
+      data-id={dataId}
       autoComplete="off"
       ref={forwardedRef}
       onSubmit={handleSubmit}
     >
       <AuthTitle>{text.title}</AuthTitle>
-      <AuthWrapper className={className}>
-        {className === 'sign-up' && (
+      <AuthWrapper data-id={dataId}>
+        {dataId === 'sign-up' && (
           <>
             <AuthInputWrapper>
               <AuthInput
                 autoComplete="off"
                 name="username"
                 type="text"
-                placeholder="Enter your name"
+                placeholder={lang[locale].enter_name}
                 onChange={onChange}
               />
               <SvgIcon w={28} h={28} icon={'user'} style={iconsStyles} />
@@ -77,7 +84,7 @@ export const AuthForm = ({
             autoComplete="off"
             name="email"
             type="text"
-            placeholder="Entet your e-mail"
+            placeholder={lang[locale].enter_email}
             onChange={onChange}
           />
           <SvgIcon w={28} h={28} icon={'at'} style={iconsStyles} />
@@ -88,23 +95,27 @@ export const AuthForm = ({
             autoComplete="off"
             name="password"
             type="password"
-            placeholder="Entet your e-mail"
+            placeholder={lang[locale].enter_pass}
             onChange={onChange}
           />
           <SvgIcon w={28} h={28} icon={'pass'} style={iconsStyles} />
         </AuthInputWrapper>
         {errors?.password && <ErrorText>{errors?.password}</ErrorText>}
-        {className !== 'sign-up' && (
+        {dataId !== 'sign-up' && (
           <CheckBoxInputWrapper>
             <CheckBoxInput type="checkbox" hidden name="checkbox" />
             <CheckBox />
-            Remember me
+            {lang[locale].remember_me}
           </CheckBoxInputWrapper>
         )}
       </AuthWrapper>
-      <BlueButton type="submit">Continue</BlueButton>
+      <BlueButton type="submit">{lang[locale].continue}</BlueButton>
       <AuthFormCaption>{text.caption}</AuthFormCaption>
-      <AuthChangeButton type="button" onClick={onChangeAuth}>
+      <AuthChangeButton
+        data-id={dataId}
+        type="button"
+        onClick={handleChangeAuth}
+      >
         {text.change}
       </AuthChangeButton>
     </StyledAuthForm>

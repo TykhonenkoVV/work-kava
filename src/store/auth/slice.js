@@ -1,4 +1,4 @@
-import { userLocal } from 'services/services';
+import { userLocale } from 'services/services';
 import {
   logIn,
   logOut,
@@ -17,8 +17,9 @@ const initialState = {
     avatarURL: '',
     avatarURLsmall: '',
     theme: 'dark',
-    local: userLocal()
+    locale: userLocale()
   },
+  locale: userLocale(),
   accessToken: null,
   refreshToken: null,
   isRegistered: false,
@@ -38,15 +39,15 @@ const authSlice = createSlice({
         avatarURL: '',
         avatarURLsmall: '',
         theme: 'dark',
-        local: userLocal()
+        local: userLocale()
       };
       state.refreshToken = null;
       state.accessToken = null;
       state.isLoggedIn = false;
       state.error = { message: '', status: '' };
     },
-    changeLocal: (state, { payload }) => {
-      state.user.local = payload;
+    changeLocale: (state, { payload }) => {
+      state.user.locale = payload;
     }
   },
   extraReducers: buider => {
@@ -159,5 +160,5 @@ const authSlice = createSlice({
       });
   }
 });
-export const { forcedLogout, changeLocal } = authSlice.actions;
+export const { forcedLogout, changeLocale } = authSlice.actions;
 export const authReducer = authSlice.reducer;

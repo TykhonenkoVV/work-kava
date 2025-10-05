@@ -1,15 +1,19 @@
 import { DishesSection } from 'styles/globalComponents.styled';
 import { Dish } from './Components/Dish';
 import { Title, DishesList, DishesContainer } from './Dishes.styled';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'store/auth/selectors';
+import { lang } from 'lang/lang';
 
 export const Dishes = ({ title, dishes, styles }) => {
-  const titleName = title.toLowerCase().replace(/ /g, '-');
+  const { locale } = useSelector(selectUser);
+  const titleName = title.toLowerCase().replace(/_/g, '-');
 
   return (
     <DishesSection name={titleName}>
       <DishesContainer>
         <Title styles={styles} name={titleName}>
-          {title}
+          {lang[locale][title]}
         </Title>
         <DishesList name={titleName}>
           {dishes?.map((dish, index) => (

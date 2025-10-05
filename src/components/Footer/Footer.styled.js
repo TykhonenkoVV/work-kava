@@ -35,7 +35,7 @@ export const FooterBox = styled.div`
 
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     text-align: start;
-    width: 302px;
+    flex-shrink: 0;
     margin-block-end: 0;
   }
 `;

@@ -1,141 +1,151 @@
-import { Controller, useForm } from 'react-hook-form';
-import { useState } from 'react';
-import { IMaskInput } from 'react-imask';
-import { HoursSelector } from './HoursSelector';
-import { GetBookingInfo } from 'utils/commonUtils';
+import { useRef, useState } from 'react';
+import { GetBookingInfo, iconsStyles } from 'utils/commonUtils';
 
 import {
   CloseButton,
   ContentWrapper,
   ErrorText,
-  Form,
   FormTitle,
   InputWrapper,
   Input,
   PriceText
 } from './BookForm.styled';
-import { ModalContent } from 'components/Modal/Modal.styled';
 import { BlueButton } from 'styles/buttonStyles';
-import { Picker } from './Components/Picker/Picker';
 import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
+import { Calendar } from './Components/Calendar/Calendar';
+import { formatDate } from './Components/Calendar/helpers/formatDate';
+import { HoursSelector } from './Components/HoursSelector/HoursSelector';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'store/auth/selectors';
+import { lang } from 'lang/lang';
+import { validate } from 'utils/ValidateForm';
 
 export const BookForm = ({ action, bookType }) => {
+  const { locale } = useSelector(selectUser);
+  const pickerInputRef = useRef(null);
+
+  const [state, setState] = useState({
+    username: '',
+    phonenumber: '',
+    picker: '',
+    interval: ''
+  });
+
+  const [errors, setErrors] = useState();
+
+  const bookFormRef = useRef(null);
+
   const { price, title } = GetBookingInfo(bookType);
 
-  const [phoneNumber, setphoneNumber] = useState('');
+  const [isActive, setIsActive] = useState();
 
-  const [bookingPrice, setBookingPrice] = useState(price);
+  const [selectedDate, setSelectedDay] = useState(new Date());
 
-  const [isActive, setIsActive] = useState(false);
+  const updatePrice = count => {
+    console.log('Count', count);
 
-  // const [selectedDate, setSelectedDay] = useState(new Date());
-
-  const updatePrice = hours => {
-    setBookingPrice(hours * price);
+    setState({ ...state, interval: count });
   };
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors }
-  } = useForm();
+  const onChange = e => {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData(bookFormRef?.current);
+    const objFormData = Object.fromEntries(formData);
+    const isErrors = validate(objFormData, locale);
+    setErrors(isErrors);
+    if (Object.keys(isErrors).length === 0) {
+      console.log('Formdata', objFormData);
+    }
+  };
+
+  const callBack = date => {
+    setIsActive(false);
+    pickerInputRef.current.value = formatDate(date, 'DD.MM.YYYY');
+  };
+
   return (
-    <ModalContent>
+    <>
       <CloseButton type="button" aria-label="close" onClick={action}>
-        <SvgIcon w={36} h={36} icon="close" />
+        <SvgIcon w={32} h={32} icon="close" />
       </CloseButton>
-      <Form
-        onSubmit={handleSubmit(data => {
-          console.log({ ...data, bookType, bookingPrice });
-          action();
-        })}
-        autoComplete="off"
-      >
-        <FormTitle>{title}</FormTitle>
+      <form autoComplete="off" onSubmit={handleSubmit} ref={bookFormRef}>
+        <FormTitle>{lang[locale][title]}</FormTitle>
         <ContentWrapper>
           <InputWrapper>
             <Input
+              autoComplete="off"
+              name="username"
               type="text"
-              {...register('name', {
-                required: {
-                  value: true,
-                  message: 'Please enter your name'
-                },
-                pattern: {
-                  value: /^[^-\s][A-Za-zА-ЯЄIЇа-яєiї' ]+/gm,
-                  message: 'The name must contain only letters and spaces'
-                }
-              })}
-              placeholder="Enter your name"
+              placeholder={lang[locale].enter_name}
+              onChange={onChange}
             />
-            <SvgIcon
-              w={28}
-              h={28}
-              icon={'user'}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '16px',
-                transform: 'translateY(-50%)'
-              }}
-            />
+            <SvgIcon w={28} h={28} icon={'user'} style={iconsStyles} />
           </InputWrapper>
-
-          {errors.name?.message && (
-            <ErrorText>{errors.name?.message}</ErrorText>
-          )}
+          {errors?.username && <ErrorText>{errors?.username}</ErrorText>}
           <InputWrapper>
-            <Controller
-              control={control}
-              name="phone"
-              rules={{
-                validate: value => {
-                  return value?.length === 19;
-                }
-              }}
-              render={({ field: { ref, ...field } }) => (
-                <Input
-                  as={IMaskInput}
-                  {...field}
-                  mask={'+{38} (000) 000-00-00'}
-                  placeholder="+38 (___) ___ - __ - __"
-                  value={phoneNumber}
-                  onAccept={(value, mask) => setphoneNumber(value)}
-                />
-              )}
+            <Input
+              autoComplete="off"
+              name="phonenumber"
+              mask={'+{38} (000)000-00-00'}
+              placeholder="+38 (___)___-__-__"
+              onChange={onChange}
             />
-            <SvgIcon
-              w={28}
-              h={28}
-              icon={'phone'}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '16px',
-                transform: 'translateY(-50%)'
-              }}
+            <SvgIcon w={28} h={28} icon={'phone'} style={iconsStyles} />
+          </InputWrapper>
+          {errors?.phonenumber && <ErrorText>{errors?.phonenumber}</ErrorText>}
+          <div style={{ position: 'relative', zIndex: 3 }}>
+            <InputWrapper
+              data-picker
+              data-active={isActive}
+              onClick={() => setIsActive(!isActive)}
+            >
+              <Input
+                autoComplete="off"
+                name="picker"
+                type="text"
+                readOnly="readonly"
+                placeholder={lang[locale].select_date}
+                ref={pickerInputRef}
+                onChange={onChange}
+              />
+              <SvgIcon w={28} h={28} icon={'calendar'} />
+              <SvgIcon className="rotate" w={28} h={28} icon="arrow" />
+            </InputWrapper>
+            {isActive && (
+              <Calendar
+                selectDate={date => setSelectedDay(date)}
+                selectedDate={selectedDate}
+                onClose={callBack}
+                locale={locale}
+                firstWeekDayNumber={(locale === 'en-UK' && 1) || 2}
+              />
+            )}
+          </div>
+          {errors?.picker && <ErrorText>{errors?.picker}</ErrorText>}
+          <InputWrapper>
+            <Input
+              name="interval"
+              type="hidden"
+              readOnly
+              value={state.interval}
             />
+            <HoursSelector bookType={bookType} onHoursChanges={updatePrice} />
           </InputWrapper>
-          {errors.phone && <ErrorText>Please enter correct phone</ErrorText>}
-          <InputWrapper
-            data-picker
-            data-active={isActive || null}
-            onClick={e => {
-              setIsActive(!isActive);
-            }}
-          >
-            <Input type="text" readOnly="readonly" placeholder="Select date" />
-            <SvgIcon w={28} h={28} icon={'calendar'} />
-            <SvgIcon className="rotate" w={28} h={28} icon="arrow" />
-            <Picker />
-          </InputWrapper>
-          <HoursSelector bookType={bookType} onHoursChanges={updatePrice} />
+          {errors?.interval && <ErrorText>{errors?.interval}</ErrorText>}
         </ContentWrapper>
-        <PriceText>Price: {bookingPrice} ₴</PriceText>
-
-        <BlueButton type="submit">Book now</BlueButton>
-      </Form>
-    </ModalContent>
+        <PriceText>
+          {lang[locale].price}: {Number(state?.interval) * price}
+          {locale === 'en-UK' && <span>&#36;</span>}
+          {locale === 'de-DE' && <span>&#8364;</span>}
+          {locale === 'uk-UA' && <span>&#8372;</span>}
+        </PriceText>
+        <BlueButton type="submit">{lang[locale].book_now}</BlueButton>
+      </form>
+    </>
   );
 };

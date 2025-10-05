@@ -21,31 +21,20 @@ export const imgSizes = [
 export const homeSections = [
   {
     id: '1',
-    title: 'Cafe',
-    description:
-      'Work with taste! Delicious aromatic coffee for every taste prepared ' +
-      'by an experienced barista, as well as elegant desserts made with ' +
-      "love by our confectioners. It's all waiting for you in our coffee " +
-      'shop.',
+    title: 'cafe',
+    description: 'description_cafe',
     linkTo: '/cafe'
   },
   {
     id: '2',
-    title: 'Fastfood',
-    description:
-      'Time for lunch, but not much time? Our fast food is at your service. ' +
-      'Fast, high quality, tasty. Own baking and certified products. Great ' +
-      'choice for every taste.',
+    title: 'fastfood',
+    description: 'description_fasfood',
     linkTo: '/fastfood'
   },
   {
     id: '3',
-    title: 'Coworking',
-    description:
-      'Work with taste! Delicious aromatic coffee for every taste prepared ' +
-      'by an experienced barista, as well as elegant desserts made with ' +
-      "love by our confectioners. It's all waiting for you in our coffee " +
-      'shop.',
+    title: 'coworking',
+    description: 'description_cafe',
     linkTo: '/coworking'
   }
 ];
@@ -53,43 +42,38 @@ export const homeSections = [
 export const coworkingSections = [
   {
     id: '01',
-    title: 'Workplace',
-    description:
-      'Convenience, comfort and delicious coffee, what else is needed for productive work? Work with the feeling that you are at home.'
+    title: 'workplace',
+    description: 'description_workplace'
   },
   {
     id: '02',
-    title: 'Meeting room',
-    description:
-      'For business meetings, we suggest using a soundproofed room, which is equipped with everything you need.'
+    title: 'meeting_room',
+    description: 'description_meeting_room'
   },
   {
     id: '03',
-    title: 'Workshop',
-    description:
-      'Convenience, comfort and delicious coffee, what else is needed for productive work? Work with the feeling that you are at home.'
+    title: 'workshop',
+    description: 'description_workshop'
   }
 ];
 
 export const GetBookingInfo = bookType => {
-  console.log(bookType);
-
   switch (bookType) {
     case 'workplace':
       return {
         price: 50,
-        title: 'Book a workplace'
+        title: 'book_now_place'
       };
 
     case 'meeting-room':
       return {
         price: 300,
-        title: 'Book a meeting room'
+        title: 'book_now_meeting_room'
       };
     case 'workshop':
       return {
         price: 800,
-        title: 'Book a workshop'
+        title: 'book_now_workshop'
       };
     default:
       throw new Error('Not supported book type');
@@ -104,3 +88,10 @@ export const backgroundColors = [
   '#d8f1fe',
   '#f5ffb9'
 ];
+
+export const iconsStyles = {
+  position: 'absolute',
+  top: '50%',
+  left: '16px',
+  transform: 'translateY(-50%)'
+};

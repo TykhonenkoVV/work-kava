@@ -1,4 +1,4 @@
-export const userLocal = () => {
+export const userLocale = () => {
   const lang = navigator.language;
   switch (lang) {
     case 'uk':

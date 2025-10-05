@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux';
 import { ContactsList, ContactsLink } from './Contacts.styled';
+import { selectUser } from 'store/auth/selectors';
+import { lang } from 'lang/lang';
 
 export const Contacts = () => {
+  const { locale } = useSelector(selectUser);
   return (
     <ContactsList>
       <li>
@@ -9,7 +13,7 @@ export const Contacts = () => {
           target="_blank"
           rel="noopener nofollow"
         >
-          Kryvyi Rih, st. Nova, 1
+          {lang[locale].address}
         </ContactsLink>
       </li>
       <li>

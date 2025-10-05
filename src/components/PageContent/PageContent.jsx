@@ -13,6 +13,12 @@ import { useWindowWidth } from 'hooks/useWindowWidth';
 import { imgSizes } from 'utils/commonUtils';
 import { HomeSection } from 'styles/globalComponents.styled';
 import { ImagesSource } from 'components/Global/Images';
+import { lang } from 'lang/lang';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn, selectUser } from 'store/auth/selectors';
+import { useModal } from 'hooks/useModal';
+import { Modal } from 'components/Global/Modal/Modal';
+import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
 
 export const PageContent = ({
   id,
@@ -23,16 +29,24 @@ export const PageContent = ({
   linkTo,
   showBookForm
 }) => {
-  const sectionId = title.toLowerCase().replace(' ', '-');
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isModalOpen, openModal, closeModal } = useModal();
 
+  const { locale } = useSelector(selectUser);
+  const sectionId = title.toLowerCase().replace('_', '-');
   const windowWidth = useWindowWidth();
+
+  const onBookNowClick = () => {
+    if (isLoggedIn) showBookForm(sectionId);
+    else openModal('auth');
+  };
 
   return (
     <HomeSection styles={styles}>
       <StyledContainer styles={styles}>
         <ContentContainer styles={styles}>
           <Title page={page} styles={styles}>
-            {title}
+            {lang[locale][title]}
           </Title>
           {page === 'coworking' && windowWidth > 1023 && (
             <Number styles={styles} id={id}>
@@ -45,8 +59,7 @@ export const PageContent = ({
                 {id}
               </Number>
             )}
-
-            {description}
+            {lang[locale][description]}
           </Text>
           {windowWidth < 1024 && (
             <Picture styles={styles}>
@@ -68,11 +81,11 @@ export const PageContent = ({
             <>
               {styles !== 'dark' ? (
                 <BlueButton as={Link} to={linkTo} style={{ zIndex: 2 }}>
-                  Details
+                  {lang[locale].details}
                 </BlueButton>
               ) : (
                 <WhiteButton as={Link} to={linkTo}>
-                  Details
+                  {lang[locale].details}
                 </WhiteButton>
               )}
             </>
@@ -80,12 +93,12 @@ export const PageContent = ({
           {!linkTo && (
             <>
               {styles !== 'dark' ? (
-                <BlueButton onClick={() => showBookForm(sectionId)}>
-                  Book now
+                <BlueButton onClick={onBookNowClick}>
+                  {lang[locale].book_now}
                 </BlueButton>
               ) : (
-                <WhiteButton onClick={() => showBookForm(sectionId)}>
-                  Book now
+                <WhiteButton onClick={onBookNowClick}>
+                  {lang[locale].book_now}
                 </WhiteButton>
               )}
             </>
@@ -108,6 +121,11 @@ export const PageContent = ({
           </Picture>
         )}
       </StyledContainer>
+      {isModalOpen.auth && (
+        <Modal onClose={() => closeModal('auth')}>
+          <AuthFormModal action={() => closeModal('auth')} />
+        </Modal>
+      )}
     </HomeSection>
   );
 };

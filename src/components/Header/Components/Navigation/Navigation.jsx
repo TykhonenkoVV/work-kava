@@ -4,29 +4,29 @@ import { selectUser } from 'store/auth/selectors';
 import { lang } from 'lang/lang';
 
 export const Navigation = ({ action }) => {
-  const { local } = useSelector(selectUser);
+  const { locale } = useSelector(selectUser);
 
   return (
     <nav style={{ height: '100%' }}>
       <List>
         <Item key="1">
           <LinkItem to="/" onClick={action}>
-            {lang[local].home}
+            {lang[locale].home}
           </LinkItem>
         </Item>
         <Item key="2">
           <LinkItem to="/cafe" onClick={action}>
-            {lang[local].cafe}
+            {lang[locale].cafe}
           </LinkItem>
         </Item>
         <Item key="3">
           <LinkItem to="/fastfood" onClick={action}>
-            {lang[local].fastfood}
+            {lang[locale].fastfood}
           </LinkItem>
         </Item>
         <Item key="4">
           <LinkItem to="/coworking" onClick={action}>
-            {lang[local].coworking}
+            {lang[locale].coworking}
           </LinkItem>
         </Item>
       </List>

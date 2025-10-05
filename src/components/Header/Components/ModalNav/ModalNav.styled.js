@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { Backdrop } from 'components/Modal/Modal.styled';
+import { Backdrop } from 'components/Global/Modal/Modal.styled';
 
+//Сделать свой бекдроп
 export const BackdropHeader = styled(Backdrop)`
   display: flex;
   align-items: center;

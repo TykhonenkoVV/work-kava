@@ -3,40 +3,21 @@ import { useState } from 'react';
 import {
   DropdownContent,
   DropdownInput,
-  DropdownItem
+  DropdownItem,
+  Text
 } from './HoursSelector.styled';
 import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
-
-const dataSource = [
-  {
-    value: 1,
-    text: '1 hour'
-  },
-  {
-    value: 2,
-    text: '2 hours'
-  },
-  {
-    value: 3,
-    text: '3 hours'
-  },
-  {
-    value: 4,
-    text: '4 hours'
-  },
-  {
-    value: 5,
-    text: '5 hours'
-  },
-  {
-    value: 6,
-    text: 'Over 5 hours'
-  }
-];
+import { lang } from 'lang/lang';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'store/auth/selectors';
 
 export const HoursSelector = ({ onHoursChanges }) => {
+  const { locale } = useSelector(selectUser);
   const [isActive, setIsActive] = useState(false);
-  const [selected, setIsSelected] = useState(dataSource[0]);
+  const [isSelected, setIsSelected] = useState({
+    value: 1,
+    text: lang[locale].select_interval
+  });
 
   const handleHoursChanges = e => {
     const selectedValue = parseInt(e.target.dataset.value);
@@ -51,7 +32,8 @@ export const HoursSelector = ({ onHoursChanges }) => {
         setIsActive(!isActive);
       }}
     >
-      {selected.text}
+      <SvgIcon w={28} h={28} icon="clock" />
+      <Text style={{ marginInlineEnd: 'auto' }}>{isSelected.text}</Text>
       <SvgIcon
         className={isActive ? 'rotate' : ''}
         w={28}
@@ -59,17 +41,19 @@ export const HoursSelector = ({ onHoursChanges }) => {
         icon="arrow"
       />
       <DropdownContent className={isActive ? '' : 'hidden'}>
-        {dataSource.map(({ value, text }) => (
+        {Array.from({ length: 6 }).map((el, i) => (
           <DropdownItem
-            key={value}
-            data-value={value}
-            onClick={e => {
-              handleHoursChanges(e);
-            }}
-            selected={value === selected.value}
-            className={value === selected.value ? 'selected' : ''}
+            key={i}
+            data-value={i + 1}
+            onClick={handleHoursChanges}
+            selected={i + 1 === isSelected.value}
+            className={i + 1 === isSelected.value ? 'selected' : ''}
           >
-            {text}
+            {i === 0
+              ? `1 ${lang[locale].hour}`
+              : i < 5
+              ? `${i + 1} ${lang[locale].hours}`
+              : lang[locale].over_5_hours}
           </DropdownItem>
         ))}
       </DropdownContent>

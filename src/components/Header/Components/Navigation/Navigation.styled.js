@@ -4,11 +4,13 @@ import { NavLink } from 'react-router-dom';
 export const List = styled.ul`
   @media screen and (${({ theme }) => theme.devices.onlymobile}) {
     font-size: 32px;
-    row-gap: 16px;
+    line-height: 1.25;
+    row-gap: 20px;
   }
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: 0;
   line-height: 1;
   font-size: 24px;
   @media screen and (${({ theme }) => theme.devices.tablet}) {

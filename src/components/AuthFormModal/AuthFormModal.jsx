@@ -2,19 +2,19 @@ import { useRef } from 'react';
 import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
 import { AuthForm } from './Components/AuthForm/AuthForm';
 import { AuthContainer, CloseButton } from './AuthFormModal.styled';
+import { lang } from 'lang/lang';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'store/auth/selectors';
 
 export const AuthFormModal = ({ action }) => {
+  const { locale } = useSelector(selectUser);
+
   const signInFormRef = useRef(null);
   const signUpFormRef = useRef(null);
 
-  const handleSubmit = () => {};
-
   const handleChangeAuthClick = e => {
-    const text = e.target.innerHTML;
-    // let isSignIn = signInFormRef.current.getAttribute('data-active');
-    // let isSignUp = signUpFormRef.current.getAttribute('data-active');
-
-    if (text === 'Sign up') {
+    const id = e.target.dataset.id;
+    if (id === 'sign-in') {
       signInFormRef.current.setAttribute('data-active', false);
       signUpFormRef.current.setAttribute('data-active', true);
     } else {
@@ -22,11 +22,6 @@ export const AuthFormModal = ({ action }) => {
       signUpFormRef.current.setAttribute('data-active', false);
     }
   };
-
-  // const handleSignUpClick = e => {
-  //   signUpFormRef?.current?.classList.remove('active');
-  //   signInFormRef?.current?.classList.add('active');
-  // };
 
   return (
     <>
@@ -36,25 +31,23 @@ export const AuthFormModal = ({ action }) => {
       <AuthContainer>
         <AuthForm
           text={{
-            title: 'Login to profile',
-            caption: "Don't have an account?",
-            change: 'Sign up'
+            title: lang[locale].login_to_profile,
+            caption: lang[locale].dont_have_an_account,
+            change: lang[locale].select_sign_up
           }}
-          className="sign-in"
+          dataId="sign-in"
           dataActive
           forwardedRef={signInFormRef}
-          handleSubmit={handleSubmit}
           onChangeAuth={handleChangeAuthClick}
         />
         <AuthForm
           text={{
-            title: 'Register',
-            caption: 'Already registered?',
-            change: 'Sign in'
+            title: lang[locale].register,
+            caption: lang[locale].already_registered,
+            change: lang[locale].select_sign_in
           }}
-          className="sign-up"
+          dataId="sign-up"
           forwardedRef={signUpFormRef}
-          handleSubmit={handleSubmit}
           onChangeAuth={handleChangeAuthClick}
         />
       </AuthContainer>

@@ -9,7 +9,7 @@ const Button = styled.button`
   font-size: 30px;
   font-weight: 700;
   line-height: 1;
-  z-index: 15;
+  z-index: 2;
 `;
 
 export const BlueButton = styled(Button)`

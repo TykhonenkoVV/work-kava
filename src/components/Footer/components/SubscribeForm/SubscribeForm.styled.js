@@ -34,7 +34,7 @@ export const FormBox = styled.form`
   }
 `;
 
-export const FormInput = styled.input`
+export const SubscribeFormInput = styled.input`
   display: flex;
   align-items: center;
   width: 100%;
@@ -42,21 +42,12 @@ export const FormInput = styled.input`
   font-size: 22px;
   font-weight: 400;
   line-height: 1;
-  max-width: 366px;
   padding-inline-start: 16px;
   padding-inline-end: 16px;
   color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.white};
   background-color: transparent;
   transition: background-color ${({ theme }) => theme.baseTransition};
-
-  @media screen and (${({ theme }) => theme.devices.tablet}) {
-    max-width: 288px;
-  }
-
-  @media screen and (${({ theme }) => theme.devices.desktop}) {
-    max-width: 402px;
-  }
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.darkGray};

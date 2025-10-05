@@ -58,7 +58,7 @@ export const UserButton = styled.button`
   }
 `;
 
-export const ButtonStyled = styled.button`
+export const BurgerButton = styled.button`
   width: 40px;
   height: 40px;
   border: 2px solid ${({ theme }) => theme.colors.white};

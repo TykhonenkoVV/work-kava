@@ -1,34 +1,31 @@
 import {
-  ButtonStyled,
   ContainerHeader,
   CartButton,
   StyledHeader,
   UserButton,
-  HederLogo
+  HederLogo,
+  BurgerButton
 } from './Header.styled';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useModal } from 'hooks/useModal';
 import { useWindowWidth } from 'hooks/useWindowWidth';
 import { Navigation } from './Components/Navigation/Navigation';
 import { SettingsWrapper } from './Components/SettingsWrapper/SettingsWrapper';
 import { ModalNav } from './Components/ModalNav/ModalNav';
-import { changeLocal } from 'store/auth/slice';
 import { LangBlock } from './Components/LangBlock/LangBlock';
+import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
+import { Modal } from 'components/Global/Modal/Modal';
+import { selectIsLoggedIn } from 'store/auth/selectors';
 
 export const Header = () => {
-  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const { isModalOpen, toggleModal, closeModal } = useModal();
+  const { isModalOpen, closeModal, openModal } = useModal();
   const [modalHeader, setModalHeader] = useState(false);
-  const [newLocal, setNewLocal] = useState(false);
 
   const windowWidth = useWindowWidth();
-
-  useEffect(() => {
-    if (newLocal) dispatch(changeLocal(newLocal));
-  }, [dispatch, newLocal]);
 
   const handleOpenModal = () => {
     setModalHeader(true);
@@ -38,9 +35,14 @@ export const Header = () => {
     setModalHeader(false);
   };
 
-  const handleLangClick = e => {
-    closeModal('langMenu');
-    setNewLocal(e.target.id);
+  const handleCartButtonClick = () => {
+    if (isLoggedIn) console.log('Додати логіку');
+    else openModal('auth');
+  };
+
+  const handleUserButtonClick = () => {
+    if (isLoggedIn) console.log('Додати логіку');
+    else openModal('auth');
   };
 
   return (
@@ -58,41 +60,47 @@ export const Header = () => {
           <>
             <Navigation />
             <SettingsWrapper>
-              <LangBlock
-                isModalOpen={isModalOpen.langMenu}
-                handleLangClick={handleLangClick}
-                toggleModal={() => toggleModal('langMenu')}
-              />
-              <CartButton type="button" aria-label="cart">
+              <LangBlock />
+              <CartButton
+                type="button"
+                aria-label="cart"
+                onClick={handleCartButtonClick}
+              >
                 <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
               </CartButton>
-              <UserButton type="button" aria-label="user profile">
+              <UserButton
+                type="button"
+                aria-label="user profile"
+                onClick={handleUserButtonClick}
+              >
                 <SvgIcon w={40} h={40} icon={'avatar'} aria-label="icon user" />
               </UserButton>
             </SettingsWrapper>
           </>
         ) : (
           <>
-            <CartButton type="button" aria-label="cart">
+            <CartButton
+              type="button"
+              aria-label="cart"
+              onClick={handleCartButtonClick}
+            >
               <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
             </CartButton>
-            <ButtonStyled
+            <BurgerButton
               type="button"
               onClick={handleOpenModal}
               aria-label="menu"
             >
               <SvgIcon w={36} h={36} icon={'burger'} />
-            </ButtonStyled>
+            </BurgerButton>
           </>
         )}
       </ContainerHeader>
-      {modalHeader && (
-        <ModalNav
-          action={handleClosedModal}
-          isModalOpen={isModalOpen.langMenu}
-          handleLangClick={handleLangClick}
-          toggleModal={() => toggleModal('langMenu')}
-        />
+      {modalHeader && <ModalNav action={handleClosedModal} />}
+      {isModalOpen.auth && (
+        <Modal onClose={() => closeModal('auth')}>
+          <AuthFormModal action={() => closeModal('auth')} />
+        </Modal>
       )}
     </StyledHeader>
   );

@@ -2,19 +2,18 @@ import styled from '@emotion/styled';
 
 export const DropdownInput = styled.div`
   position: relative;
-  z-index: 10000;
+  z-index: 2;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   height: 48px;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1;
   color: ${props => props.theme.colors.darkGray};
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-inline-start: 16px;
+  padding-inline-end: 16px;
   border: 1.5px solid ${props => props.theme.colors.primary};
-  border-radius: 8px;
   fill: ${props => props.theme.colors.darkGray};
   outline: none;
 
@@ -39,10 +38,14 @@ export const DropdownInput = styled.div`
     fill: ${props => props.theme.colors.accent};
   }
   @media screen and (${props => props.theme.devices.tablet}) {
-    font-size: 38px;
+    font-size: 24px;
   }
 `;
 
+export const Text = styled.p`
+  margin-inline-start: 16px;
+  margin-inline-end: auto;
+`;
 export const DropdownContent = styled.ul`
   position: absolute;
   top: 105%;
@@ -59,8 +62,11 @@ export const DropdownContent = styled.ul`
 `;
 
 export const DropdownItem = styled.li`
-  z-index: 10;
-  padding: 10px 16px;
+  z-index: 3;
+  padding-block-start: 8px;
+  padding-block-end: 8px;
+  padding-inline-start: 60px;
+  padding-inline-end: 16px;
   color: ${props => props.theme.colors.primary};
   cursor: pointer;
   transition: color ${props => props.theme.baseTransition},
