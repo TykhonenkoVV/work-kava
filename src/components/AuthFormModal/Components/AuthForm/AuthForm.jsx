@@ -14,25 +14,54 @@ import {
 } from './AuthForm.styled';
 import { BlueButton } from 'styles/buttonStyles';
 import { iconsStyles } from 'utils/commonUtils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { validate } from 'utils/ValidateForm';
 import { lang } from 'lang/lang';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'store/auth/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsRegistred, selectUser } from 'store/auth/selectors';
+import { logIn, register } from 'store/auth/operations';
 
 export const AuthForm = ({
+  action,
   forwardedRef,
   dataActive,
   onChangeAuth,
   text,
   dataId
 }) => {
+  const isRegistered = useSelector(selectIsRegistred);
+  const dispatch = useDispatch();
   const { locale } = useSelector(selectUser);
   const [state, setState] = useState({
     username: '',
     email: '',
     password: ''
   });
+
+  const [validFormData, setValidFormData] = useState(false);
+
+  useEffect(() => {
+    if (validFormData) {
+      if (dataId === 'sign-up') {
+        dispatch(register(validFormData));
+      } else {
+        dispatch(logIn(validFormData));
+      }
+    }
+  }, [validFormData, dataId, dispatch, action]);
+
+  useEffect(() => {
+    if (isRegistered) {
+      action();
+      if (validFormData)
+        dispatch(
+          logIn({
+            email: validFormData.email,
+            password: validFormData.password
+          })
+        );
+    }
+  }, [isRegistered, action, dispatch, validFormData]);
 
   const [errors, setErrors] = useState();
 
@@ -45,7 +74,19 @@ export const AuthForm = ({
     e.preventDefault();
     const formData = new FormData(forwardedRef?.current);
     const objFormData = Object.fromEntries(formData);
-    setErrors(validate(objFormData, locale));
+    if (dataId === 'sign-up') {
+      const respons = validate(objFormData, locale);
+      if (Object.keys(respons).length !== 0) {
+        setErrors(respons);
+      } else {
+        setValidFormData({
+          ...objFormData,
+          locale,
+          avatarURL: null,
+          avatarURLsmall: null
+        });
+      }
+    } else setValidFormData(objFormData);
   };
 
   const handleChangeAuth = e => {
@@ -69,7 +110,7 @@ export const AuthForm = ({
             <AuthInputWrapper>
               <AuthInput
                 autoComplete="off"
-                name="username"
+                name="name"
                 type="text"
                 placeholder={lang[locale].enter_name}
                 onChange={onChange}

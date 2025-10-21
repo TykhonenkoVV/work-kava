@@ -2,13 +2,13 @@ import { lang } from 'lang/lang';
 
 export const validate = (data, locale) => {
   let result = {};
-  const { username, email, phonenumber, picker, password, interval } = data;
-  if (username !== undefined) {
-    const res = /^[^-\s][A-Za-zА-ЯЄIЇа-яєiї' ]+/gm.test(username);
-    if (username === '' || !res)
+  const { name, email, phonenumber, picker, password, interval } = data;
+  if (name !== undefined) {
+    const res = /^[^-\s][A-Za-zА-ЯЄIЇа-яєiї' ]+/gm.test(name);
+    if (name === '' || !res)
       result = {
         ...result,
-        username: lang[locale].error_user_name
+        name: lang[locale].error_user_name
       };
   }
   if (email !== undefined) {
@@ -47,6 +47,7 @@ export const validate = (data, locale) => {
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(
         password
       );
+    // const res = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/.test(password);
     if (password === '' || !res)
       result = {
         ...result,

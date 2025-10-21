@@ -35,10 +35,10 @@ workKavaInnstance.interceptors.response.use(
 );
 
 export const register = createAsyncThunk(
-  'auth/register',
+  'auth/signup',
   async (credentials, thunkAPI) => {
     try {
-      await workKavaInnstance.post('/auth/register', credentials);
+      await workKavaInnstance.post('/auth/signup', credentials);
     } catch (error) {
       return thunkAPI.rejectWithValue({
         message: error.response.data.message,
@@ -49,10 +49,13 @@ export const register = createAsyncThunk(
 );
 
 export const logIn = createAsyncThunk(
-  'auth/logIn',
+  'auth/signin',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await workKavaInnstance.post('/auth/login', credentials);
+      const { data } = await workKavaInnstance.post(
+        '/auth/signin',
+        credentials
+      );
       setAuthHeader(data.tokens.accessToken);
 
       return data;
@@ -86,7 +89,7 @@ export const refreshUser = createAsyncThunk(
     if (persistedAccessToken === null) {
       return thunkAPI.rejectWithValue({
         message: 'Unable to fetch user',
-        status: ''
+        status: 404
       });
     }
 

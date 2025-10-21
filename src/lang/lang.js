@@ -84,7 +84,7 @@ export const lang = {
   'de-DE': {
     today: 'Heute',
 
-    home: 'Start',
+    home: 'Home',
     cafe: 'Cafe',
     fastfood: 'Fastfood',
     coworking: 'Coworking',

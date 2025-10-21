@@ -30,6 +30,7 @@ export const AuthFormModal = ({ action }) => {
       </CloseButton>
       <AuthContainer>
         <AuthForm
+          action={action}
           text={{
             title: lang[locale].login_to_profile,
             caption: lang[locale].dont_have_an_account,
@@ -41,6 +42,7 @@ export const AuthFormModal = ({ action }) => {
           onChangeAuth={handleChangeAuthClick}
         />
         <AuthForm
+          action={action}
           text={{
             title: lang[locale].register,
             caption: lang[locale].already_registered,
