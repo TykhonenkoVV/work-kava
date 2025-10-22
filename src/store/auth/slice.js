@@ -86,7 +86,8 @@ const authSlice = createSlice({
           email: '',
           avatarURL: '',
           avatarURLsmall: '',
-          theme: 'dark'
+          theme: 'dark',
+          locale: userLocale()
         };
         state.accessToken = null;
         state.refreshToken = null;

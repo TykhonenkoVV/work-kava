@@ -17,9 +17,9 @@ import { iconsStyles } from 'utils/commonUtils';
 import { useEffect, useState } from 'react';
 import { validate } from 'utils/ValidateForm';
 import { lang } from 'lang/lang';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectIsRegistred, selectUser } from 'store/auth/selectors';
+import { useDispatch } from 'react-redux';
 import { logIn, register } from 'store/auth/operations';
+import { useAuth } from 'hooks/useAuth';
 
 export const AuthForm = ({
   action,
@@ -29,9 +29,9 @@ export const AuthForm = ({
   text,
   dataId
 }) => {
-  const isRegistered = useSelector(selectIsRegistred);
+  const { user, isRegistered } = useAuth();
+  const { locale } = user;
   const dispatch = useDispatch();
-  const { locale } = useSelector(selectUser);
   const [state, setState] = useState({
     username: '',
     email: '',
@@ -39,16 +39,6 @@ export const AuthForm = ({
   });
 
   const [validFormData, setValidFormData] = useState(false);
-
-  useEffect(() => {
-    if (validFormData) {
-      if (dataId === 'sign-up') {
-        dispatch(register(validFormData));
-      } else {
-        dispatch(logIn(validFormData));
-      }
-    }
-  }, [validFormData, dataId, dispatch, action]);
 
   useEffect(() => {
     if (isRegistered) {
@@ -79,14 +69,17 @@ export const AuthForm = ({
       if (Object.keys(respons).length !== 0) {
         setErrors(respons);
       } else {
-        setValidFormData({
-          ...objFormData,
-          locale,
-          avatarURL: null,
-          avatarURLsmall: null
-        });
+        setValidFormData(objFormData);
+        dispatch(
+          register({
+            ...objFormData,
+            locale,
+            avatarURL: null,
+            avatarURLsmall: null
+          })
+        );
       }
-    } else setValidFormData(objFormData);
+    } else dispatch(logIn(objFormData));
   };
 
   const handleChangeAuth = e => {
