@@ -1,25 +1,14 @@
 import styled from '@emotion/styled';
-import { BlueButton } from 'styles/buttonStyles';
 
-export const StyledAuthForm = styled.form`
-  width: 100%;
-  &[data-id='sign-up'] {
-    margin-inline-end: calc(-100% - 28px);
-    &[data-active='true'] {
-      margin-inline-end: 0;
-    }
-  }
-  &[data-id='sign-in'] {
-    margin-inline-start: calc(-100% - 28px);
-    &[data-active='true'] {
-      margin-inline-start: 0;
-    }
-  }
-  transition: margin-inline-end ${({ theme }) => theme.baseTransition},
-    margin-inline-start ${({ theme }) => theme.baseTransition};
+export const WKErrorText = styled.p`
+  margin-block-start: 16px;
+  font-size: 16px;
+  color: ${props => props.theme.colors.validationError};
 `;
 
-export const AuthTitle = styled.p`
+export const WKFromStyled = styled.form``;
+
+export const WKTitleStyled = styled.p`
   margin-block-end: 20px;
   font-size: 26px;
   font-weight: 700;
@@ -32,25 +21,39 @@ export const AuthTitle = styled.p`
   }
 `;
 
-export const AuthWrapper = styled.div`
+export const DataWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-block-end: 20px;
-  &[data-id='sign-in'] {
-    margin-block-end: 52px;
+`;
+
+export const PickerWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.white};
+  z-index: 4;
+  pointer-events: auto;
+  opacity: 1;
+  transition: opacity ${({ theme }) => theme.baseTransition};
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 `;
 
-export const AuthInputWrapper = styled.label`
+export const LabelStyled = styled.label`
   position: relative;
+  order: ${({ jsOrder }) => jsOrder};
   fill: ${props => props.theme.colors.darkGray};
   transition: fill ${props => props.theme.baseTransition};
   &:has(input:hover, input:focus, input:active) {
     fill: ${props => props.theme.colors.accent};
   }
-  & .icon {
+  & > svg {
     position: absolute;
     top: 10px;
     left: 16px;
@@ -61,15 +64,19 @@ export const AuthInputWrapper = styled.label`
       right: 16px;
     }
   }
-  &[data-active='true'] svg.rotate {
-    rotate: 180deg;
-  }
-  &[data-picker='true'] {
-    position: relative;
-  }
 `;
 
-export const AuthInput = styled.input`
+export const CheckBoxLabelStyled = styled.label`
+  order: ${({ jsOrder }) => jsOrder};
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+`;
+
+export const InputStyled = styled.input`
   display: flex;
   width: 100%;
   height: 48px;
@@ -91,29 +98,12 @@ export const AuthInput = styled.input`
   @media screen and (${props => props.theme.devices.tablet}) {
     font-size: 24px;
   }
-`;
-
-export const AuthFormCaption = styled.p`
-  margin-block-start: 20px;
-  margin-block-end: 20px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-`;
-
-export const AuthChangeButton = styled(BlueButton)`
-  height: 52px;
-  font-size: 20px;
-`;
-
-export const CheckBoxInputWrapper = styled.label`
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1;
+  &:disabled {
+    cursor: not-allowed;
+  }
+  &:disabled:hover {
+    border-color: unset;
+  }
 `;
 
 export const CheckBoxInput = styled.input`
@@ -136,4 +126,17 @@ export const CheckBox = styled.span`
   width: 16px;
   height: 16px;
   border: 2px solid ${({ theme }) => theme.colors.primary};
+`;
+
+export const RightButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  fill: ${props => props.theme.colors.darkGray};
 `;

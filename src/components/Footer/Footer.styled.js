@@ -10,6 +10,7 @@ export const Section = styled.footer`
   font-size: 22px;
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.white};
+  fill: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.primary};
 
   @media screen and (${({ theme }) => theme.devices.desktop}) {

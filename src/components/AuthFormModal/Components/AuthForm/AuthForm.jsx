@@ -9,7 +9,6 @@ import {
   CheckBox,
   CheckBoxInput,
   CheckBoxInputWrapper,
-  ErrorText,
   StyledAuthForm
 } from './AuthForm.styled';
 import { BlueButton } from 'styles/buttonStyles';
@@ -20,6 +19,7 @@ import { lang } from 'lang/lang';
 import { useDispatch } from 'react-redux';
 import { logIn, register } from 'store/auth/operations';
 import { useAuth } from 'hooks/useAuth';
+import { ErrorText } from 'components/Global/ErrorText/ErrorText';
 
 export const AuthForm = ({
   action,
@@ -29,7 +29,7 @@ export const AuthForm = ({
   text,
   dataId
 }) => {
-  const { user, isRegistered } = useAuth();
+  const { user, isRegistered, isLoggedIn } = useAuth();
   const { locale } = user;
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -42,7 +42,6 @@ export const AuthForm = ({
 
   useEffect(() => {
     if (isRegistered) {
-      action();
       if (validFormData)
         dispatch(
           logIn({
@@ -51,7 +50,11 @@ export const AuthForm = ({
           })
         );
     }
-  }, [isRegistered, action, dispatch, validFormData]);
+  }, [isRegistered, dispatch, validFormData]);
+
+  useEffect(() => {
+    if (isLoggedIn) action();
+  }, [isLoggedIn, action]);
 
   const [errors, setErrors] = useState();
 
@@ -79,7 +82,9 @@ export const AuthForm = ({
           })
         );
       }
-    } else dispatch(logIn(objFormData));
+    } else {
+      dispatch(logIn(objFormData));
+    }
   };
 
   const handleChangeAuth = e => {
@@ -110,7 +115,7 @@ export const AuthForm = ({
               />
               <SvgIcon w={28} h={28} icon={'user'} style={iconsStyles} />
             </AuthInputWrapper>
-            {errors?.username && <ErrorText>{errors?.username}</ErrorText>}
+            {errors?.username && <ErrorText text={errors.username} />}
           </>
         )}
         <AuthInputWrapper>
@@ -123,7 +128,7 @@ export const AuthForm = ({
           />
           <SvgIcon w={28} h={28} icon={'at'} style={iconsStyles} />
         </AuthInputWrapper>
-        {errors?.email && <ErrorText>{errors?.email}</ErrorText>}
+        {errors?.email && <ErrorText text={errors.email} />}
         <AuthInputWrapper>
           <AuthInput
             autoComplete="off"
@@ -134,10 +139,10 @@ export const AuthForm = ({
           />
           <SvgIcon w={28} h={28} icon={'pass'} style={iconsStyles} />
         </AuthInputWrapper>
-        {errors?.password && <ErrorText>{errors?.password}</ErrorText>}
+        {errors?.password && <ErrorText text={errors.password} />}
         {dataId !== 'sign-up' && (
           <CheckBoxInputWrapper>
-            <CheckBoxInput type="checkbox" hidden name="checkbox" />
+            <CheckBoxInput type="checkbox" hidden name="stay_logged_in" />
             <CheckBox />
             {lang[locale].remember_me}
           </CheckBoxInputWrapper>

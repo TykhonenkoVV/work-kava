@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { GetBookingInfo, iconsStyles } from 'utils/commonUtils';
 
 import {
-  CloseButton,
   ContentWrapper,
   ErrorText,
   FormTitle,
@@ -69,83 +68,78 @@ export const BookForm = ({ action, bookType }) => {
   };
 
   return (
-    <>
-      <CloseButton type="button" aria-label="close" onClick={action}>
-        <SvgIcon w={32} h={32} icon="close" />
-      </CloseButton>
-      <form autoComplete="off" onSubmit={handleSubmit} ref={bookFormRef}>
-        <FormTitle>{lang[locale][title]}</FormTitle>
-        <ContentWrapper>
-          <InputWrapper>
+    <form autoComplete="off" onSubmit={handleSubmit} ref={bookFormRef}>
+      <FormTitle>{lang[locale][title]}</FormTitle>
+      <ContentWrapper>
+        <InputWrapper>
+          <Input
+            autoComplete="off"
+            name="username"
+            type="text"
+            placeholder={lang[locale].enter_name}
+            onChange={onChange}
+          />
+          <SvgIcon w={28} h={28} icon={'user'} style={iconsStyles} />
+        </InputWrapper>
+        {errors?.username && <ErrorText>{errors?.username}</ErrorText>}
+        <InputWrapper>
+          <Input
+            autoComplete="off"
+            name="phonenumber"
+            mask={'+{38} (000)000-00-00'}
+            placeholder="+38 (___)___-__-__"
+            onChange={onChange}
+          />
+          <SvgIcon w={28} h={28} icon={'phone'} style={iconsStyles} />
+        </InputWrapper>
+        {errors?.phonenumber && <ErrorText>{errors?.phonenumber}</ErrorText>}
+        <div style={{ position: 'relative', zIndex: 3 }}>
+          <InputWrapper
+            data-picker
+            data-active={isActive}
+            onClick={() => setIsActive(!isActive)}
+          >
             <Input
               autoComplete="off"
-              name="username"
+              name="picker"
               type="text"
-              placeholder={lang[locale].enter_name}
+              readOnly="readonly"
+              placeholder={lang[locale].select_date}
+              ref={pickerInputRef}
               onChange={onChange}
             />
-            <SvgIcon w={28} h={28} icon={'user'} style={iconsStyles} />
+            <SvgIcon w={28} h={28} icon={'calendar'} />
+            <SvgIcon className="rotate" w={28} h={28} icon="arrow" />
           </InputWrapper>
-          {errors?.username && <ErrorText>{errors?.username}</ErrorText>}
-          <InputWrapper>
-            <Input
-              autoComplete="off"
-              name="phonenumber"
-              mask={'+{38} (000)000-00-00'}
-              placeholder="+38 (___)___-__-__"
-              onChange={onChange}
+          {isActive && (
+            <Calendar
+              selectDate={date => setSelectedDay(date)}
+              selectedDate={selectedDate}
+              onClose={callBack}
+              locale={locale}
+              firstWeekDayNumber={(locale === 'en-UK' && 1) || 2}
             />
-            <SvgIcon w={28} h={28} icon={'phone'} style={iconsStyles} />
-          </InputWrapper>
-          {errors?.phonenumber && <ErrorText>{errors?.phonenumber}</ErrorText>}
-          <div style={{ position: 'relative', zIndex: 3 }}>
-            <InputWrapper
-              data-picker
-              data-active={isActive}
-              onClick={() => setIsActive(!isActive)}
-            >
-              <Input
-                autoComplete="off"
-                name="picker"
-                type="text"
-                readOnly="readonly"
-                placeholder={lang[locale].select_date}
-                ref={pickerInputRef}
-                onChange={onChange}
-              />
-              <SvgIcon w={28} h={28} icon={'calendar'} />
-              <SvgIcon className="rotate" w={28} h={28} icon="arrow" />
-            </InputWrapper>
-            {isActive && (
-              <Calendar
-                selectDate={date => setSelectedDay(date)}
-                selectedDate={selectedDate}
-                onClose={callBack}
-                locale={locale}
-                firstWeekDayNumber={(locale === 'en-UK' && 1) || 2}
-              />
-            )}
-          </div>
-          {errors?.picker && <ErrorText>{errors?.picker}</ErrorText>}
-          <InputWrapper>
-            <Input
-              name="interval"
-              type="hidden"
-              readOnly
-              value={state.interval}
-            />
-            <HoursSelector bookType={bookType} onHoursChanges={updatePrice} />
-          </InputWrapper>
-          {errors?.interval && <ErrorText>{errors?.interval}</ErrorText>}
-        </ContentWrapper>
-        <PriceText>
-          {lang[locale].price}: {Number(state?.interval) * price}
-          {locale === 'en-UK' && <span>&#36;</span>}
-          {locale === 'de-DE' && <span>&#8364;</span>}
-          {locale === 'uk-UA' && <span>&#8372;</span>}
-        </PriceText>
-        <BlueButton type="submit">{lang[locale].book_now}</BlueButton>
-      </form>
-    </>
+          )}
+        </div>
+        {errors?.picker && <ErrorText>{errors?.picker}</ErrorText>}
+        <InputWrapper>
+          <Input
+            name="interval"
+            type="hidden"
+            readOnly
+            value={state.interval}
+          />
+          <HoursSelector bookType={bookType} onHoursChanges={updatePrice} />
+        </InputWrapper>
+        {errors?.interval && <ErrorText>{errors?.interval}</ErrorText>}
+      </ContentWrapper>
+      <PriceText>
+        {lang[locale].price}: {Number(state?.interval) * price}
+        {locale === 'en-UK' && <span>&#36;</span>}
+        {locale === 'de-DE' && <span>&#8364;</span>}
+        {locale === 'uk-UA' && <span>&#8372;</span>}
+      </PriceText>
+      <BlueButton type="submit">{lang[locale].book_now}</BlueButton>
+    </form>
   );
 };

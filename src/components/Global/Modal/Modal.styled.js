@@ -52,3 +52,25 @@ export const ModalContent = styled.div`
     padding-inline-end: 54px;
   }
 `;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  fill: ${props => props.theme.colors.primary};
+  transition: fill ${props => props.theme.baseTransition};
+
+  @media screen and (${props => props.theme.devices.tablet}) {
+    right: 14px;
+    top: 14px;
+  }
+
+  &:hover,
+  &:focus {
+    fill: ${props => props.theme.colors.accent};
+  }
+  &:hover,
+  &:focus {
+    fill: ${props => props.theme.colors.accent};
+  }
+`;

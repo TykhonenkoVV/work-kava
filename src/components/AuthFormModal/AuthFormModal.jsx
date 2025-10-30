@@ -1,7 +1,6 @@
 import { useRef } from 'react';
-import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
 import { AuthForm } from './Components/AuthForm/AuthForm';
-import { AuthContainer, CloseButton } from './AuthFormModal.styled';
+import { AuthContainer } from './AuthFormModal.styled';
 import { lang } from 'lang/lang';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/auth/selectors';
@@ -25,9 +24,6 @@ export const AuthFormModal = ({ action }) => {
 
   return (
     <>
-      <CloseButton type="button" aria-label="close" onClick={action}>
-        <SvgIcon w={32} h={32} icon="close" />
-      </CloseButton>
       <AuthContainer>
         <AuthForm
           action={action}

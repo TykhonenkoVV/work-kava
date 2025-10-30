@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Backdrop, ModalContent } from './Modal.styled.js';
+import { Backdrop, CloseButton, ModalContent } from './Modal.styled.js';
+import { SvgIcon } from '../SvgIcon/SvgIcon.jsx';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -30,7 +31,12 @@ export const Modal = ({ onClose, children }) => {
 
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
-      <ModalContent>{children}</ModalContent>
+      <ModalContent>
+        <CloseButton type="button" aria-label="close" onClick={onClose}>
+          <SvgIcon w={32} h={32} icon="close" />
+        </CloseButton>
+        {children}
+      </ModalContent>
     </Backdrop>,
     modalRoot
   );

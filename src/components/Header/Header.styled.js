@@ -8,6 +8,7 @@ export const StyledHeader = styled.header`
   align-items: stretch;
   width: 100%;
   height: 80px;
+  fill: ${({ theme }) => theme.colors.white};
 
   background-color: ${({ theme }) => theme.colors.headerBackground};
 `;
@@ -33,7 +34,6 @@ export const CartButton = styled.button`
   width: 40px;
   height: 40px;
   border: 2px solid ${({ theme }) => theme.colors.white};
-  fill: ${({ theme }) => theme.colors.white};
   transition: fill ${({ theme }) => theme.baseTransition};
 
   &:hover,
@@ -49,7 +49,6 @@ export const CartButton = styled.button`
 export const UserButton = styled.button`
   width: 40px;
   height: 40px;
-  fill: ${({ theme }) => theme.colors.white};
   transition: fill ${({ theme }) => theme.baseTransition};
 
   &:hover,
@@ -62,7 +61,6 @@ export const BurgerButton = styled.button`
   width: 40px;
   height: 40px;
   border: 2px solid ${({ theme }) => theme.colors.white};
-  fill: ${({ theme }) => theme.colors.white};
   transition: fill ${({ theme }) => theme.baseTransition};
 
   &:hover,

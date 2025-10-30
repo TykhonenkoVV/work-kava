@@ -18,6 +18,7 @@ import { LangBlock } from './Components/LangBlock/LangBlock';
 import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
 import { Modal } from 'components/Global/Modal/Modal';
 import { selectIsLoggedIn } from 'store/auth/selectors';
+import { Profile } from './Profile/Profile';
 
 export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -41,7 +42,7 @@ export const Header = () => {
   };
 
   const handleUserButtonClick = () => {
-    if (isLoggedIn) console.log('Додати логіку');
+    if (isLoggedIn) openModal('profile');
     else openModal('auth');
   };
 
@@ -100,6 +101,11 @@ export const Header = () => {
       {isModalOpen.auth && (
         <Modal onClose={() => closeModal('auth')}>
           <AuthFormModal action={() => closeModal('auth')} />
+        </Modal>
+      )}
+      {isModalOpen.profile && (
+        <Modal onClose={() => closeModal('profile')}>
+          <Profile action={() => closeModal('profile')} />
         </Modal>
       )}
     </StyledHeader>

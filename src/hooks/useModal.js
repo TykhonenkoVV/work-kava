@@ -6,7 +6,8 @@ export const useModal = () => {
     'meeting-room': false,
     workshop: false,
     langMenu: false,
-    auth: false
+    auth: false,
+    profile: false
   });
 
   const getScrollbarWidth = () =>
