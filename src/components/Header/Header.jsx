@@ -4,24 +4,28 @@ import {
   StyledHeader,
   UserButton,
   HederLogo,
-  BurgerButton
+  BurgerButton,
+  Count
 } from './Header.styled';
 import { useState } from 'react';
 import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
-import { useSelector } from 'react-redux';
 import { useModal } from 'hooks/useModal';
 import { useWindowWidth } from 'hooks/useWindowWidth';
 import { Navigation } from './Components/Navigation/Navigation';
 import { SettingsWrapper } from './Components/SettingsWrapper/SettingsWrapper';
 import { ModalNav } from './Components/ModalNav/ModalNav';
 import { LangBlock } from './Components/LangBlock/LangBlock';
-import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
 import { Modal } from 'components/Global/Modal/Modal';
-import { selectIsLoggedIn } from 'store/auth/selectors';
 import { Profile } from './Profile/Profile';
+import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
+import { useAuth } from 'hooks/useAuth';
+import { useSelector } from 'react-redux';
+import { selectCart } from 'store/cart/selectors';
 
 export const Header = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = useAuth();
+
+  const cart = useSelector(selectCart);
 
   const { isModalOpen, closeModal, openModal } = useModal();
   const [modalHeader, setModalHeader] = useState(false);
@@ -67,6 +71,7 @@ export const Header = () => {
                 aria-label="cart"
                 onClick={handleCartButtonClick}
               >
+                {cart?.length > 0 && <Count>{cart.length}</Count>}
                 <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
               </CartButton>
               <UserButton

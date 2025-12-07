@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { DarkSection } from 'styles/globalComponents.styled';
-import { CLOUD_NAME } from 'utils/GlobalUtils';
+import { CLOUD_NAME } from 'utils/constants';
 
 export const SectionHero = styled(DarkSection)`
   padding-block-start: 100px;
@@ -9,60 +9,76 @@ export const SectionHero = styled(DarkSection)`
   background-color: #1b253f;
   background-size: cover;
   background-position: right;
-  background-image: ${({ page }) =>
+  background-image: ${({ page, sizes }) =>
     ({ theme }) =>
       theme.useWebp
-        ? `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}${page}/webp/${page}-hero.webp)`
-        : `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}${page}/jpeg/${page}-hero.jpg)`};
+        ? `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}w_${
+            sizes.mobile.width / 2
+          },h_${
+            sizes.mobile.height / 2
+          },c_fill/v1/workkava/${page}/hero/webp/${page}.webp)`
+        : `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}w_${
+            sizes.mobile.width / 2
+          },h_${
+            sizes.mobile.height / 2
+          },c_fill/v1/workkava/${page}/hero/jpeg/${page}.jpg)`};
 
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
-    background-image: ${({ page }) =>
+    background-image: ${({ page, sizes }) =>
       ({ theme }) =>
         theme.useWebp
-          ? `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}${page}/webp/${page}-hero_2x.webp)`
-          : `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}${page}/jpeg/${page}-hero_2x.jpg)`};
+          ? `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}w_${sizes.mobile.width},h_${sizes.mobile.height},c_fill/v1/workkava/${page}/hero/webp/${page}.webp)`
+          : `linear-gradient(${theme.heroLinerGradient}), url(${CLOUD_NAME}w_${sizes.mobile.width},h_${sizes.mobile.height},c_fill/v1/workkava/${page}/hero/jpeg/${page}.jpg)`};
   }
 
   @media screen and (${props => props.theme.devices.tablet}) {
     padding-block-start: 40px;
     padding-block-end: 40px;
-    background-image: ${({ page }) =>
+    background-image: ${({ page, sizes }) =>
       props =>
         props.theme.useWebp
-          ? `url(${CLOUD_NAME}${page}/webp/${page}-hero-tablet.webp)`
-          : `url(${CLOUD_NAME}${page}/jpeg/${page}-hero-tablet.jpg)`};
+          ? `url(${CLOUD_NAME}w_${sizes.tablet.width / 2},h_${
+              sizes.tablet.height / 2
+            },c_fill/v1/workkava/${page}/hero/webp/${page}.webp)`
+          : `url(${CLOUD_NAME}w_${sizes.tablet.width / 2},h_${
+              sizes.tablet.height / 2
+            },c_fill/v1/workkava/${page}/hero/jpeg/${page}.jpg)`};
 
     background-size: contain;
     background-position: center;
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-      background-image: ${({ page }) =>
+      background-image: ${({ page, sizes }) =>
         props =>
           props.theme.useWebp
-            ? `url(${CLOUD_NAME}${page}/webp/${page}-hero-tablet_2x.webp)`
-            : `url(${CLOUD_NAME}${page}/jpeg/${page}-hero-tablet_2x.jpg)`};
+            ? `url(${CLOUD_NAME}w_${sizes.tablet.width},h_${sizes.tablet.height},c_fill/v1/workkava/${page}/hero/webp/${page}.webp)`
+            : `url(${CLOUD_NAME}w_${sizes.tablet.width},h_${sizes.tablet.height},c_fill/v1/workkava/${page}/hero/jpeg/${page}.jpg)`};
     }
   }
 
   @media screen and (${props => props.theme.devices.desktop}) {
     padding-block-start: 80px;
     padding-block-end: 80px;
-    background-image: ${({ page }) =>
+    background-image: ${({ page, sizes }) =>
       props =>
         props.theme.useWebp
-          ? `url(${CLOUD_NAME}${page}/webp/${page}-hero-desktop.webp)`
-          : `url(${CLOUD_NAME}${page}/jpeg/${page}-hero-desktop.png)`};
+          ? `url(${CLOUD_NAME}w_${sizes.desktop.width / 2},h_${
+              sizes.desktop.height / 2
+            },c_fill/v1/workkava/${page}/hero/webp/${page}.webp)`
+          : `url(${CLOUD_NAME}w_${sizes.desktop.width / 2},h_${
+              sizes.desktop.height / 2
+            },c_fill/v1/workkava/${page}/hero/jpeg/${page}.jpg)`};
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-      background-image: ${({ page }) =>
+      background-image: ${({ page, sizes }) =>
         props =>
           props.theme.useWebp
-            ? `url(${CLOUD_NAME}${page}/webp/${page}-hero-desktop_2x.webp)`
-            : `url(${CLOUD_NAME}${page}/jpeg/${page}-hero-desktop_2x.png)`};
+            ? `url(${CLOUD_NAME}w_${sizes.desktop.width},h_${sizes.desktop.height},c_fill/v1/workkava/${page}/hero/webp/${page}.webp)`
+            : `url(${CLOUD_NAME}w_${sizes.desktop.width},h_${sizes.desktop.height},c_fill/v1/workkava/${page}/hero/jpeg/${page}.jpg)`};
     }
   }
 `;

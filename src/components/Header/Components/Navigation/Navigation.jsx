@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
 import { Item, LinkItem, List } from './Navigation.styled';
-import { selectUser } from 'store/auth/selectors';
 import { lang } from 'lang/lang';
+import { useAuth } from 'hooks/useAuth';
 
 export const Navigation = ({ action }) => {
-  const { locale } = useSelector(selectUser);
+  const { locale } = useAuth();
 
   return (
     <nav style={{ height: '100%' }}>

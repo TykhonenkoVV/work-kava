@@ -1,23 +1,3 @@
-import { devices } from 'styles';
-
-export const imgSizes = [
-  {
-    media: devices.desktop,
-    width: 730,
-    height: 714
-  },
-  {
-    media: devices.tablet,
-    width: 532,
-    height: 520
-  },
-  {
-    media: devices.mobile,
-    width: 358,
-    height: 238
-  }
-];
-
 export const homeSections = [
   {
     id: '1',
@@ -81,17 +61,10 @@ export const GetBookingInfo = bookType => {
 };
 
 export const backgroundColors = [
-  '#ffffff',
+  '#fffabaff',
   '#bdff99',
   '#ffc999',
   '#f1c2f2',
   '#d8f1fe',
   '#f5ffb9'
 ];
-
-export const iconsStyles = {
-  position: 'absolute',
-  top: '50%',
-  left: '16px',
-  transform: 'translateY(-50%)'
-};

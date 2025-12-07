@@ -7,7 +7,8 @@ export const useModal = () => {
     workshop: false,
     langMenu: false,
     auth: false,
-    profile: false
+    profile: false,
+    addToCart: false
   });
 
   const getScrollbarWidth = () =>

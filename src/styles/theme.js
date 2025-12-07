@@ -45,7 +45,7 @@ export const theme = Object.freeze({
     validationError: '#ED4337',
 
     lightSectionBefore: '#A2A2A2',
-    darkSectionBefore: '#9AA4BE',
+    darkSectionBefore: '#b6b6b8ff',
     firstSectionBackground: '#302305',
     secondSectionBackground: '#857661',
     thirdSectionBackground: '#e2d0ae'

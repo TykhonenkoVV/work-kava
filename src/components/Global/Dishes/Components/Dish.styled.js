@@ -20,9 +20,6 @@ export const Img = styled.img`
     width: 470px;
     height: 260px;
   }
-
-  @media screen and (${({ theme }) => theme.devices.desktop}) {
-  }
 `;
 
 export const PriceWrapper = styled.div`

@@ -5,7 +5,6 @@ import {
   refreshToken,
   refreshUser,
   register,
-  updateAvatar,
   updateUser
 } from './operations';
 import { createSlice } from '@reduxjs/toolkit';
@@ -14,15 +13,13 @@ const initialState = {
   user: {
     name: '',
     email: '',
-    avatarURL: '',
-    avatarURLsmall: '',
-    theme: 'dark',
-    locale: userLocale()
+    avatarURL: ''
   },
   locale: userLocale(),
   accessToken: null,
   refreshToken: null,
   isRegistered: false,
+  isUpdated: false,
   isLoggedIn: false,
   isRefreshing: false,
   error: null
@@ -36,18 +33,19 @@ const authSlice = createSlice({
       state.user = {
         name: '',
         email: '',
-        avatarURL: '',
-        avatarURLsmall: '',
-        theme: 'dark',
-        local: userLocale()
+        avatarURL: ''
       };
-      state.refreshToken = null;
+      state.locale = userLocale();
       state.accessToken = null;
+      state.refreshToken = null;
       state.isLoggedIn = false;
       state.error = null;
     },
     changeLocale: (state, { payload }) => {
-      state.user.locale = payload;
+      state.locale = payload;
+    },
+    turnOffIsUpdated: (state, { payload }) => {
+      state.isUpdated = payload;
     },
     clearError: (state, { payload }) => {
       state.error = null;
@@ -73,7 +71,12 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
+        state.user = {
+          name: payload.user.name,
+          email: payload.user.email,
+          avatarURL: payload.user.avatarURL
+        };
+        state.locale = payload.user.locale;
         state.accessToken = payload.tokens.accessToken;
         state.refreshToken = payload.tokens.refreshToken;
         state.isRefreshing = false;
@@ -84,11 +87,9 @@ const authSlice = createSlice({
         state.user = {
           name: '',
           email: '',
-          avatarURL: '',
-          avatarURLsmall: '',
-          theme: 'dark',
-          locale: userLocale()
+          avatarURL: ''
         };
+        state.locale = userLocale();
         state.accessToken = null;
         state.refreshToken = null;
         state.isRefreshing = false;
@@ -99,10 +100,9 @@ const authSlice = createSlice({
         state.user = {
           name: '',
           email: '',
-          avatarURL: '',
-          avatarURLsmall: '',
-          theme: 'dark'
+          avatarURL: ''
         };
+        state.locale = userLocale();
         state.accessToken = null;
         state.refreshToken = null;
         state.isLoggedIn = false;
@@ -117,7 +117,12 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
+        state.user = {
+          name: payload.name,
+          email: payload.email,
+          avatarURL: payload.avatarURL
+        };
+        state.locale = payload.locale;
         state.isRefreshing = false;
         state.isLoggedIn = true;
         state.error = null;
@@ -144,25 +149,24 @@ const authSlice = createSlice({
       .addCase(updateUser.pending, state => {
         state.isRefreshing = true;
         state.error = null;
+        state.isUpdated = false;
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
+        if (payload.name) state.user.name = payload.name;
+        if (payload.email) state.user.email = payload.email;
+        if (payload.avatarURL) state.user.avatarURL = payload.avatarURL;
+        if (payload.locale) state.locale = payload.locale;
         state.isRefreshing = false;
         state.error = null;
+        state.isUpdated = true;
       })
       .addCase(updateUser.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.error = payload;
-      })
-      .addCase(updateAvatar.fulfilled, (state, { payload }) => {
-        state.user.avatarURL = payload.avatarURL;
-        state.user.avatarURLsmall = payload.avatarURLsmall;
-        state.error = null;
-      })
-      .addCase(updateAvatar.rejected, (state, { payload }) => {
+        state.isUpdated = false;
         state.error = payload;
       });
   }
 });
-export const { forcedLogout, changeLocale, clearError } = authSlice.actions;
+export const { forcedLogout, changeLocale, turnOffIsUpdated, clearError } =
+  authSlice.actions;
 export const authReducer = authSlice.reducer;

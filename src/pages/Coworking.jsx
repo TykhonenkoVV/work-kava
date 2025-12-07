@@ -3,7 +3,7 @@ import { Hero } from 'components/Hero/Hero';
 import { coworkingSections as sections } from 'utils/commonUtils';
 import { useModal } from 'hooks/useModal';
 import { BookForm } from 'components/BookForm/BookForm';
-import { PageContent } from 'components/PageContent/PageContent';
+import { PageContent } from 'components/Global/PageContent/PageContent';
 import { Modal } from 'components/Global/Modal/Modal';
 
 const Coworking = () => {

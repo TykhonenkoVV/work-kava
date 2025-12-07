@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { LangBtn, LangMenuItem, LangMenuUl } from './LangMenu.styled';
 import {
   LOCALE_UA,
@@ -7,11 +6,11 @@ import {
   FLAG_DE_URL,
   FLAG_UA_URL,
   FLAG_UK_URL
-} from 'utils/GlobalUtils';
-import { selectUser } from 'store/auth/selectors';
+} from 'utils/constants';
+import { useAuth } from 'hooks/useAuth';
 
 export const LangMenu = ({ isModalOpen, handleCklick, forwardedRef }) => {
-  const { locale } = useSelector(selectUser);
+  const { locale } = useAuth();
 
   return (
     <LangMenuUl

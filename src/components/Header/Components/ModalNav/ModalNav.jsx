@@ -10,8 +10,7 @@ import { useAuth } from 'hooks/useAuth';
 import { Profile } from 'components/Header/Profile/Profile';
 
 export const ModalNav = ({ action, handleLangClick }) => {
-  const { isLoggedIn, user } = useAuth();
-  const { locale } = user;
+  const { isLoggedIn, locale } = useAuth();
   const { isModalOpen, openModal, closeModal, toggleModal } = useModal();
 
   const handleUserButtonClick = () => {

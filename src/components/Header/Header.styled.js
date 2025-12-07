@@ -31,19 +31,37 @@ export const ContainerHeader = styled(Container)`
 `;
 
 export const CartButton = styled.button`
+  position: relative;
   width: 40px;
   height: 40px;
-  border: 2px solid ${({ theme }) => theme.colors.white};
-  transition: fill ${({ theme }) => theme.baseTransition};
+  color: ${({ theme }) => theme.colors.white};
+  fill: currentColor;
+  border: 2px solid currentColor;
+  transition: color ${({ theme }) => theme.baseTransition};
 
   &:hover,
   &:focus {
-    fill: ${({ theme }) => theme.colors.whiteButtonHover};
+    color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 
   @media screen and (${({ theme }) => theme.devices.onlymobile}) {
     margin-right: 16px;
   }
+`;
+
+export const Count = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: red;
+  border-radius: 50%;
 `;
 
 export const UserButton = styled.button`

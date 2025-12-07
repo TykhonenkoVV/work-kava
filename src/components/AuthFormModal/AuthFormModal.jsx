@@ -1,54 +1,91 @@
-import { useRef } from 'react';
-import { AuthForm } from './Components/AuthForm/AuthForm';
-import { AuthContainer } from './AuthFormModal.styled';
+import { WKForm } from 'components/Global/WKForm/WKForm';
+import {
+  AuthChangeButton,
+  AuthContainer,
+  AuthFormCaption
+} from './AuthFormModal.styled';
+import { useAuth } from 'hooks/useAuth';
 import { lang } from 'lang/lang';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'store/auth/selectors';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logIn, register } from 'store/auth/operations';
 
 export const AuthFormModal = ({ action }) => {
-  const { locale } = useSelector(selectUser);
+  const { locale, isRegistered, isLoggedIn } = useAuth();
+  const [isAktive, setIsActive] = useState('sign-in');
+  const [newFormData, setNewFormData] = useState(false);
+  const dispatch = useDispatch();
 
-  const signInFormRef = useRef(null);
-  const signUpFormRef = useRef(null);
+  useEffect(() => {
+    if (isRegistered && newFormData) {
+      dispatch(logIn(newFormData));
+    }
+  }, [dispatch, isRegistered, newFormData]);
 
-  const handleChangeAuthClick = e => {
-    const id = e.target.dataset.id;
+  useEffect(() => {
+    if (isLoggedIn) action();
+  }, [action, isLoggedIn]);
+
+  const onAuthChange = e => {
+    const id = e.currentTarget.id;
+    setIsActive(id);
+  };
+
+  const onSubmit = (formData, id) => {
+    if (id === 'sign-up') {
+      dispatch(
+        register({
+          ...formData,
+          locale: locale,
+          avatarURL: false,
+          avatarURLsmall: false
+        })
+      );
+      setNewFormData({ email: formData.email, password: formData.password });
+    }
     if (id === 'sign-in') {
-      signInFormRef.current.setAttribute('data-active', false);
-      signUpFormRef.current.setAttribute('data-active', true);
-    } else {
-      signInFormRef.current.setAttribute('data-active', true);
-      signUpFormRef.current.setAttribute('data-active', false);
+      dispatch(logIn(formData));
     }
   };
 
   return (
-    <>
-      <AuthContainer>
-        <AuthForm
-          action={action}
-          text={{
-            title: lang[locale].login_to_profile,
-            caption: lang[locale].dont_have_an_account,
-            change: lang[locale].select_sign_up
-          }}
-          dataId="sign-in"
-          dataActive
-          forwardedRef={signInFormRef}
-          onChangeAuth={handleChangeAuthClick}
-        />
-        <AuthForm
-          action={action}
-          text={{
-            title: lang[locale].register,
-            caption: lang[locale].already_registered,
-            change: lang[locale].select_sign_in
-          }}
-          dataId="sign-up"
-          forwardedRef={signUpFormRef}
-          onChangeAuth={handleChangeAuthClick}
-        />
-      </AuthContainer>
-    </>
+    <AuthContainer>
+      <WKForm
+        dataId="sign-in"
+        dataActive={isAktive === 'sign-in'}
+        locale={locale}
+        onFormSubmit={onSubmit}
+      >
+        <AuthFormCaption jsOrder={3}>
+          {lang[locale].dont_have_an_account}
+        </AuthFormCaption>
+        <AuthChangeButton
+          id="sign-up"
+          type="button"
+          onClick={onAuthChange}
+          jsOrder={4}
+        >
+          {lang[locale].register}
+        </AuthChangeButton>
+      </WKForm>
+      <WKForm
+        dataId="sign-up"
+        dataActive={isAktive === 'sign-up'}
+        locale={locale}
+        onFormSubmit={onSubmit}
+      >
+        <AuthFormCaption jsOrder={3}>
+          {lang[locale].already_registered}
+        </AuthFormCaption>
+        <AuthChangeButton
+          id="sign-in"
+          type="button"
+          onClick={onAuthChange}
+          jsOrder={4}
+        >
+          {lang[locale].login_to_profile}
+        </AuthChangeButton>
+      </WKForm>
+    </AuthContainer>
   );
 };

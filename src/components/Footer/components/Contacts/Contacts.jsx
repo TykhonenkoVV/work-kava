@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
 import { ContactsList, ContactsLink } from './Contacts.styled';
-import { selectUser } from 'store/auth/selectors';
 import { lang } from 'lang/lang';
+import { useAuth } from 'hooks/useAuth';
 
 export const Contacts = () => {
-  const { locale } = useSelector(selectUser);
+  const { locale } = useAuth();
   return (
     <ContactsList>
       <li>

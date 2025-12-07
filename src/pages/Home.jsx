@@ -1,5 +1,5 @@
 import { Hero } from 'components/Hero/Hero';
-import { PageContent } from 'components/PageContent/PageContent';
+import { PageContent } from 'components/Global/PageContent/PageContent';
 import { homeSections as sections } from 'utils/commonUtils';
 
 const Home = () => {

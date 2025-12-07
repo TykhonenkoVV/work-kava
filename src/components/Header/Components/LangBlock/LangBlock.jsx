@@ -1,26 +1,26 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { LangMenu } from './Components/LangMenu/LangMenu';
 import { LangButton, LangMenuWrapper } from './LangBlock.styled';
-import { selectUser } from 'store/auth/selectors';
 import {
   FLAG_DE_URL,
   FLAG_UA_URL,
   FLAG_UK_URL,
   LOCALE_DE,
   LOCALE_UA
-} from 'utils/GlobalUtils';
+} from 'utils/constants';
 import { useWindowWidth } from 'hooks/useWindowWidth';
 import { lang } from 'lang/lang';
 import { useModal } from 'hooks/useModal';
-import { useEffect, useRef, useState } from 'react';
-import { changeLocale } from 'store/auth/slice';
+import { useEffect, useRef } from 'react';
+import { changeLocale, turnOffIsUpdated } from 'store/auth/slice';
 import { useClickOutsideModal } from 'hooks/useClickOutsideModal';
+import { updateUser } from 'store/auth/operations';
+import { useAuth } from 'hooks/useAuth';
 
 export const LangBlock = () => {
-  const { locale } = useSelector(selectUser);
+  const { locale, isLoggedIn, isUpdated } = useAuth();
   const dispatch = useDispatch();
   const windowWidth = useWindowWidth();
-  const [newLocale, setNewLocale] = useState(false);
   const { isModalOpen, toggleModal, closeModal } = useModal();
   const langMenuRef = useRef(null);
   const langButtonRef = useRef(null);
@@ -28,13 +28,17 @@ export const LangBlock = () => {
   useClickOutsideModal([langMenuRef, langButtonRef], closeModal, 'langMenu');
 
   useEffect(() => {
-    if (newLocale) dispatch(changeLocale(newLocale));
-  }, [dispatch, newLocale]);
+    if (isUpdated) {
+      dispatch(turnOffIsUpdated());
+    }
+  }, [dispatch, isUpdated]);
 
   const handleLangClick = e => {
     closeModal('langMenu');
-    setNewLocale(e.target.id);
+    if (isLoggedIn) dispatch(updateUser({ locale: e.target.id }));
+    else dispatch(changeLocale(e.target.id));
   };
+
   return (
     <LangMenuWrapper>
       <LangMenu

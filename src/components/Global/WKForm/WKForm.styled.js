@@ -3,63 +3,84 @@ import styled from '@emotion/styled';
 export const WKErrorText = styled.p`
   margin-block-start: 16px;
   font-size: 16px;
-  color: ${props => props.theme.colors.validationError};
+  color: ${({ theme }) => theme.colors.validationError};
 `;
 
-export const WKFromStyled = styled.form``;
+export const WKFromStyled = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  &[data-id='sign-up'] {
+    margin-inline-end: calc(-100% - 28px);
+    &[data-active='true'] {
+      margin-inline-end: 0;
+    }
+  }
+  &[data-id='sign-in'] {
+    margin-inline-start: calc(-100% - 28px);
+    &[data-active='true'] {
+      margin-inline-start: 0;
+    }
+  }
+  transition: margin-inline-end ${({ theme }) => theme.baseTransition},
+    margin-inline-start ${({ theme }) => theme.baseTransition};
+`;
 
 export const WKTitleStyled = styled.p`
-  margin-block-end: 20px;
-  font-size: 26px;
+  order: 0;
+  margin-block-end: 24px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1;
   text-align: center;
 
-  @media screen and (${props => props.theme.devices.tablet}) {
-    font-size: 32px;
-    line-height: 1.25;
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    font-size: 28px;
+    margin-block-end: 32px;
   }
 `;
 
 export const DataWrapper = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
-`;
-
-export const PickerWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: ${({ theme }) => theme.colors.white};
-  z-index: 4;
-  pointer-events: auto;
-  opacity: 1;
-  transition: opacity ${({ theme }) => theme.baseTransition};
-  &.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
+  order: 1;
+  margin-block-end: 20px;
 `;
 
 export const LabelStyled = styled.label`
-  position: relative;
   order: ${({ jsOrder }) => jsOrder};
-  fill: ${props => props.theme.colors.darkGray};
-  transition: fill ${props => props.theme.baseTransition};
-  &:has(input:hover, input:focus, input:active) {
-    fill: ${props => props.theme.colors.accent};
+`;
+
+export const DivlStyled = styled.div`
+  order: ${({ jsOrder }) => jsOrder};
+`;
+
+export const InputWrapper = styled.div`
+  position: relative;
+  fill: ${({ theme }) => theme.colors.darkSectionBefore};
+  transition: fill ${({ theme }) => theme.baseTransition};
+  &:has(input:disabled) {
+    & button {
+      pointer-events: none;
+    }
   }
-  & > svg {
+  &:has(input:enabled) {
+    fill: ${({ theme }) => theme.colors.darkGray};
+    &:hover {
+      fill: ${({ theme }) => theme.colors.accent};
+    }
+    &:hover input {
+      border-color: ${({ theme }) => theme.colors.accent};
+    }
+  }
+  & > .js-class {
     position: absolute;
-    top: 10px;
-    left: 16px;
+    top: 8px;
+    left: 8px;
     pointer-events: none;
-    transition: rotate ${props => props.theme.baseTransition};
-    &.rotate {
+    transition: rotate ${({ theme }) => theme.baseTransition};
+    & > .js-class.rotate {
       left: unset;
       right: 16px;
     }
@@ -79,30 +100,32 @@ export const CheckBoxLabelStyled = styled.label`
 export const InputStyled = styled.input`
   display: flex;
   width: 100%;
-  height: 48px;
+  height: 40px;
   font-size: 20px;
   line-height: 1;
-  color: ${props => props.theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
   outline: none;
-  padding-inline-start: 60px;
-  padding-inline-end: 16px;
+  padding-inline-start: 40px;
+  padding-inline-end: 8px;
 
-  border: 1px solid ${props => props.theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
 
-  transition: border-color ${props => props.theme.baseTransition};
-  &:hover,
+  transition: border-color ${({ theme }) => theme.baseTransition};
+  /* &:hover,
   :focus,
   :active {
-    border-color: ${props => props.theme.colors.accent};
-  }
-  @media screen and (${props => props.theme.devices.tablet}) {
-    font-size: 24px;
-  }
+    border-color: ${({ theme }) => theme.colors.accent};
+    } */
   &:disabled {
     cursor: not-allowed;
+    color: ${({ theme }) => theme.colors.darkSectionBefore};
+    border-color: ${({ theme }) => theme.colors.darkSectionBefore};
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.darkSectionBefore};
+    }
   }
-  &:disabled:hover {
-    border-color: unset;
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    font-size: 24px;
   }
 `;
 
@@ -130,13 +153,13 @@ export const CheckBox = styled.span`
 
 export const RightButton = styled.button`
   position: absolute;
-  top: 10px;
-  right: 16px;
-  width: 28px;
-  height: 28px;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
-  fill: ${props => props.theme.colors.darkGray};
+  fill: inherit;
 `;

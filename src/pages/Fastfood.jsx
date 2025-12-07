@@ -24,13 +24,23 @@ const Fastfood = () => {
     <>
       <Hero page="fastfood" />
       {burgers.length > 0 && (
-        <Dishes title="burgers" dishes={burgers} styles="light" />
+        <Dishes
+          title="burgers"
+          dishes={burgers}
+          page="fastfood"
+          styles="light"
+        />
       )}
       {rolls.length > 0 && (
-        <Dishes title="rolls" dishes={rolls} styles="light" />
+        <Dishes title="rolls" dishes={rolls} page="fastfood" styles="light" />
       )}
       {hotDogs.length > 0 && (
-        <Dishes title="hot_dogs" dishes={hotDogs} styles="dark" />
+        <Dishes
+          title="hot_dogs"
+          dishes={hotDogs}
+          page="fastfood"
+          styles="dark"
+        />
       )}
     </>
   );

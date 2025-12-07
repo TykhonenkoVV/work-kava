@@ -1,12 +1,11 @@
 import { SocialLinksList } from 'components/Global/SocialLinksList/SocialLinksList';
 import { Icons, IconsBox } from './Socials.styled';
 import { Title } from './Socials.styled';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'store/auth/selectors';
 import { lang } from 'lang/lang';
+import { useAuth } from 'hooks/useAuth';
 
 export const Socials = () => {
-  const { locale } = useSelector(selectUser);
+  const { locale } = useAuth();
   return (
     <Icons>
       <Title>{lang[locale].socials}</Title>

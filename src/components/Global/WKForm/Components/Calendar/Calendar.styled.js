@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
 export const CalendarMain = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   width: ${props => 200 * props.calendarTheme.coef + 'px'};
   ${props =>
     props.calendarTheme.borderRadius &&

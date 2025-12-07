@@ -1,44 +1,73 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { SvgIcon } from '../SvgIcon/SvgIcon';
 import {
   CheckBox,
   CheckBoxInput,
   CheckBoxLabelStyled,
   DataWrapper,
+  DivlStyled,
   InputStyled,
+  InputWrapper,
   LabelStyled,
-  PickerWrapper,
   RightButton,
   WKErrorText,
   WKFromStyled,
   WKTitleStyled
 } from './WKForm.styled';
 import { BlueButton } from 'styles/buttonStyles';
-import { validate } from 'utils/ValidateForm';
-import { WKSelect } from './Components/Options/WKSelect';
-import { Calendar } from './Components/Calendar/Calendar';
-import { formatDate } from './Components/Calendar/helpers/formatDate';
+import { WKSelect } from './Components/WKSelect/WKSelect';
+import { Avatar } from './Components/Avatar/Avatar';
+import { getFormElements, getFormText, validate } from 'services/formServices';
 
-export const WKForm = ({ text, inputs, locale, onFormSubmit, children }) => {
-  const { title, button_text } = text;
+export const WKForm = ({
+  dataId,
+  dataActive,
+  locale,
+  onFormSubmit,
+  selectCallback,
+  defaultValues,
+  children
+}) => {
   const [errors, setErrors] = useState(null);
-  const [isActive, setIsActive] = useState(false);
-  const [pickerValue, setPickerValue] = useState(false);
+  const [inputs, setInputs] = useState(null);
+  const [formText, setFormText] = useState(null);
+  const [isFirst, setIsFirst] = useState(true);
+
+  const [changeCheckBox, setChangeCheckBox] = useState();
+
   const [show, setShow] = useState({
-    password: false,
-    confirm_password: false
+    [`${dataId}_password`]: false,
+    [`${dataId}_confirm_password`]: false
   });
 
-  const [changeCheckBox, setChangeCheckBox] = useState(false);
-  const [selectedDate, setSelectedDay] = useState(new Date());
+  useEffect(() => {
+    setInputs(getFormElements(locale, dataId));
+    setFormText(getFormText(locale, dataId));
+  }, [locale, dataId]);
+
+  useEffect(() => {
+    if (!isFirst) return;
+    if (inputs) {
+      setIsFirst(false);
+      inputs.forEach(el => {
+        if (el.type === 'checkbox') {
+          setChangeCheckBox({ ...changeCheckBox, [el.name]: el.checked });
+        }
+      });
+    }
+  }, [inputs, isFirst, changeCheckBox]);
 
   const handleChangeCheckBox = e => {
-    setChangeCheckBox({ [e.target.name]: e.target.checked });
+    if (changeCheckBox?.[e.target.name]) {
+      setChangeCheckBox({ [e.target.name]: false });
+    } else {
+      setChangeCheckBox({ [e.target.name]: true });
+    }
   };
 
   const onShowChange = e => {
     const currentId = e.currentTarget.dataset.id;
-    const ref = document.getElementById(currentId);
+    const ref = document.querySelector(`[data-ref=${currentId}]`);
 
     if (!ref) return;
     if (!show[currentId]) {
@@ -58,123 +87,136 @@ export const WKForm = ({ text, inputs, locale, onFormSubmit, children }) => {
       setErrors(respons);
     } else {
       setErrors(null);
-      onFormSubmit({ ...objFormData, ...changeCheckBox });
+      onFormSubmit(
+        {
+          ...objFormData,
+          ...changeCheckBox
+        },
+        e.currentTarget.dataset.id
+      );
     }
   };
 
-  const onOptionsChanges = value => {
-    setIsActive({ ...isActive, ...value });
-  };
-
-  const onClosePicker = date => {
-    setPickerValue(formatDate(date, 'DDD DD MMM YYYY', locale));
-    setIsActive({ ...isActive, picker: false });
-  };
-
   return (
-    <WKFromStyled onSubmit={handleSubmit} autoComplete="off">
-      <WKTitleStyled>{title}</WKTitleStyled>
-      {children}
-      <DataWrapper>
-        {inputs?.map(
-          ({
-            component,
-            name,
-            type,
-            options,
-            placeholder,
-            icon,
-            icon_animated,
-            jsOrder,
-            caption,
-            read_only
-          }) => (
-            <Fragment key={jsOrder}>
-              {component === 'input' && (
-                <>
-                  {type === 'checkbox' ? (
-                    <CheckBoxLabelStyled jsOrder={jsOrder}>
-                      <CheckBoxInput
-                        hidden
-                        name={name}
-                        type={type}
-                        onChange={handleChangeCheckBox}
-                      />
-                      <CheckBox />
-                      {caption}
-                    </CheckBoxLabelStyled>
-                  ) : (
-                    <LabelStyled jsOrder={jsOrder}>
-                      <InputStyled
-                        autoComplete="off"
-                        id={name}
-                        name={name}
-                        type={type}
-                        readOnly={read_only}
-                        placeholder={placeholder}
-                      />
-                      <SvgIcon w={28} h={28} icon={icon} />
-                      {icon_animated && (
-                        <RightButton
-                          data-id={name}
-                          type="button"
-                          onClick={onShowChange}
-                        >
-                          {icon_animated.action === 'change' && (
-                            <SvgIcon
-                              w={28}
-                              h={28}
-                              icon={
-                                !show[name]
-                                  ? icon_animated.iconDenied
-                                  : icon_animated.iconAllow
-                              }
-                            />
+    <WKFromStyled
+      onSubmit={handleSubmit}
+      autoComplete="off"
+      data-id={dataId}
+      data-active={dataActive}
+    >
+      <>
+        {children}
+        <WKTitleStyled>{formText?.title}</WKTitleStyled>
+        <DataWrapper>
+          {inputs?.map(
+            ({
+              component,
+              name,
+              type,
+              options,
+              placeholder,
+              icon,
+              icon_animated,
+              jsOrder,
+              caption,
+              read_only,
+              dependent
+            }) => (
+              <Fragment key={jsOrder}>
+                {component === 'input' && (
+                  <>
+                    {type === 'checkbox' && changeCheckBox ? (
+                      <CheckBoxLabelStyled jsOrder={jsOrder}>
+                        <CheckBoxInput
+                          hidden
+                          defaultValue={'checked'}
+                          name={name}
+                          type={type}
+                          checked={changeCheckBox?.[name]}
+                          onChange={handleChangeCheckBox}
+                        />
+                        <CheckBox />
+                        {caption}
+                      </CheckBoxLabelStyled>
+                    ) : type === 'file' ? (
+                      <Avatar />
+                    ) : (
+                      <LabelStyled jsOrder={jsOrder}>
+                        <InputWrapper>
+                          <InputStyled
+                            defaultValue={
+                              defaultValues?.[name] ? defaultValues[name] : null
+                            }
+                            autoComplete="off"
+                            data-ref={`${dataId}_${name}`}
+                            name={name}
+                            type={type}
+                            readOnly={read_only}
+                            placeholder={placeholder}
+                            disabled={
+                              dependent ? !changeCheckBox?.change_pass : false
+                            }
+                          />
+                          <SvgIcon
+                            w={24}
+                            h={24}
+                            icon={icon}
+                            className="js-class"
+                          />
+                          {icon_animated && (
+                            <RightButton
+                              data-id={`${dataId}_${name}`}
+                              type="button"
+                              onClick={onShowChange}
+                            >
+                              {icon_animated.action === 'change' && (
+                                <SvgIcon
+                                  w={24}
+                                  h={24}
+                                  icon={
+                                    !show[`${dataId}_${name}`]
+                                      ? icon_animated.iconDenied
+                                      : icon_animated.iconAllow
+                                  }
+                                  className="js-class"
+                                />
+                              )}
+                            </RightButton>
                           )}
-                        </RightButton>
-                      )}
+                          {errors?.[name] && (
+                            <WKErrorText>{errors[name]}</WKErrorText>
+                          )}
+                        </InputWrapper>
+                      </LabelStyled>
+                    )}
+                  </>
+                )}
+                {component === 'select' && (
+                  <DivlStyled jsOrder={jsOrder}>
+                    <WKSelect
+                      name={name}
+                      type={type}
+                      placeholder={placeholder}
+                      icon={icon}
+                      icon_animated={icon_animated}
+                      options={options}
+                      selectCallback={selectCallback}
+                      locale={locale}
+                    >
                       {errors?.[name] && (
                         <WKErrorText>{errors[name]}</WKErrorText>
                       )}
-                    </LabelStyled>
-                  )}
-                </>
-              )}
-              {component === 'select' && (
-                <>
-                  <WKSelect
-                    jsOrder={jsOrder}
-                    name={name}
-                    placeholder={placeholder}
-                    icon={icon}
-                    icon_animated={icon_animated}
-                    onOptionsChanges={onOptionsChanges}
-                    options={options}
-                    pickerValue={pickerValue}
-                  />
-
-                  {name === 'picker' && (
-                    <PickerWrapper
-                      className={isActive.picker ? null : 'hidden'}
-                    >
-                      <Calendar
-                        locale={locale}
-                        selectDate={date => setSelectedDay(date)}
-                        selectedDate={selectedDate}
-                        firstWeekDayNumber={(locale === 'en-UK' && 1) || 2}
-                        onClose={onClosePicker}
-                      />
-                    </PickerWrapper>
-                  )}
-                </>
-              )}
-            </Fragment>
-          )
-        )}
-        <BlueButton type="submit" disabled={false} style={{ order: 100 }}>
-          {button_text}
+                    </WKSelect>
+                  </DivlStyled>
+                )}
+              </Fragment>
+            )
+          )}
+        </DataWrapper>
+        <BlueButton type="submit" disabled={false} style={{ order: 2 }}>
+          {formText?.button_text}
         </BlueButton>
-      </DataWrapper>
+      </>
     </WKFromStyled>
   );
 };

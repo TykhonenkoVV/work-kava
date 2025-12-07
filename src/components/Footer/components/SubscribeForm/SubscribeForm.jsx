@@ -5,15 +5,14 @@ import {
   FormWrapper,
   SubscribeFormInput
 } from './SubscribeForm.styled';
-import { ErrorText } from 'components/BookForm/BookForm.styled';
 import { lang } from 'lang/lang';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'store/auth/selectors';
 import { useRef, useState } from 'react';
-import { validate } from 'utils/ValidateForm';
+import { ErrorText } from 'components/Global/ErrorText/ErrorText';
+import { validate } from 'services/formServices';
+import { useAuth } from 'hooks/useAuth';
 
 export const SubscribeForm = ({ action }) => {
-  const { locale } = useSelector(selectUser);
+  const { locale } = useAuth();
   const formRef = useRef(null);
 
   const [state, setState] = useState({

@@ -32,6 +32,9 @@ export const lang = {
     book_now_meeting_room: 'Book a meeting room',
     book_now_workshop: 'Book a workshop',
     price: 'Price',
+    add_to_cart: 'Are you sure you want to add this item to your cart?',
+    product_quantity: 'Quantity',
+    add: 'Add',
 
     address: '1, Nova st, Kryvyi Rih',
     socials: 'We are on socials',
@@ -49,13 +52,11 @@ export const lang = {
     hours: 'hours',
     hours_2: 'hours',
     over_5_hours: 'Over 5 hours',
-    login_to_profile: 'Login to profile',
-    register: 'Register',
+    login_to_profile: 'Sign in',
+    register: 'Sign up',
     edit_profile: 'Edit Profile',
     dont_have_an_account: "Don't have an account?",
     already_registered: 'Already registered?',
-    select_sign_up: 'Sign up',
-    select_sign_in: 'Sign in',
     continue: 'Continue',
     save_changes: 'Save',
     user_profile: 'My Account',
@@ -84,9 +85,11 @@ export const lang = {
     error_email: 'Please enter correct e-mail.',
     error_phonenumber: 'Please enter correct phone number.',
     error_picker: 'Please select a date.',
+    error_interval: 'Please select the desired time interval.',
     error_pass:
       'The password must contain at least 8 characters, at least one uppercase and at least one lowercase Latin letter, at least one number and at least one special character.',
-    error_interval: 'Please select working hours.'
+    error_confirm_pass: 'The passwords do not match',
+    hours_selector: 'Please select working hours.'
   },
   'de-DE': {
     today: 'Heute',
@@ -121,6 +124,10 @@ export const lang = {
     book_now_meeting_room: 'Konferenzraum buchen',
     book_now_workshop: 'Workshop buchen',
     price: 'Preise',
+    add_to_cart:
+      'Möchten Sie diesen Artikel wirklich Ihrem Warenkorb hinzufügen?',
+    product_quantity: 'Menge',
+    add: 'Hinzufügen',
 
     address: 'Nowa Str. 1, Kryvyi Rih',
     socials: 'Soziale Netzwerke',
@@ -138,13 +145,11 @@ export const lang = {
     hours: 'Stunden',
     hours_2: 'Stunden',
     over_5_hours: 'Mehr 5 Stunden',
-    login_to_profile: 'Im Profil anmelden',
+    login_to_profile: 'Anmelden',
     register: 'Registrieren',
     edit_profile: 'Profil bearbeiten',
     dont_have_an_account: 'Sie besitzen noch kein Konto?',
     already_registered: 'Bereits registriert?',
-    select_sign_up: 'Registrieren',
-    select_sign_in: 'Anmelden',
     continue: 'Weiter',
     save_changes: 'Speichern',
     user_profile: 'Mein Konto',
@@ -173,9 +178,11 @@ export const lang = {
     error_email: 'Bitte geben Sie eine korrekte E-Mail-Adresse ein.',
     error_phonenumber: 'Bitte geben Sie eine korrekte Phonenummer ein.',
     error_picker: 'Bitte wählen Sie ein Datum aus.',
+    error_interval: 'Bitte wählen Sie das gewünschte Zeitintervall.',
     error_pass:
       'Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen lateinischen Großbuchstaben, mindestens einen Kleinbuchstaben, mindestens eine Zahl und mindestens ein Sonderzeichen enthalten.',
-    error_interval: 'Bitte wählen Sie die Arbeitszeiten.'
+    error_confirm_pass: 'Die Passwörter stimmen nicht überein',
+    hours_selector: 'Bitte wählen Sie die Arbeitszeiten.'
   },
   'uk-UA': {
     today: 'Сьогодні',
@@ -199,7 +206,7 @@ export const lang = {
     hero_home_slogan:
       "Наша кав'ярня це затишний простір для індивідуальної роботи, зустрічей, майстер-класів та багато іншого.",
     hero_cafe_slogan:
-      "Наша кав' ярня пропонує широкий вибір кавових напоїв на будь-який смак. Відчуй якість на смак!",
+      "Наша кав' ярня пропонує широкий вибір кавових напоїв кожному до вподоби. Відчуй якість на смак!",
     hero_fastfood_slogan:
       'Зголоднів, але не має часу? Наша кухня зовсім поруч. Зарядись енергією - втамуй свій голод зараз.',
     hero_coworking_slogan:
@@ -210,6 +217,9 @@ export const lang = {
     book_now_meeting_room: 'Бронювати кабінет',
     book_now_workshop: 'Бронювати аудиторію',
     price: 'Вартість',
+    add_to_cart: 'Ви дійсно хочете додати цей товар у кошик?',
+    product_quantity: 'Кількість',
+    add: 'Додати',
 
     address: 'м. Кривий Ріг, вул. Нова, 1',
     socials: 'Ми в соцмережах',
@@ -232,8 +242,6 @@ export const lang = {
     edit_profile: 'Редагувати профіль',
     dont_have_an_account: 'Ще не зареєстровані?',
     already_registered: 'Вже зареєстровані?',
-    select_sign_up: 'Зареєструватись',
-    select_sign_in: 'Увійти',
     continue: 'Продовжити',
     save_changes: 'Зберегти',
     user_profile: 'Мій аккаунт',
@@ -262,8 +270,10 @@ export const lang = {
     error_email: 'Будь ласка введіть корректний e-mail.',
     error_phonenumber: 'Будь ласка введіть корректний номер телефону.',
     error_picker: 'Будь ласка виберіть дату.',
+    error_interval: 'Будь ласка, виберіть потрібний часовий інтервал.',
     error_pass:
       'Пароль повинен містити мінімум 8 символів, як мінімум одну прописну і мінімум одну маленьку букву латинниці, мінімум одну цифру і мінімум один спецсимвол.',
-    error_interval: 'Вкажіть будь ласка робочий час.'
+    error_confirm_pass: 'Паролі не співпадають',
+    hours_selector: 'Вкажіть будь ласка робочий час.'
   }
 };

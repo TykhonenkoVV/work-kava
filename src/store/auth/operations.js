@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { store } from 'store/store';
-import { BASE_URL } from 'utils/GlobalUtils';
+import { BASE_URL } from 'utils/constants';
 
 export const workKavaInnstance = axios.create({
   baseURL: `${BASE_URL}/api`
@@ -121,23 +121,9 @@ export const refreshToken = createAsyncThunk(
 
     try {
       setAuthHeader(persistedRefreshToken);
-      const { data } = await workKavaInnstance.get('/auth/refresh');
-      setAuthHeader(data.accessToken);
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue({
-        message: error.response.data.message,
-        status: error.response.status
-      });
-    }
-  }
-);
+      const { data } = await workKavaInnstance.post('/auth/refresh');
 
-export const updateUser = createAsyncThunk(
-  'auth/updateUser',
-  async (userData, thunkAPI) => {
-    try {
-      const { data } = await workKavaInnstance.patch('/users', userData);
+      setAuthHeader(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue({
@@ -162,6 +148,31 @@ export const updateAvatar = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue({
+        message: error.response.data.message,
+        status: error.response.status
+      });
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async (userData, { dispatch, rejectWithValue }) => {
+    if (userData.avatar) {
+      try {
+        await dispatch(updateAvatar(userData.avatar)).unwrap();
+      } catch (error) {
+        return rejectWithValue({
+          message: error.response.data.message,
+          status: error.response.status
+        });
+      }
+    }
+    try {
+      const { data } = await workKavaInnstance.patch('/users', userData);
+      return data;
+    } catch (error) {
+      return rejectWithValue({
         message: error.response.data.message,
         status: error.response.status
       });

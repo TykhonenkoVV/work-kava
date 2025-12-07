@@ -1,12 +1,11 @@
 import { DishesSection } from 'styles/globalComponents.styled';
 import { Dish } from './Components/Dish';
 import { Title, DishesList, DishesContainer } from './Dishes.styled';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'store/auth/selectors';
 import { lang } from 'lang/lang';
+import { useAuth } from 'hooks/useAuth';
 
-export const Dishes = ({ title, dishes, styles }) => {
-  const { locale } = useSelector(selectUser);
+export const Dishes = ({ title, dishes, page, styles }) => {
+  const { locale } = useAuth();
   const titleName = title.toLowerCase().replace(/_/g, '-');
 
   return (
@@ -21,8 +20,9 @@ export const Dishes = ({ title, dishes, styles }) => {
               key={dish._id}
               data={dish}
               index={index}
-              title={title}
+              title={titleName}
               styles={styles}
+              page={page}
             />
           ))}
         </DishesList>

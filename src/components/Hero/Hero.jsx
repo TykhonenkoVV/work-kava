@@ -2,13 +2,13 @@ import { Container } from 'styles/globalComponents.styled';
 import { SectionHero, MainText, DescrText, TextContainer } from './Hero.styled';
 import { SocialLinksList } from 'components/Global/SocialLinksList/SocialLinksList';
 import { lang } from 'lang/lang';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'store/auth/selectors';
+import { heroSizes } from 'utils/imagesUtils';
+import { useAuth } from 'hooks/useAuth';
 
 export const Hero = ({ page }) => {
-  const { locale } = useSelector(selectUser);
+  const { locale } = useAuth();
   return (
-    <SectionHero page={page}>
+    <SectionHero page={page} sizes={heroSizes}>
       <Container>
         <TextContainer page={page}>
           <MainText page={page}>
