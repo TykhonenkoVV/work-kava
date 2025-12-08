@@ -11,11 +11,24 @@ import { Profile } from 'components/Header/Profile/Profile';
 
 export const ModalNav = ({ action, handleLangClick }) => {
   const { isLoggedIn, locale } = useAuth();
-  const { isModalOpen, openModal, closeModal, toggleModal } = useModal();
+  const {
+    isModalOpen: isAuthModalOpen,
+    openModal: openAuthModal,
+    closeModal: closeAuthModal
+  } = useModal();
+
+  const {
+    isModalOpen: isProfileOpen,
+    openModal: openProfileModal,
+    closeModal: closeProfileModal
+  } = useModal();
+
+  const { isModalOpen: isLangMenuOpen, toggleModal: toggleLangMenuModal } =
+    useModal();
 
   const handleUserButtonClick = () => {
-    if (isLoggedIn) openModal('profile');
-    else openModal('auth');
+    if (isLoggedIn) openProfileModal();
+    else openAuthModal();
   };
 
   return (
@@ -33,18 +46,18 @@ export const ModalNav = ({ action, handleLangClick }) => {
       </UserBtn>
       <Navigation action={action} />
       <LangBlock
-        isModalOpen={isModalOpen.langMenu}
+        isModalOpen={isLangMenuOpen}
         handleLangClick={handleLangClick}
-        toggleModal={() => toggleModal('langMenu')}
+        toggleModal={toggleLangMenuModal}
       />
-      {isModalOpen.auth && (
-        <Modal onClose={() => closeModal('auth')}>
-          <AuthFormModal action={() => closeModal('auth')} />
+      {isAuthModalOpen && (
+        <Modal onClose={closeAuthModal}>
+          <AuthFormModal action={closeAuthModal} />
         </Modal>
       )}
-      {isModalOpen.profile && (
-        <Modal onClose={() => closeModal('profile')}>
-          <Profile action={() => closeModal('profile')} />
+      {isProfileOpen && (
+        <Modal onClose={closeProfileModal}>
+          <Profile action={closeProfileModal} />
         </Modal>
       )}
     </BackdropHeader>

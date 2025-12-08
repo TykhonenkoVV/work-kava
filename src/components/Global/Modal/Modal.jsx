@@ -15,17 +15,13 @@ export const Modal = ({ onClose, children }) => {
 
   const handleKeyDown = e => {
     if (e.code === 'Escape') {
-      if (typeof onClose === 'function') {
-        onClose();
-      }
+      onClose();
     }
   };
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      if (typeof onClose === 'function') {
-        onClose();
-      }
+      onClose();
     }
   };
 

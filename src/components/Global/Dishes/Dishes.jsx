@@ -1,8 +1,8 @@
 import { DishesSection } from 'styles/globalComponents.styled';
-import { Dish } from './Components/Dish';
 import { Title, DishesList, DishesContainer } from './Dishes.styled';
-import { lang } from 'lang/lang';
 import { useAuth } from 'hooks/useAuth';
+import { Dish } from './Components/Dish/Dish';
+import { lang } from 'lang/lang';
 
 export const Dishes = ({ title, dishes, page, styles }) => {
   const { locale } = useAuth();

@@ -30,12 +30,9 @@ const Coworking = () => {
           showBookForm={showBookForm}
         />
       ))}
-      {isModalOpen[selectedBookType] && (
-        <Modal onClose={() => closeModal(selectedBookType)}>
-          <BookForm
-            action={() => closeModal(selectedBookType)}
-            bookType={selectedBookType}
-          />
+      {isModalOpen && (
+        <Modal onClose={() => closeModal()}>
+          <BookForm action={() => closeModal()} bookType={selectedBookType} />
         </Modal>
       )}
     </>

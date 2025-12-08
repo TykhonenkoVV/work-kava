@@ -15,18 +15,27 @@ import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
 import { useAuth } from 'hooks/useAuth';
 import { useEffect, useState } from 'react';
 import { AddToCartModal } from 'components/AddToCartModal/AddToCartModal';
-import { PositionToggler } from './Dish/components/PositionToggler/PositionToggler';
 import { changePrice } from 'services/dishServices';
 import { ImagesSource } from 'components/Global/ImagesSource';
 import { dishesSizes } from 'utils/imagesUtils';
 import { CLOUD_NAME } from 'utils/constants';
+import { PositionToggler } from './components/PositionToggler/PositionToggler';
 
 export const Dish = ({ data, index, title, page, styles }) => {
   const { locale, isLoggedIn } = useAuth();
   const shortLocale =
     locale === 'en-UK' ? 'en' : locale === 'de-DE' ? 'de' : 'ua';
   const windowWidth = useWindowWidth();
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const {
+    isModalOpen: isAuthModalOpen,
+    openModal: openAuthModal,
+    closeModal: closeAuthModal
+  } = useModal();
+  const {
+    isModalOpen: isAddToCartModalOpen,
+    openModal: openAddToCartModal,
+    closeModal: closeAddToCartModal
+  } = useModal();
   const [position, setPosition] = useState(1);
   const [price, setPrice] = useState();
 
@@ -83,27 +92,27 @@ export const Dish = ({ data, index, title, page, styles }) => {
         </Price>
       </PriceWrapper>
       {isLoggedIn ? (
-        <ButtonAddToCart styles={styles} onClick={() => openModal('addToCart')}>
+        <ButtonAddToCart styles={styles} onClick={openAddToCartModal}>
           <SvgIcon w={40} h={40} icon={'cart-02'} />
         </ButtonAddToCart>
       ) : (
-        <ButtonAddToCart styles={styles} onClick={() => openModal('auth')}>
+        <ButtonAddToCart styles={styles} onClick={openAuthModal}>
           <SvgIcon w={40} h={40} icon={'cart-02'} />
         </ButtonAddToCart>
       )}
-      {isModalOpen.auth && (
-        <Modal onClose={() => closeModal('auth')}>
-          <AuthFormModal action={() => closeModal('auth')} />
+      {isAuthModalOpen && (
+        <Modal onClose={closeAuthModal}>
+          <AuthFormModal action={closeAuthModal} />
         </Modal>
       )}
-      {isModalOpen.addToCart && (
-        <Modal onClose={() => closeModal('addToCart')}>
+      {isAddToCartModalOpen && (
+        <Modal onClose={closeAddToCartModal}>
           <AddToCartModal
             product={data}
             page={page}
             sectionId={title}
             position={position}
-            action={() => closeModal('addToCart')}
+            action={closeAddToCartModal}
             color={backgroundColors[index]}
           />
         </Modal>

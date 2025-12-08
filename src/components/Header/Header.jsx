@@ -27,7 +27,16 @@ export const Header = () => {
 
   const cart = useSelector(selectCart);
 
-  const { isModalOpen, closeModal, openModal } = useModal();
+  const {
+    isModalOpen: isAuthModalOpen,
+    closeModal: closeAuthModal,
+    openModal: openAuthModal
+  } = useModal();
+  const {
+    isModalOpen: isProfileModalOpen,
+    closeModal: closProfileModal,
+    openModal: openProfileModal
+  } = useModal();
   const [modalHeader, setModalHeader] = useState(false);
 
   const windowWidth = useWindowWidth();
@@ -42,12 +51,12 @@ export const Header = () => {
 
   const handleCartButtonClick = () => {
     if (isLoggedIn) console.log('Додати логіку');
-    else openModal('auth');
+    else openAuthModal();
   };
 
   const handleUserButtonClick = () => {
-    if (isLoggedIn) openModal('profile');
-    else openModal('auth');
+    if (isLoggedIn) openProfileModal();
+    else openAuthModal();
   };
 
   return (
@@ -103,14 +112,14 @@ export const Header = () => {
         )}
       </ContainerHeader>
       {modalHeader && <ModalNav action={handleClosedModal} />}
-      {isModalOpen.auth && (
-        <Modal onClose={() => closeModal('auth')}>
-          <AuthFormModal action={() => closeModal('auth')} />
+      {isAuthModalOpen && (
+        <Modal onClose={closeAuthModal}>
+          <AuthFormModal action={closeAuthModal} />
         </Modal>
       )}
-      {isModalOpen.profile && (
-        <Modal onClose={() => closeModal('profile')}>
-          <Profile action={() => closeModal('profile')} />
+      {isProfileModalOpen && (
+        <Modal onClose={closProfileModal}>
+          <Profile action={closProfileModal} isProfileModalOpen />
         </Modal>
       )}
     </StyledHeader>

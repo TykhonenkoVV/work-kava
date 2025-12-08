@@ -34,7 +34,7 @@ export const LangBlock = () => {
   }, [dispatch, isUpdated]);
 
   const handleLangClick = e => {
-    closeModal('langMenu');
+    closeModal();
     if (isLoggedIn) dispatch(updateUser({ locale: e.target.id }));
     else dispatch(changeLocale(e.target.id));
   };
@@ -42,14 +42,14 @@ export const LangBlock = () => {
   return (
     <LangMenuWrapper>
       <LangMenu
-        isModalOpen={isModalOpen.langMenu}
+        isModalOpen={isModalOpen}
         handleCklick={handleLangClick}
         forwardedRef={langMenuRef}
       />
       <LangButton
         type="button"
         aria-label="language"
-        onClick={() => toggleModal('langMenu')}
+        onClick={toggleModal}
         ref={langButtonRef}
       >
         <img

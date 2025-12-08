@@ -126,9 +126,9 @@ export const PageContent = ({
           </Picture>
         )}
       </StyledContainer>
-      {isModalOpen.auth && (
-        <Modal onClose={() => closeModal('auth')}>
-          <AuthFormModal action={() => closeModal('auth')} />
+      {isModalOpen && (
+        <Modal onClose={() => closeModal()}>
+          <AuthFormModal action={() => closeModal()} />
         </Modal>
       )}
     </HomeSection>
