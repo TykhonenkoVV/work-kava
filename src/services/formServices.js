@@ -52,7 +52,10 @@ export const validate = (data, locale) => {
       };
   }
   if (password !== undefined) {
-    const res = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/.test(password);
+    const res =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(
+        password
+      );
     if (password === '' || !res)
       result = {
         ...result,

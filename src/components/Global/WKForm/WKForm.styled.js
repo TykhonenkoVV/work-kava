@@ -28,7 +28,7 @@ export const WKFromStyled = styled.form`
 
 export const WKTitleStyled = styled.p`
   order: 0;
-  margin-block-end: 24px;
+  margin-block-end: 20px;
   font-size: 22px;
   font-weight: 700;
   line-height: 1;
@@ -36,7 +36,6 @@ export const WKTitleStyled = styled.p`
 
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     font-size: 28px;
-    margin-block-end: 32px;
   }
 `;
 

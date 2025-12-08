@@ -10,6 +10,11 @@ const initialState = {
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
+  reducers: {
+    clearCart: state => {
+      state.products = [];
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(addProductToCart.pending, (state, { payload }) => {
@@ -42,4 +47,5 @@ const cartSlice = createSlice({
   }
 });
 
+export const { clearCart } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
