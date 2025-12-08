@@ -9,8 +9,6 @@ import { useEffect } from 'react';
 import { turnOffIsUpdated } from 'store/auth/slice';
 
 export const Profile = ({ action, isProfileModalOpen }) => {
-  console.log(isProfileModalOpen);
-
   const dispatch = useDispatch();
   const { locale, isRefreshing, isUpdated, user } = useAuth();
   const { name, email } = user;

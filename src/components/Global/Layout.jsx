@@ -18,6 +18,7 @@ export const Layout = () => {
       if (!message) return;
 
       if (message === 'Unable to fetch user' && status === 404) return;
+      if (message === 'Unable to fetch cart' && status === 404) return;
       if (message === 'Unauthorized' && status === 401) return;
       if (message === 'Cannot GET /api/auth/refresh' && status === 404) return;
 

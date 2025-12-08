@@ -14,6 +14,15 @@ export const addProductToCart = createAsyncThunk(
 );
 
 export const getCart = createAsyncThunk('cart/getAll', async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistedAccessToken = state.auth.accessToken;
+
+  if (persistedAccessToken === null) {
+    return thunkAPI.rejectWithValue({
+      message: 'Unable to fetch cart',
+      status: 404
+    });
+  }
   try {
     const { data } = await workKavaInnstance.get('/carts/cart');
     return data.cart;

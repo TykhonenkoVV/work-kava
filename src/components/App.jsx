@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from 'react-router';
 import { Layout } from './Global/Layout';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'store/auth/operations';
-import { useAuth } from 'hooks/useAuth';
 import { getCart } from 'store/cart/operations';
 
 const HomePage = lazy(() => import('pages/Home.jsx'));
@@ -13,14 +12,10 @@ const CoworkingPage = lazy(() => import('pages/Coworking.jsx'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(getCart());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (isLoggedIn) dispatch(getCart());
-  }, [isLoggedIn, dispatch]);
 
   return (
     <Routes>

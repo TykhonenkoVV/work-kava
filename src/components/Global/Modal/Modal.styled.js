@@ -6,12 +6,9 @@ export const Backdrop = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  padding-block-start: 10px;
-  padding-block-end: 10px;
   background-color: ${({ theme }) => theme.colors.backdrop};
   z-index: 3;
   box-sizing: border-box;
-  overflow: auto;
 
   animation: ${({ theme }) => theme.baseTransition} alternate backdrop;
 
@@ -26,16 +23,18 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  position: relative;
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 358px;
+  max-height: 100vh;
   background: ${({ theme }) => theme.colors.white};
-  margin-inline-start: auto;
-  margin-inline-end: auto;
   padding-block-start: 60px;
   padding-block-end: 60px;
   padding-inline-start: 28px;
   padding-inline-end: 28px;
+  overflow: auto;
 
   animation: ${({ theme }) => theme.baseTransition} alternate modal-content;
 

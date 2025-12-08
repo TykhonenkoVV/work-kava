@@ -41,12 +41,19 @@ export const Header = () => {
 
   const windowWidth = useWindowWidth();
 
+  const getScrollbarWidth = () =>
+    window.innerWidth - document.documentElement.clientWidth;
+
   const handleOpenModal = () => {
     setModalHeader(true);
+    document.body.style.paddingInlineEnd = `${getScrollbarWidth()}px`;
+    document.body.style.overflow = 'hidden';
   };
 
   const handleClosedModal = () => {
     setModalHeader(false);
+    document.body.style.paddingInlineEnd = 0;
+    document.body.style.overflow = 'visible';
   };
 
   const handleCartButtonClick = () => {
