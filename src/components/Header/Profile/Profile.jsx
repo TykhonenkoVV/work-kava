@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { turnOffIsUpdated } from 'store/auth/slice';
 import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
 import { ButtonLogOut } from './Profile.styled';
-import { clearCart } from 'store/cart/slice';
+import { clearCart, clearProducts } from 'store/cart/slice';
 
 export const Profile = ({ action }) => {
   const dispatch = useDispatch();
@@ -36,6 +36,7 @@ export const Profile = ({ action }) => {
 
   const onLogOut = () => {
     dispatch(logOut());
+    dispatch(clearProducts());
     dispatch(clearCart());
     action();
   };

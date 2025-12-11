@@ -75,3 +75,18 @@ export const ButtonAddToCart = styled.button`
     bottom: 10px;
   }
 `;
+
+export const Count = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: red;
+  border-radius: 50%;
+`;

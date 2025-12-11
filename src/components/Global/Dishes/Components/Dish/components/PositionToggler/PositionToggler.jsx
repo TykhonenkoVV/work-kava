@@ -5,7 +5,7 @@ export const PositionToggler = ({ title, defaultPosition, onClick }) => {
     <PositionTogglerWrapper
       onClick={() => onClick(defaultPosition === 1 ? 2 : 1)}
     >
-      {defaultPosition === 1 ? 'Standart' : title === 'rolls' ? 'XL' : 'Double'}
+      {defaultPosition === 1 ? 'Standart' : 'XL'}
     </PositionTogglerWrapper>
   );
 };

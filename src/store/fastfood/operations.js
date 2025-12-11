@@ -7,7 +7,7 @@ export const getFastFoodDishes = createAsyncThunk(
     try {
       const burgersData = await workKavaInnstance.get('burgers');
       const rollsData = await workKavaInnstance.get('rolls');
-      const hotDogsData = await workKavaInnstance.get('hotdogs');
+      const hotDogsData = await workKavaInnstance.get('hot-dogs');
       return {
         burgers: burgersData.data.burgers,
         hot_dogs: hotDogsData.data.hot_dogs,

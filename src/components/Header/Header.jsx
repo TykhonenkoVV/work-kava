@@ -20,12 +20,13 @@ import { Profile } from './Profile/Profile';
 import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
 import { useAuth } from 'hooks/useAuth';
 import { useSelector } from 'react-redux';
-import { selectCart } from 'store/cart/selectors';
+import { selectProducts } from 'store/cart/selectors';
+import { CartModal } from 'components/CartModal/CartModal';
 
 export const Header = () => {
   const { isLoggedIn } = useAuth();
 
-  const cart = useSelector(selectCart);
+  const products = useSelector(selectProducts);
 
   const {
     isModalOpen: isAuthModalOpen,
@@ -36,6 +37,11 @@ export const Header = () => {
     isModalOpen: isProfileModalOpen,
     closeModal: closProfileModal,
     openModal: openProfileModal
+  } = useModal();
+  const {
+    isModalOpen: isCartModalOpen,
+    closeModal: closCartModal,
+    openModal: openCartModal
   } = useModal();
   const [modalHeader, setModalHeader] = useState(false);
 
@@ -57,7 +63,7 @@ export const Header = () => {
   };
 
   const handleCartButtonClick = () => {
-    if (isLoggedIn) console.log('Додати логіку');
+    if (isLoggedIn) openCartModal();
     else openAuthModal();
   };
 
@@ -87,7 +93,7 @@ export const Header = () => {
                 aria-label="cart"
                 onClick={handleCartButtonClick}
               >
-                {cart?.length > 0 && <Count>{cart.length}</Count>}
+                {products?.length > 0 && <Count>{products.length}</Count>}
                 <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
               </CartButton>
               <UserButton
@@ -106,6 +112,7 @@ export const Header = () => {
               aria-label="cart"
               onClick={handleCartButtonClick}
             >
+              {products?.length > 0 && <Count>{products.length}</Count>}
               <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
             </CartButton>
             <BurgerButton
@@ -127,6 +134,11 @@ export const Header = () => {
       {isProfileModalOpen && (
         <Modal onClose={closProfileModal}>
           <Profile action={closProfileModal} isProfileModalOpen />
+        </Modal>
+      )}
+      {isCartModalOpen && (
+        <Modal onClose={closCartModal}>
+          <CartModal action={closCartModal} />
         </Modal>
       )}
     </StyledHeader>

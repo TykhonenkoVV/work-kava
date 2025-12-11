@@ -9,6 +9,7 @@ import { lang } from 'lang/lang';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn, register } from 'store/auth/operations';
+import { getCart } from 'store/cart/operations';
 
 export const AuthFormModal = ({ action }) => {
   const { locale, isRegistered, isLoggedIn } = useAuth();
@@ -23,8 +24,11 @@ export const AuthFormModal = ({ action }) => {
   }, [dispatch, isRegistered, newFormData]);
 
   useEffect(() => {
-    if (isLoggedIn) action();
-  }, [action, isLoggedIn]);
+    if (isLoggedIn) {
+      dispatch(getCart());
+      action();
+    }
+  }, [dispatch, action, isLoggedIn]);
 
   const onAuthChange = e => {
     const id = e.currentTarget.id;
