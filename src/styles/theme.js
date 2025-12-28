@@ -1,4 +1,5 @@
 export const sizes = {
+  lessMobile: '413',
   onlymobile: '1023',
   mobile: '414',
   tablet: '1024',
@@ -6,6 +7,7 @@ export const sizes = {
 };
 
 export const devices = {
+  lessMobile: `max-width: ${sizes.lessMobile}px`,
   onlymobile: `max-width: ${sizes.onlymobile}px`,
   mobile: `min-width: ${sizes.mobile}px`,
   tablet: `min-width: ${sizes.tablet}px`,

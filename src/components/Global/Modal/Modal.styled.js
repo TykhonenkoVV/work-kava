@@ -27,7 +27,8 @@ export const ModalContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 358px;
+  width: calc(100% - 32px);
+  max-width: 500px;
   max-height: 100vh;
   background: ${({ theme }) => theme.colors.white};
   padding-block-start: 60px;
@@ -48,7 +49,7 @@ export const ModalContent = styled.div`
   }
 
   @media screen and (${({ theme }) => theme.devices.tablet}) {
-    width: 500px;
+    width: calc(100% - 56px);
     padding-inline-start: 54px;
     padding-inline-end: 54px;
   }

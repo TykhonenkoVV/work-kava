@@ -16,12 +16,12 @@ import { SettingsWrapper } from './Components/SettingsWrapper/SettingsWrapper';
 import { ModalNav } from './Components/ModalNav/ModalNav';
 import { LangBlock } from './Components/LangBlock/LangBlock';
 import { Modal } from 'components/Global/Modal/Modal';
-import { Profile } from './Profile/Profile';
 import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
 import { useAuth } from 'hooks/useAuth';
 import { useSelector } from 'react-redux';
 import { selectProducts } from 'store/cart/selectors';
-import { CartModal } from 'components/CartModal/CartModal';
+import { Profile } from './Components/Profile/Profile';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const { isLoggedIn } = useAuth();
@@ -37,11 +37,6 @@ export const Header = () => {
     isModalOpen: isProfileModalOpen,
     closeModal: closProfileModal,
     openModal: openProfileModal
-  } = useModal();
-  const {
-    isModalOpen: isCartModalOpen,
-    closeModal: closCartModal,
-    openModal: openCartModal
   } = useModal();
   const [modalHeader, setModalHeader] = useState(false);
 
@@ -63,8 +58,7 @@ export const Header = () => {
   };
 
   const handleCartButtonClick = () => {
-    if (isLoggedIn) openCartModal();
-    else openAuthModal();
+    openAuthModal();
   };
 
   const handleUserButtonClick = () => {
@@ -77,8 +71,8 @@ export const Header = () => {
       <ContainerHeader>
         <HederLogo to="/" aria-label="Home">
           <SvgIcon
-            w={201}
-            h={46}
+            w={windowWidth < 414 ? 160 : 201}
+            h={windowWidth < 414 ? 37 : 46}
             icon={'logo'}
             aria-label="logotype work kava, go home"
           />
@@ -88,14 +82,20 @@ export const Header = () => {
             <Navigation />
             <SettingsWrapper>
               <LangBlock />
-              <CartButton
-                type="button"
-                aria-label="cart"
-                onClick={handleCartButtonClick}
-              >
-                {products?.length > 0 && <Count>{products.length}</Count>}
-                <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
-              </CartButton>
+              {isLoggedIn ? (
+                <CartButton as={Link} aria-label="cart" to={'/cart'}>
+                  {products?.length > 0 && <Count>{products.length}</Count>}
+                  <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
+                </CartButton>
+              ) : (
+                <CartButton
+                  type="button"
+                  aria-label="cart"
+                  onClick={handleCartButtonClick}
+                >
+                  <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
+                </CartButton>
+              )}
               <UserButton
                 type="button"
                 aria-label="user profile"
@@ -107,14 +107,20 @@ export const Header = () => {
           </>
         ) : (
           <>
-            <CartButton
-              type="button"
-              aria-label="cart"
-              onClick={handleCartButtonClick}
-            >
-              {products?.length > 0 && <Count>{products.length}</Count>}
-              <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
-            </CartButton>
+            {isLoggedIn ? (
+              <CartButton as={Link} aria-label="cart" to={'/cart'}>
+                {products?.length > 0 && <Count>{products.length}</Count>}
+                <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
+              </CartButton>
+            ) : (
+              <CartButton
+                type="button"
+                aria-label="cart"
+                onClick={handleCartButtonClick}
+              >
+                <SvgIcon w={36} h={36} icon={'cart'} aria-label="icon cart" />
+              </CartButton>
+            )}
             <BurgerButton
               type="button"
               onClick={handleOpenModal}
@@ -133,12 +139,7 @@ export const Header = () => {
       )}
       {isProfileModalOpen && (
         <Modal onClose={closProfileModal}>
-          <Profile action={closProfileModal} isProfileModalOpen />
-        </Modal>
-      )}
-      {isCartModalOpen && (
-        <Modal onClose={closCartModal}>
-          <CartModal action={closCartModal} />
+          <Profile action={closProfileModal} />
         </Modal>
       )}
     </StyledHeader>

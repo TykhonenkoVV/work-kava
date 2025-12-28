@@ -12,6 +12,8 @@ export const lang = {
     burgers: 'Burgers',
     rolls: 'Rolls',
     hot_dogs: 'Hot dogs',
+    cart: 'Cart',
+    total: 'Total:',
 
     hero_home_title: "Work & comfort? It's easy!",
     hero_cafe_title: 'A mountain of work? A cup of coffee!',
@@ -104,6 +106,8 @@ export const lang = {
     burgers: 'Burger',
     rolls: 'Rollen',
     hot_dogs: 'Hotdogs',
+    cart: 'Warenkorb',
+    total: 'Summe:',
 
     hero_home_title: 'Arbeit und Komfort? Ganz einfach!',
     hero_cafe_title: 'Ein Berg Arbeit? Eine Tasse Kaffee!',
@@ -138,7 +142,7 @@ export const lang = {
     enter_pass: 'Passwort eingeben',
     confirm_pass: 'Passwort bestätigen',
     remember_me: 'Eingeloggt bleiben',
-    change_pass: 'Change password',
+    change_pass: 'Passwort ändern',
     select_date: 'Datum wählen',
     select_interval: 'Arbeitszeit',
     hour: 'Stunde',
@@ -197,6 +201,8 @@ export const lang = {
     burgers: 'Бургери',
     rolls: 'Роли',
     hot_dogs: 'Хот доги',
+    cart: 'Кошик',
+    total: 'Всього:',
 
     hero_home_title: 'Робота та комфорт? Це легко!',
     hero_cafe_title: 'Гора роботи? Чашка кави!',

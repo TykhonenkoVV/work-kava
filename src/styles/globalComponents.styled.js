@@ -99,3 +99,7 @@ export const DishesSection = styled(Section)`
     padding-block-end: 30px;
   }
 `;
+
+export const CartSection = styled(Section)`
+  background-color: ${({ theme }) => theme.colors.white};
+`;

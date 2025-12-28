@@ -35,10 +35,13 @@ export const getProductById = createAsyncThunk(
   'cart/getProduktById',
   async (credentionals, thunkAPI) => {
     try {
-      const { data } = await workKavaInnstance.get(
-        `${credentionals.category}/${credentionals.id}`
-      );
-      return data;
+      let result = [];
+      for (let i = 0; i < credentionals.length; i++) {
+        const el = credentionals[i];
+        const { data } = await workKavaInnstance.get(`${el.category}/${el.id}`);
+        result.push(data);
+      }
+      return result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -53,6 +56,18 @@ export const updateProductInCart = createAsyncThunk(
         `carts/${credentionals.id}`,
         { ...credentionals.data }
       );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteProductInCart = createAsyncThunk(
+  'cart/delete',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await workKavaInnstance.delete(`carts/${id}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -54,20 +54,21 @@ const authSlice = createSlice({
   extraReducers: buider => {
     buider
       .addCase(register.pending, (state, { payload }) => {
-        state.isRegistered = false;
+        state.isRefreshing = true;
         state.error = null;
       })
       .addCase(register.fulfilled, (state, { payload }) => {
         state.isRegistered = true;
+        state.isRefreshing = false;
         state.error = null;
       })
       .addCase(register.rejected, (state, { payload }) => {
         state.isRegistered = false;
+        state.isRefreshing = false;
         state.error = payload;
       })
       .addCase(logIn.pending, (state, { payload }) => {
         state.isRefreshing = true;
-        state.isLoggedIn = false;
         state.error = null;
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
@@ -96,7 +97,13 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.error = payload;
       })
+      .addCase(logOut.pending, (state, { payload }) => {
+        state.isRefreshing = true;
+        state.error = null;
+      })
+
       .addCase(logOut.fulfilled, state => {
+        state.isRefreshing = false;
         state.user = {
           name: '',
           email: '',
@@ -105,15 +112,18 @@ const authSlice = createSlice({
         state.locale = userLocale();
         state.accessToken = null;
         state.refreshToken = null;
+        state.isRegistered = false;
+        state.isUpdated = false;
         state.isLoggedIn = false;
+        state.isRefreshing = false;
         state.error = null;
       })
       .addCase(logOut.rejected, (state, { payload }) => {
+        state.isRefreshing = false;
         state.error = payload;
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
-        state.isLoggedIn = true;
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, { payload }) => {
@@ -134,22 +144,21 @@ const authSlice = createSlice({
       })
       .addCase(refreshToken.pending, state => {
         state.isRefreshing = true;
-        state.isLoggedIn = true;
         state.error = null;
       })
       .addCase(refreshToken.fulfilled, (state, { payload }) => {
+        state.isRefreshing = false;
         state.accessToken = payload.accessToken;
         state.refreshToken = payload.refreshToken;
+        state.error = null;
       })
       .addCase(refreshToken.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.isLoggedIn = false;
         state.error = payload;
       })
       .addCase(updateUser.pending, state => {
         state.isRefreshing = true;
         state.error = null;
-        state.isUpdated = false;
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         if (payload.name) state.user.name = payload.name;
@@ -157,12 +166,11 @@ const authSlice = createSlice({
         if (payload.avatarURL) state.user.avatarURL = payload.avatarURL;
         if (payload.locale) state.locale = payload.locale;
         state.isRefreshing = false;
-        state.error = null;
         state.isUpdated = true;
+        state.error = null;
       })
       .addCase(updateUser.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.isUpdated = false;
         state.error = payload;
       });
   }

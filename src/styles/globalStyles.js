@@ -61,6 +61,18 @@ export const GlobalStyles = css`
     color: ${theme.colors.primary};
   }
 
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
   h1,
   h2,
   h3,

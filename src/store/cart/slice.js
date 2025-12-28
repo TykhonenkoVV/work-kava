@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addProductToCart,
+  deleteProductInCart,
   getCart,
   getProductById,
   updateProductInCart
@@ -57,12 +58,7 @@ const cartSlice = createSlice({
         state.error = null;
       })
       .addCase(getProductById.fulfilled, (state, { payload }) => {
-        let isDuplicate = false;
-        state.cart.forEach(el => {
-          if (el._id === payload._id) isDuplicate = true;
-        });
-        if (isDuplicate) return;
-        state.cart.push(payload);
+        state.cart = payload;
         state.isLoading = false;
         state.error = null;
       })
@@ -76,13 +72,29 @@ const cartSlice = createSlice({
       })
       .addCase(updateProductInCart.fulfilled, (state, { payload }) => {
         const i = state.products.findIndex(
-          option => option._id === payload._id
+          option => option._id === payload.updated._id
         );
         state.products.splice(i, 1, payload.updated);
         state.isLoading = false;
         state.error = null;
       })
       .addCase(updateProductInCart.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(deleteProductInCart.pending, (state, { payload }) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteProductInCart.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        const i = state.products.findIndex(
+          option => option._id === payload.deleted._id
+        );
+        state.products.splice(i, 1);
+        state.error = null;
+      })
+      .addCase(deleteProductInCart.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

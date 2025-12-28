@@ -7,7 +7,7 @@ import { useModal } from 'hooks/useModal';
 import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
 import { Modal } from 'components/Global/Modal/Modal';
 import { useAuth } from 'hooks/useAuth';
-import { Profile } from 'components/Header/Profile/Profile';
+import { Profile } from '../Profile/Profile';
 
 export const ModalNav = ({ action, handleLangClick }) => {
   const { isLoggedIn, locale } = useAuth();

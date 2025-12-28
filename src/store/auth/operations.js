@@ -68,18 +68,6 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  try {
-    await workKavaInnstance.get('/auth/logout');
-    clearAuthHeader();
-  } catch (error) {
-    return thunkAPI.rejectWithValue({
-      message: error.response.data.message,
-      status: error.response.status
-    });
-  }
-});
-
 export const refreshUser = createAsyncThunk(
   'auth/refreshuser',
   async (_, thunkAPI) => {
@@ -179,3 +167,15 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await workKavaInnstance.get('/auth/logout');
+    clearAuthHeader();
+  } catch (error) {
+    return thunkAPI.rejectWithValue({
+      message: error.response.data.message,
+      status: error.response.status
+    });
+  }
+});

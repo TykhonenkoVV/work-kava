@@ -1,2 +1,2 @@
-export const selectProducts = stete => stete.cart.products;
-export const selectCart = stete => stete.cart.cart;
+export const selectProducts = state => state.cart.products;
+export const selectCart = state => state.cart.cart;

@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 import { Container } from 'styles/globalComponents.styled';
 
 export const Section = styled.footer`
+  @media screen and (${({ theme }) => theme.devices.lessMobile}) {
+    font-size: 18px;
+  }
   display: block;
   padding-block-start: 50px;
   padding-block-end: 50px;

@@ -22,6 +22,7 @@ import { CLOUD_NAME } from 'utils/constants';
 import { PositionToggler } from './components/PositionToggler/PositionToggler';
 import { selectProducts } from 'store/cart/selectors';
 import { useSelector } from 'react-redux';
+import { Currency } from 'components/Global/Currency/Currency';
 
 export const Dish = ({ data, index, title, page, styles }) => {
   const products = useSelector(selectProducts);
@@ -56,8 +57,9 @@ export const Dish = ({ data, index, title, page, styles }) => {
   const [price, setPrice] = useState();
 
   useEffect(() => {
-    if (position === 1) setPrice((data?.[shortLocale]?.standart).toFixed(2));
-    if (position === 2) setPrice((data?.[shortLocale]?.xl).toFixed(2));
+    if (position === 1)
+      setPrice(Number(data?.[shortLocale]?.standart).toFixed(2));
+    if (position === 2) setPrice(Number(data?.[shortLocale]?.xl).toFixed(2));
   }, [position, data, shortLocale]);
 
   useEffect(() => {
@@ -115,9 +117,7 @@ export const Dish = ({ data, index, title, page, styles }) => {
         </DishName>
         <Price>
           {price}
-          {locale === 'en-UK' && <span>&#36;</span>}
-          {locale === 'de-DE' && <span>&#8364;</span>}
-          {locale === 'uk-UA' && <span>&#8372;</span>}
+          <Currency locale={locale} />
         </Price>
       </PriceWrapper>
       {isLoggedIn ? (

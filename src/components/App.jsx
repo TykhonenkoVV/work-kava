@@ -9,6 +9,7 @@ const HomePage = lazy(() => import('pages/Home.jsx'));
 const CafePage = lazy(() => import('pages/Cafe.jsx'));
 const FastfoodPage = lazy(() => import('pages/Fastfood.jsx'));
 const CoworkingPage = lazy(() => import('pages/Coworking.jsx'));
+const CartPage = lazy(() => import('pages/Cart.jsx'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/cafe" element={<CafePage />} />
         <Route path="/fastfood" element={<FastfoodPage />} />
         <Route path="/coworking" element={<CoworkingPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
