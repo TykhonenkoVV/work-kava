@@ -22,7 +22,7 @@ import {
 } from 'store/cart/operations';
 import { Currency } from 'components/Global/Currency/Currency';
 
-export const Product = ({ product, update }) => {
+export const Product = ({ product }) => {
   const dispatch = useDispatch();
 
   const { locale } = useAuth();

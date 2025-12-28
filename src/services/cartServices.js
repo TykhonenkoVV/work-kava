@@ -12,10 +12,22 @@ export const createNewCarts = (products, cartArray, locale) => {
       if (el.standart) {
         res.standartCount = el.standart;
         res.standartPrise = isExist?.[locale]?.standart;
+        if (!res.price) res.price = {};
+        res.price.standart = {
+          en: isExist?.en?.standart,
+          de: isExist?.de?.standart,
+          ua: isExist?.ua?.standart
+        };
       }
       if (el.xl) {
         res.xlCount = el.xl;
         res.xlPrise = isExist?.[locale]?.xl;
+        if (!res.price) res.price = {};
+        res.price.xl = {
+          en: isExist?.en?.xl,
+          de: isExist?.de?.xl,
+          ua: isExist?.ua?.xl
+        };
       }
       res.imgURL = isExist?.imgURL;
       res.webpImgURL = isExist?.webpImgURL;

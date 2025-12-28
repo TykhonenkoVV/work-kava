@@ -79,7 +79,7 @@ export const AddToCartModal = ({
   return (
     <>
       <Caption>{lang[locale].add_to_cart}</Caption>
-      <Title>{product.title}</Title>
+      <Title>{product[shortLocale].title}</Title>
       <CardWraper>
         <Picture>
           <ImagesSource

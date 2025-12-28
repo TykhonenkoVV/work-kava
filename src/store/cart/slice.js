@@ -74,7 +74,8 @@ const cartSlice = createSlice({
         const i = state.products.findIndex(
           option => option._id === payload.updated._id
         );
-        state.products.splice(i, 1, payload.updated);
+        if (payload.updated.archived) state.products.splice(i, 1);
+        else state.products.splice(i, 1, payload.updated);
         state.isLoading = false;
         state.error = null;
       })

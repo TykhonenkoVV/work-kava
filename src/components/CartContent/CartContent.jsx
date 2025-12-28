@@ -1,7 +1,7 @@
 import { useAuth } from 'hooks/useAuth';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById } from 'store/cart/operations';
+import { getProductById, updateProductInCart } from 'store/cart/operations';
 import { selectCart, selectProducts } from 'store/cart/selectors';
 import {
   CartTitle,
@@ -45,6 +45,17 @@ export const CartContent = () => {
     setTotalAmount(totalPrice(newCart));
   }, [newCart, products]);
 
+  const handlePay = () => {
+    newCart.forEach(el => {
+      dispatch(
+        updateProductInCart({
+          id: el.id,
+          data: { archived: true, price: { ...el.price } }
+        })
+      );
+    });
+  };
+
   return (
     <>
       {products.length > 0 ? (
@@ -62,7 +73,9 @@ export const CartContent = () => {
             {lang[locale].total} {Number(totalAmount).toFixed(2)}
             <Currency locale={locale} />
           </ResultTitle>
-          <BlueButton type="button">Сплатити</BlueButton>
+          <BlueButton type="button" onClick={handlePay}>
+            Сплатити
+          </BlueButton>
         </>
       ) : (
         <>
