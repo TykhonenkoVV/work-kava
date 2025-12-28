@@ -7,19 +7,17 @@ import { addProductToCart, updateProductInCart } from 'store/cart/operations';
 import { BlueButton } from 'styles/buttonStyles';
 import { productSizes } from 'utils/imagesUtils';
 import {
+  AddToCartCaption,
   Caption,
   CardWraper,
   ContentWrapper,
-  CounterCaption,
   CounterWrapper,
   Img,
   Picture,
   Price,
-  PriceCaption,
-  PriceWrapper,
   Title
 } from './AddToCartModal.styled';
-import { CLOUD_NAME } from 'utils/constants';
+import { CLOUD_NAME, JPEG, JPG, PNG, WEBP } from 'utils/constants';
 import { selectProducts } from 'store/cart/selectors';
 import { Counter } from 'components/Global/Counter/Counter';
 import { Currency } from 'components/Global/Currency/Currency';
@@ -32,16 +30,11 @@ export const AddToCartModal = ({
   page,
   color
 }) => {
-  console.log(product);
-
   const products = useSelector(selectProducts);
 
   const [price, setPrice] = useState();
 
-  const { locale } = useAuth();
-
-  const shortLocale =
-    locale === 'en-UK' ? 'en' : locale === 'de-DE' ? 'de' : 'ua';
+  const { locale, shortLocale } = useAuth();
 
   useEffect(() => {
     if (position === 1) setPrice(product?.[shortLocale]?.standart);
@@ -95,8 +88,11 @@ export const AddToCartModal = ({
             sectionId={sectionId}
             sizes={productSizes}
             types={[
-              { type: 'webp', format: 'webp' },
-              { type: 'png', format: 'png' }
+              { type: WEBP, format: WEBP },
+              {
+                type: sectionId === 'desserts' ? JPEG : PNG,
+                format: sectionId === 'desserts' ? JPG : PNG
+              }
             ]}
             URLs={{ webpImgURL: product.webpImgURL, imgURL: product.imgURL }}
           />
@@ -111,16 +107,16 @@ export const AddToCartModal = ({
         </Picture>
         <ContentWrapper>
           <CounterWrapper>
-            <CounterCaption>{lang[locale].product_quantity}</CounterCaption>
+            <AddToCartCaption>{lang[locale].product_quantity}</AddToCartCaption>
             <Counter quantity={quantity} onClick={onChangeQuantity} />
           </CounterWrapper>
-          <PriceWrapper>
-            <PriceCaption>{lang[locale].price}</PriceCaption>
+          <div>
+            <AddToCartCaption>{lang[locale].price}</AddToCartCaption>
             <Price>
               {(price * quantity).toFixed(2)}
               <Currency locale={locale} />
             </Price>
-          </PriceWrapper>
+          </div>
         </ContentWrapper>
       </CardWraper>
       <BlueButton onClick={onAddToCart} type="button">

@@ -1,3 +1,16 @@
+export const CAFE_PATH = '/cafe';
+export const FASTFOOD_PATH = '/fastfood';
+export const COWORKING_PATH = '/coworking';
+export const CART_PATH = '/cart';
+
+export const PNG = 'png';
+export const JPG = 'jpg';
+export const JPEG = 'jpeg';
+export const WEBP = 'webp';
+
+export const SIGN_UP = 'sign-up';
+export const SIGN_IN = 'sign-in';
+
 export const CLOUD_NAME = 'https://res.cloudinary.com/dpg391xoj/image/upload/';
 
 export const BASE_URL = 'http://localhost:3001';

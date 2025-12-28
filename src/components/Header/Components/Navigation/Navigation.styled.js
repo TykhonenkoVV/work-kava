@@ -29,12 +29,9 @@ export const Item = styled.li`
 
 export const LinkItem = styled(NavLink)`
   position: relative;
-
   display: flex;
   align-items: center;
-
-  color: ${({ theme }) => theme.colors.white};
-
+  color: inherit;
   transition: ${({ theme }) => `color ${{ theme }.theme.baseTransition}`};
 
   :hover,

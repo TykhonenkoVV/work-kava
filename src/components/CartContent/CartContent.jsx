@@ -18,16 +18,13 @@ import { Currency } from 'components/Global/Currency/Currency';
 import { EMPTY_CART } from 'utils/constants';
 
 export const CartContent = () => {
-  const { locale } = useAuth();
+  const { locale, shortLocale } = useAuth();
   const products = useSelector(selectProducts);
   const cart = useSelector(selectCart);
   const dispatch = useDispatch();
   const [isLast, setIsLast] = useState();
   const [newCart, setNewCart] = useState();
   const [totalAmount, setTotalAmount] = useState();
-
-  const shortLocale =
-    locale === 'en-UK' ? 'en' : locale === 'de-DE' ? 'de' : 'ua';
 
   useEffect(() => {
     let res = [];

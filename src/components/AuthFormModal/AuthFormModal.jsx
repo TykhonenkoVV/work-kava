@@ -10,10 +10,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn, register } from 'store/auth/operations';
 import { getCart } from 'store/cart/operations';
+import { SIGN_IN, SIGN_UP } from 'utils/constants';
 
 export const AuthFormModal = ({ action }) => {
   const { locale, isRegistered, isLoggedIn } = useAuth();
-  const [isAktive, setIsActive] = useState('sign-in');
+  const [isAktive, setIsActive] = useState(SIGN_IN);
   const [newFormData, setNewFormData] = useState(false);
   const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ export const AuthFormModal = ({ action }) => {
   };
 
   const onSubmit = (formData, id) => {
-    if (id === 'sign-up') {
+    if (id === SIGN_UP) {
       dispatch(
         register({
           ...formData,
@@ -47,7 +48,7 @@ export const AuthFormModal = ({ action }) => {
       );
       setNewFormData({ email: formData.email, password: formData.password });
     }
-    if (id === 'sign-in') {
+    if (id === SIGN_IN) {
       dispatch(logIn(formData));
     }
   };
@@ -55,8 +56,8 @@ export const AuthFormModal = ({ action }) => {
   return (
     <AuthContainer>
       <WKForm
-        dataId="sign-in"
-        dataActive={isAktive === 'sign-in'}
+        dataId={SIGN_IN}
+        dataActive={isAktive === SIGN_IN}
         locale={locale}
         onFormSubmit={onSubmit}
       >
@@ -64,7 +65,7 @@ export const AuthFormModal = ({ action }) => {
           {lang[locale].dont_have_an_account}
         </AuthFormCaption>
         <AuthChangeButton
-          id="sign-up"
+          id={SIGN_UP}
           type="button"
           onClick={onAuthChange}
           jsOrder={4}
@@ -73,8 +74,8 @@ export const AuthFormModal = ({ action }) => {
         </AuthChangeButton>
       </WKForm>
       <WKForm
-        dataId="sign-up"
-        dataActive={isAktive === 'sign-up'}
+        dataId={SIGN_UP}
+        dataActive={isAktive === SIGN_UP}
         locale={locale}
         onFormSubmit={onSubmit}
       >
@@ -82,7 +83,7 @@ export const AuthFormModal = ({ action }) => {
           {lang[locale].already_registered}
         </AuthFormCaption>
         <AuthChangeButton
-          id="sign-in"
+          id={SIGN_IN}
           type="button"
           onClick={onAuthChange}
           jsOrder={4}

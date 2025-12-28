@@ -8,7 +8,7 @@ export const StyledHeader = styled.header`
   align-items: stretch;
   width: 100%;
   height: 80px;
-  fill: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.white};
 
   background-color: ${({ theme }) => theme.colors.headerBackground};
 `;

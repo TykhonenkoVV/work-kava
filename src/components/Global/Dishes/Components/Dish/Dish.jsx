@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 import { AddToCartModal } from 'components/AddToCartModal/AddToCartModal';
 import { ImagesSource } from 'components/Global/ImagesSource';
 import { dishesSizes } from 'utils/imagesUtils';
-import { CLOUD_NAME } from 'utils/constants';
+import { CLOUD_NAME, JPEG, JPG, PNG, WEBP } from 'utils/constants';
 import { PositionToggler } from './components/PositionToggler/PositionToggler';
 import { selectProducts } from 'store/cart/selectors';
 import { useSelector } from 'react-redux';
@@ -27,10 +27,7 @@ import { Currency } from 'components/Global/Currency/Currency';
 export const Dish = ({ data, index, title, page, styles }) => {
   const products = useSelector(selectProducts);
 
-  const { locale, isLoggedIn } = useAuth();
-
-  const shortLocale =
-    locale === 'en-UK' ? 'en' : locale === 'de-DE' ? 'de' : 'ua';
+  const { locale, shortLocale, isLoggedIn } = useAuth();
 
   const windowWidth = useWindowWidth();
 
@@ -92,10 +89,10 @@ export const Dish = ({ data, index, title, page, styles }) => {
           sectionId={title}
           sizes={dishesSizes}
           types={[
-            { type: 'webp', format: 'webp' },
+            { type: WEBP, format: WEBP },
             {
-              type: title === 'desserts' ? 'jpeg' : 'png',
-              format: title === 'desserts' ? 'jpg' : 'png'
+              type: title === 'desserts' ? JPEG : PNG,
+              format: title === 'desserts' ? JPG : PNG
             }
           ]}
           URLs={{ webpImgURL: data.webpImgURL, imgURL: data.imgURL }}

@@ -30,6 +30,7 @@ export const ModalContent = styled.div`
   width: calc(100% - 32px);
   max-width: 500px;
   max-height: 100vh;
+  text-align: center;
   background: ${({ theme }) => theme.colors.white};
   padding-block-start: 60px;
   padding-block-end: 60px;

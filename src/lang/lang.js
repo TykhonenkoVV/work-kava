@@ -41,6 +41,7 @@ export const lang = {
     address: '1, Nova st, Kryvyi Rih',
     socials: 'We are on socials',
     subscribe: 'Subscribe',
+    subscribed: 'You are subscribed!',
 
     enter_email: 'Enter your e-mail',
     enter_name: 'Enter your name',
@@ -136,6 +137,7 @@ export const lang = {
     address: 'Nowa Str. 1, Kryvyi Rih',
     socials: 'Soziale Netzwerke',
     subscribe: 'Abonnieren',
+    subscribed: 'Sie sind abonniert!',
 
     enter_email: 'Ihre E-Mail',
     enter_name: 'Ihre Name',
@@ -230,6 +232,7 @@ export const lang = {
     address: 'м. Кривий Ріг, вул. Нова, 1',
     socials: 'Ми в соцмережах',
     subscribe: 'Підписатись',
+    subscribed: 'Ви підписались!',
 
     enter_email: 'Введіть e-mail',
     enter_name: "Введіть ваше ім'я",

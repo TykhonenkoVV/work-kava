@@ -42,16 +42,12 @@ export const CounterWrapper = styled.div`
   margin-block-end: auto;
 `;
 
-export const CounterCaption = styled.p`
+export const AddToCartCaption = styled.p`
   text-align: center;
   font-size: 20px;
   line-height: 1;
   margin-block-end: 10px;
 `;
-
-export const PriceWrapper = styled.div``;
-
-export const PriceCaption = styled(CounterCaption)``;
 
 export const Price = styled.p`
   text-align: center;

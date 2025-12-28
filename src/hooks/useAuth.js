@@ -18,11 +18,15 @@ export const useAuth = () => {
   const isUpdated = useSelector(selectIsUpdated);
   const authError = useSelector(selectAuthErrors);
 
+  const shortLocale =
+    locale === 'en-UK' ? 'en' : locale === 'de-DE' ? 'de' : 'ua';
+
   return {
     isLoggedIn,
     isRefreshing,
     isUpdated,
     locale,
+    shortLocale,
     user,
     authError,
     isRegistered

@@ -4,6 +4,12 @@ import { Layout } from './Global/Layout';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'store/auth/operations';
 import { getCart } from 'store/cart/operations';
+import {
+  CAFE_PATH,
+  CART_PATH,
+  COWORKING_PATH,
+  FASTFOOD_PATH
+} from 'utils/constants';
 
 const HomePage = lazy(() => import('pages/Home.jsx'));
 const CafePage = lazy(() => import('pages/Cafe.jsx'));
@@ -22,10 +28,10 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="/cafe" element={<CafePage />} />
-        <Route path="/fastfood" element={<FastfoodPage />} />
-        <Route path="/coworking" element={<CoworkingPage />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path={CAFE_PATH} element={<CafePage />} />
+        <Route path={FASTFOOD_PATH} element={<FastfoodPage />} />
+        <Route path={COWORKING_PATH} element={<CoworkingPage />} />
+        <Route path={CART_PATH} element={<CartPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
