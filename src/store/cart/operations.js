@@ -5,7 +5,7 @@ export const addProductToCart = createAsyncThunk(
   'cart/add',
   async (product, thunkAPI) => {
     try {
-      const { data } = await workKavaInnstance.post('/carts', product);
+      const { data } = await workKavaInnstance.post('/cart', product);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -24,12 +24,33 @@ export const getCart = createAsyncThunk('cart/getAll', async (_, thunkAPI) => {
     });
   }
   try {
-    const { data } = await workKavaInnstance.get('/carts');
+    const { data } = await workKavaInnstance.get('/cart');
     return data.cart;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const getHistory = createAsyncThunk(
+  'cart/getHistory',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedAccessToken = state.auth.accessToken;
+
+    if (persistedAccessToken === null) {
+      return thunkAPI.rejectWithValue({
+        message: 'Unable to fetch history',
+        status: 404
+      });
+    }
+    try {
+      const { data } = await workKavaInnstance.get('/cart/history');
+      return data.history;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const getProductById = createAsyncThunk(
   'cart/getProduktById',
@@ -53,7 +74,7 @@ export const updateProductInCart = createAsyncThunk(
   async (credentionals, thunkAPI) => {
     try {
       const { data } = await workKavaInnstance.patch(
-        `carts/${credentionals.id}`,
+        `cart/${credentionals.id}`,
         { ...credentionals.data }
       );
       return data;
@@ -67,7 +88,7 @@ export const deleteProductInCart = createAsyncThunk(
   'cart/delete',
   async (id, thunkAPI) => {
     try {
-      const { data } = await workKavaInnstance.delete(`carts/${id}`);
+      const { data } = await workKavaInnstance.delete(`cart/${id}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

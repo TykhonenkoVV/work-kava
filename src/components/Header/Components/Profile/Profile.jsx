@@ -3,16 +3,20 @@ import { WKForm } from 'components/Global/WKForm/WKForm';
 import { useDispatch } from 'react-redux';
 import { logOut, updateUser } from 'store/auth/operations';
 import { orderForm } from 'services/formServices';
-import { Notify } from 'notiflix';
 import { Loader } from 'components/Global/Loader/Loader';
 import { useEffect } from 'react';
 import { turnOffIsUpdated } from 'store/auth/slice';
 import { SvgIcon } from 'components/Global/SvgIcon/SvgIcon';
 import { ButtonLogOut } from './Profile.styled';
 import { clearCart, clearProducts } from 'store/cart/slice';
+import { useModal } from 'hooks/useModal';
+import { Modal } from 'components/Global/Modal/Modal';
+import { InfoModal } from 'components/Global/InfoModal/InfoModal';
+import { lang } from 'lang/lang';
 
 export const Profile = ({ action }) => {
   const dispatch = useDispatch();
+  const { isModalOpen, openModal, closeModal } = useModal();
   const { locale, isRefreshing, isUpdated, user } = useAuth();
   const { name, email } = user;
 
@@ -23,7 +27,7 @@ export const Profile = ({ action }) => {
 
   const handleSubmit = formData => {
     const isOrderedForm = orderForm(formData, defaultValues);
-    if (!isOrderedForm) return Notify.warning('Nothing to change.');
+    if (!isOrderedForm) return openModal();
     dispatch(updateUser(isOrderedForm));
   };
 
@@ -55,6 +59,15 @@ export const Profile = ({ action }) => {
           Logout
         </ButtonLogOut>
       </WKForm>
+      {isModalOpen && (
+        <Modal onClose={closeModal}>
+          <InfoModal
+            type="warning"
+            text={lang[locale].nothing_has_changed}
+            onClose={closeModal}
+          />
+        </Modal>
+      )}
     </>
   );
 };

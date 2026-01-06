@@ -84,6 +84,48 @@ export const InputWrapper = styled.div`
       right: 16px;
     }
   }
+  & .form-control {
+    all: initial;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding-inline-start: 48px;
+    padding-inline-end: 8px;
+    font-family: 'Roboto Mono', sans-serif;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 1;
+    color: ${({ theme }) => theme.colors.primary};
+    outline: none;
+
+    border: 1px solid ${({ theme }) => theme.colors.primary};
+    border-radius: 0;
+
+    transition: border-color ${({ theme }) => theme.baseTransition};
+    @media screen and (${({ theme }) => theme.devices.tablet}) {
+      font-size: 24px;
+    }
+  }
+  & .country-list {
+    text-align: left;
+  }
+  & .flag-dropdown {
+    border: unset;
+    background: unset;
+    border-radius: 0;
+  }
+  & .flag-dropdown.open {
+    z-index: 4;
+  }
+  & .selected-flag:hover,
+  .selected-flag:active,
+  .selected-flag:focus,
+  .react-tel-input .flag-dropdown.open,
+  .react-tel-input .flag-dropdown.open .selected-flag,
+  *.open {
+    background-color: unset;
+  }
 `;
 
 export const CheckBoxLabelStyled = styled.label`

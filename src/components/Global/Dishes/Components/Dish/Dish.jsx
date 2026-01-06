@@ -49,8 +49,6 @@ export const Dish = ({ data, index, title, page, styles }) => {
 
   const [countInCartXl, setCountInCartXl] = useState();
 
-  const [productInCartId, setProductInCartId] = useState();
-
   const [price, setPrice] = useState();
 
   useEffect(() => {
@@ -64,7 +62,6 @@ export const Dish = ({ data, index, title, page, styles }) => {
       if (el.productId === data._id) {
         if (position === 1) setCountInCartStandart(el.standart);
         if (position === 2) setCountInCartXl(el.xl);
-        setProductInCartId(el._id);
       }
     });
   }, [products, position, data]);
@@ -141,7 +138,6 @@ export const Dish = ({ data, index, title, page, styles }) => {
         <Modal onClose={closeAddToCartModal}>
           <AddToCartModal
             action={closeAddToCartModal}
-            productInCartId={productInCartId}
             countInCart={
               position === 1 && countInCartStandart
                 ? countInCartStandart

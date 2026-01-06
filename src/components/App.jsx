@@ -8,14 +8,17 @@ import {
   CAFE_PATH,
   CART_PATH,
   COWORKING_PATH,
-  FASTFOOD_PATH
+  FASTFOOD_PATH,
+  HISTORY_PATH
 } from 'utils/constants';
+import { PrivateRoute } from './Global/privateRoute';
 
 const HomePage = lazy(() => import('pages/Home.jsx'));
 const CafePage = lazy(() => import('pages/Cafe.jsx'));
 const FastfoodPage = lazy(() => import('pages/Fastfood.jsx'));
 const CoworkingPage = lazy(() => import('pages/Coworking.jsx'));
 const CartPage = lazy(() => import('pages/Cart.jsx'));
+const HistoryPage = lazy(() => import('pages/History.jsx'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,7 +34,14 @@ const App = () => {
         <Route path={CAFE_PATH} element={<CafePage />} />
         <Route path={FASTFOOD_PATH} element={<FastfoodPage />} />
         <Route path={COWORKING_PATH} element={<CoworkingPage />} />
-        <Route path={CART_PATH} element={<CartPage />} />
+        <Route
+          path={CART_PATH}
+          element={<PrivateRoute redirectTo="/" component={<CartPage />} />}
+        />
+        <Route
+          path={HISTORY_PATH}
+          element={<PrivateRoute redirectTo="/" component={<HistoryPage />} />}
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>

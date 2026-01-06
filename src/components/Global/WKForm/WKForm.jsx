@@ -18,6 +18,8 @@ import { BlueButton } from 'styles/buttonStyles';
 import { WKSelect } from './Components/WKSelect/WKSelect';
 import { Avatar } from './Components/Avatar/Avatar';
 import { getFormElements, getFormText, validate } from 'services/formServices';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 export const WKForm = ({
   dataId,
@@ -32,6 +34,11 @@ export const WKForm = ({
   const [inputs, setInputs] = useState(null);
   const [formText, setFormText] = useState(null);
   const [isFirst, setIsFirst] = useState(true);
+  const [phone, setPhone] = useState();
+
+  const onChangePhone = value => {
+    setPhone(value);
+  };
 
   const [changeCheckBox, setChangeCheckBox] = useState();
 
@@ -143,26 +150,41 @@ export const WKForm = ({
                     ) : (
                       <LabelStyled jsOrder={jsOrder}>
                         <InputWrapper>
-                          <InputStyled
-                            defaultValue={
-                              defaultValues?.[name] ? defaultValues[name] : null
-                            }
-                            autoComplete="off"
-                            data-ref={`${dataId}_${name}`}
-                            name={name}
-                            type={type}
-                            readOnly={read_only}
-                            placeholder={placeholder}
-                            disabled={
-                              dependent ? !changeCheckBox?.change_pass : false
-                            }
-                          />
-                          <SvgIcon
-                            w={24}
-                            h={24}
-                            icon={icon}
-                            className="js-class"
-                          />
+                          {name === 'phonenumber' ? (
+                            <PhoneInput
+                              country={'gb'}
+                              inputProps={{ name: 'phonenumber' }}
+                              value={phone}
+                              onChange={onChangePhone}
+                            />
+                          ) : (
+                            <>
+                              <InputStyled
+                                defaultValue={
+                                  defaultValues?.[name]
+                                    ? defaultValues[name]
+                                    : null
+                                }
+                                autoComplete="off"
+                                data-ref={`${dataId}_${name}`}
+                                name={name}
+                                type={type}
+                                readOnly={read_only}
+                                placeholder={placeholder}
+                                disabled={
+                                  dependent
+                                    ? !changeCheckBox?.change_pass
+                                    : false
+                                }
+                              />
+                              <SvgIcon
+                                w={24}
+                                h={24}
+                                icon={icon}
+                                className="js-class"
+                              />
+                            </>
+                          )}
                           {icon_animated && (
                             <RightButton
                               data-id={`${dataId}_${name}`}

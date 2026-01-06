@@ -1,16 +1,20 @@
 import { Outlet } from 'react-router-dom';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Header } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import { useAuth } from 'hooks/useAuth';
-import { Notify } from 'notiflix';
 import { useDispatch } from 'react-redux';
-import { forcedLogout } from 'store/auth/slice';
+import { clearError, forcedLogout } from 'store/auth/slice';
 import { Loader } from './Loader/Loader';
+import { useModal } from 'hooks/useModal';
+import { Modal } from './Modal/Modal';
+import { InfoModal } from './InfoModal/InfoModal';
 
 export const Layout = () => {
   const { isRefreshing, authError } = useAuth();
+  const { isModalOpen, openModal, closeModal } = useModal();
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState();
 
   useEffect(() => {
     if (authError) {
@@ -22,27 +26,25 @@ export const Layout = () => {
       if (message === 'Unauthorized' && status === 401) return;
       if (message === 'Cannot GET /api/auth/refresh' && status === 404) return;
 
-      Notify.init({
-        fontFamily: 'Roboto Mono',
-        timeout: 4000,
-        clickToClose: true,
-        warning: {
-          background: '#ff5549'
-        }
-      });
-
       if (status === 403) {
         dispatch(forcedLogout());
       }
 
       if (message === 'Invalid token' || message === 'Unsupported token') {
-        Notify.warning('Please login again');
+        setErrors('Please login again');
+        openModal();
         return;
       }
 
-      Notify.warning(`${authError.message}`);
+      setErrors(authError.message);
+      openModal();
     }
-  }, [dispatch, authError]);
+  }, [dispatch, authError, openModal]);
+
+  const handleCloseInfoModal = () => {
+    closeModal();
+    dispatch(clearError());
+  };
 
   return (
     <>
@@ -54,6 +56,15 @@ export const Layout = () => {
         </Suspense>
       </main>
       <Footer />
+      {isModalOpen && (
+        <Modal onClose={handleCloseInfoModal}>
+          <InfoModal
+            type="reject"
+            text={errors}
+            onClose={handleCloseInfoModal}
+          />
+        </Modal>
+      )}
     </>
   );
 };

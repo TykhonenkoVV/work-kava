@@ -131,7 +131,9 @@ export const Header = () => {
           </>
         )}
       </ContainerHeader>
-      {modalHeader && <ModalNav action={handleClosedModal} />}
+      {modalHeader && windowWidth < 1024 && (
+        <ModalNav action={handleClosedModal} />
+      )}
       {isAuthModalOpen && (
         <Modal onClose={closeAuthModal}>
           <AuthFormModal action={closeAuthModal} />

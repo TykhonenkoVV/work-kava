@@ -21,8 +21,10 @@ import { CLOUD_NAME, JPEG, JPG, PNG, WEBP } from 'utils/constants';
 import { selectProducts } from 'store/cart/selectors';
 import { Counter } from 'components/Global/Counter/Counter';
 import { Currency } from 'components/Global/Currency/Currency';
+import { createNewProduct } from 'services/cartServices';
 
 export const AddToCartModal = ({
+  action,
   countInCart,
   position,
   product,
@@ -65,15 +67,17 @@ export const AddToCartModal = ({
           data: { ...res }
         })
       );
-    } else
-      dispatch(
-        addProductToCart({
-          productId: product._id,
-          category: sectionId,
-          ...res,
-          archived: false
-        })
-      );
+    } else {
+      const cartData = {
+        productId: product._id,
+        category: sectionId,
+        ...res,
+        archived: false
+      };
+      const newProduct = createNewProduct(cartData, product);
+      dispatch(addProductToCart(newProduct));
+    }
+    action();
   };
 
   return (

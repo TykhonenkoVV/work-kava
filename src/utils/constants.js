@@ -2,6 +2,7 @@ export const CAFE_PATH = '/cafe';
 export const FASTFOOD_PATH = '/fastfood';
 export const COWORKING_PATH = '/coworking';
 export const CART_PATH = '/cart';
+export const HISTORY_PATH = '/history';
 
 export const PNG = 'png';
 export const JPG = 'jpg';

@@ -25,32 +25,32 @@ import { Currency } from 'components/Global/Currency/Currency';
 export const Product = ({ product }) => {
   const dispatch = useDispatch();
 
-  const { locale } = useAuth();
-  const [quantityStandart, setQuantityStandart] = useState(
-    product.standartCount
-  );
+  const { locale, shortLocale } = useAuth();
+  const [quantityStandart, setQuantityStandart] = useState(product.standart);
 
-  const [quantityXl, setQuantityXl] = useState(product.xlCount);
+  const [quantityXl, setQuantityXl] = useState(product.xl);
 
   const windowWidth = useWindowWidth();
 
-  const size = ['burgers', 'hot-dogs', 'rols'].includes(product.category);
+  const size = ['burgers', 'hot-dogs', 'rolls'].includes(product.category);
 
   const onChangeQuantityStandart = id => {
     if (id === 'inc') {
+      console.log('Product', product);
       setQuantityStandart(state => state + 1);
       dispatch(
         updateProductInCart({
-          id: product.id,
+          id: product._id,
           data: { standart: quantityStandart + 1 }
         })
       );
     }
     if (id === 'dec') {
+      console.log('Product', product);
       setQuantityStandart(state => state - 1);
       dispatch(
         updateProductInCart({
-          id: product.id,
+          id: product._id,
           data: { standart: quantityStandart - 1 }
         })
       );
@@ -62,7 +62,7 @@ export const Product = ({ product }) => {
       setQuantityXl(state => state + 1);
       dispatch(
         updateProductInCart({
-          id: product.id,
+          id: product._id,
           data: { xl: quantityXl + 1 }
         })
       );
@@ -71,7 +71,7 @@ export const Product = ({ product }) => {
       setQuantityXl(state => state - 1);
       dispatch(
         updateProductInCart({
-          id: product.id,
+          id: product._id,
           data: { xl: quantityXl - 1 }
         })
       );
@@ -79,17 +79,17 @@ export const Product = ({ product }) => {
   };
 
   const handleCartDelete = () => {
-    dispatch(deleteProductInCart(product.id));
+    dispatch(deleteProductInCart(product._id));
   };
 
   const handleSizeDelete = e => {
-    const id = e.currentTarget.getAttribute('id');
-    dispatch(updateProductInCart({ id: product.id, data: { [id]: null } }));
+    const value = e.currentTarget.getAttribute('id');
+    dispatch(updateProductInCart({ id: product._id, data: { [value]: null } }));
   };
 
   return (
-    <StyledProduct key={product.id}>
-      <CartCaption>{product.title}</CartCaption>
+    <StyledProduct>
+      <CartCaption>{product[shortLocale].title}</CartCaption>
       <CartDeleteButton type="button" onClick={handleCartDelete}>
         <SvgIcon
           w={windowWidth < 414 ? 16 : 20}
@@ -104,10 +104,10 @@ export const Product = ({ product }) => {
           style={{ backgroundColor: 'white' }}
         />
         <CartPriceBox>
-          {product?.standartCount && (
+          {product?.standart && (
             <CartPriceWrapper>
               <Price>
-                {Number(product.standartPrise).toFixed(2)}
+                {Number(product[shortLocale].standart).toFixed(2)}
                 <Currency locale={locale} />
                 {size && ' (Standart)'}
               </Price>
@@ -115,7 +115,7 @@ export const Product = ({ product }) => {
                 quantity={quantityStandart}
                 onClick={onChangeQuantityStandart}
               />
-              {size && product.standartCount && product.xlCount && (
+              {product.standart && product.xl && (
                 <SizeDeleteButton
                   id="standart"
                   type="button"
@@ -130,15 +130,15 @@ export const Product = ({ product }) => {
               )}
             </CartPriceWrapper>
           )}
-          {product?.xlCount && (
+          {product?.xl && (
             <CartPriceWrapper>
               <Price>
-                {Number(product.xlPrise).toFixed(2)}
+                {Number(product.xl).toFixed(2)}
                 <Currency locale={locale} />
                 {size && ' (XL)'}
               </Price>
               <Counter quantity={quantityXl} onClick={onChangeQuantityXl} />
-              {size && product.standartCount && product.xlCount && (
+              {product.standart && product.xl && (
                 <SizeDeleteButton
                   id="xl"
                   type="button"

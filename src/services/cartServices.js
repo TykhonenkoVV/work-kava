@@ -1,54 +1,59 @@
-export const createNewCarts = (products, cartArray, locale) => {
-  let newCart = [];
+export const createNewCarts = (products, cartArray) => {
+  let newCarts = [];
   products.forEach(el => {
-    let res = {};
+    let res = structuredClone(el);
     const id = el.productId;
     const isExist = cartArray.find(current => current._id === id);
     if (isExist) {
-      res.id = el._id;
-      res.productId = el.productId;
-      res.category = el.category;
-      res.title = isExist?.[locale]?.title;
       if (el.standart) {
-        res.standartCount = el.standart;
-        res.standartPrise = isExist?.[locale]?.standart;
-        if (!res.price) res.price = {};
-        res.price.standart = {
-          en: isExist?.en?.standart,
-          de: isExist?.de?.standart,
-          ua: isExist?.ua?.standart
-        };
+        res.en.standart = isExist.en.standart;
+        res.de.standart = isExist.de.standart;
+        res.ua.standart = isExist.ua.standart;
       }
       if (el.xl) {
-        res.xlCount = el.xl;
-        res.xlPrise = isExist?.[locale]?.xl;
-        if (!res.price) res.price = {};
-        res.price.xl = {
-          en: isExist?.en?.xl,
-          de: isExist?.de?.xl,
-          ua: isExist?.ua?.xl
-        };
+        res.en.xl = isExist.en.xl;
+        res.de.xl = isExist.de.xl;
+        res.ua.xl = isExist.ua.xl;
       }
-      res.imgURL = isExist?.imgURL;
-      res.webpImgURL = isExist?.webpImgURL;
-      newCart.push(res);
     }
+    newCarts.push(res);
   });
-  return newCart;
+  return newCarts;
 };
 
-export const totalPrice = cart => {
+export const createNewProduct = (cart, product) => {
+  let copy = structuredClone(product);
+  delete copy._id;
+  delete copy.archived;
+  delete copy.index;
+  delete copy.water;
+  delete copy.coffee;
+  delete copy.milk;
+  delete copy.weight;
+  delete copy.de.ingredients;
+  delete copy.en.ingredients;
+  delete copy.ua.ingredients;
+  delete copy.de.standart;
+  delete copy.en.standart;
+  delete copy.ua.standart;
+  delete copy.de.xl;
+  delete copy.en.xl;
+  delete copy.ua.xl;
+  return { ...cart, ...copy };
+};
+
+export const totalPrice = (cart, locale) => {
   let res = [];
   cart.forEach(el => {
-    if (el.standartCount) {
-      const c = Number(el.standartCount);
-      const p = Number(el.standartPrise);
-      res.push(c * p);
+    if (el.standart) {
+      const count = Number(el.standart);
+      const price = Number(el[locale].standart);
+      res.push(count * price);
     }
-    if (el.xlCount) {
-      const c = Number(el.xlCount);
-      const p = Number(el.xlPrise);
-      res.push(c * p);
+    if (el.xl) {
+      const count = Number(el.xl);
+      const price = Number(el[locale].xl);
+      res.push(count * price);
     }
   });
   let total = 0;

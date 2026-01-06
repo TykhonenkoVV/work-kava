@@ -3,6 +3,7 @@ import {
   addProductToCart,
   deleteProductInCart,
   getCart,
+  getHistory,
   getProductById,
   updateProductInCart
 } from './operations';
@@ -10,6 +11,7 @@ import {
 const initialState = {
   products: [],
   cart: [],
+  history: {},
   isLoading: false,
   error: null
 };
@@ -50,6 +52,25 @@ const cartSlice = createSlice({
         state.error = null;
       })
       .addCase(getCart.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getHistory.pending, (state, { payload }) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getHistory.fulfilled, (state, { payload }) => {
+        let res = {};
+        payload.forEach(el => {
+          const receipt = el.receipt;
+          if (!res[receipt]) res[receipt] = [];
+          res[receipt].push(el);
+        });
+        state.history = res;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getHistory.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })

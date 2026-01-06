@@ -13,6 +13,7 @@ export const lang = {
     rolls: 'Rolls',
     hot_dogs: 'Hot dogs',
     cart: 'Cart',
+    history: 'Purchases',
     total: 'Total:',
 
     hero_home_title: "Work & comfort? It's easy!",
@@ -37,6 +38,8 @@ export const lang = {
     add_to_cart: 'Are you sure you want to add this item to your cart?',
     product_quantity: 'Quantity',
     add: 'Add',
+    empty_cart: 'The cart is empty.',
+    empty_hisory: 'Purchase history is empty.',
 
     address: '1, Nova st, Kryvyi Rih',
     socials: 'We are on socials',
@@ -63,6 +66,7 @@ export const lang = {
     continue: 'Continue',
     save_changes: 'Save',
     user_profile: 'My Account',
+    nothing_has_changed: 'Please note, nothing has changed.',
 
     workplace: 'Workplace',
     meeting_room: 'Meeting room',
@@ -108,6 +112,7 @@ export const lang = {
     rolls: 'Rollen',
     hot_dogs: 'Hotdogs',
     cart: 'Warenkorb',
+    history: 'Käufe',
     total: 'Summe:',
 
     hero_home_title: 'Arbeit und Komfort? Ganz einfach!',
@@ -133,6 +138,8 @@ export const lang = {
       'Möchten Sie diesen Artikel wirklich Ihrem Warenkorb hinzufügen?',
     product_quantity: 'Menge',
     add: 'Hinzufügen',
+    empty_cart: 'Ihr Warenkorb ist leer.',
+    empty_hisory: 'Kaufhistorie ist leer',
 
     address: 'Nowa Str. 1, Kryvyi Rih',
     socials: 'Soziale Netzwerke',
@@ -159,6 +166,7 @@ export const lang = {
     continue: 'Weiter',
     save_changes: 'Speichern',
     user_profile: 'Mein Konto',
+    nothing_has_changed: 'Bitte beachten Sie, dass sich nichts geändert hat.',
 
     workplace: 'Arbeitsplatz',
     meeting_room: 'Konferenzraum',
@@ -204,6 +212,7 @@ export const lang = {
     rolls: 'Роли',
     hot_dogs: 'Хот доги',
     cart: 'Кошик',
+    history: 'Покупки',
     total: 'Всього:',
 
     hero_home_title: 'Робота та комфорт? Це легко!',
@@ -228,6 +237,8 @@ export const lang = {
     add_to_cart: 'Ви дійсно хочете додати цей товар у кошик?',
     product_quantity: 'Кількість',
     add: 'Додати',
+    empty_cart: 'Кошик порожній.',
+    empty_history: 'Історія покупок порожня.',
 
     address: 'м. Кривий Ріг, вул. Нова, 1',
     socials: 'Ми в соцмережах',
@@ -254,6 +265,7 @@ export const lang = {
     continue: 'Продовжити',
     save_changes: 'Зберегти',
     user_profile: 'Мій аккаунт',
+    nothing_has_changed: 'Зверніть увагу, нічого не змінилось.',
 
     workplace: 'Робоче місце',
     meeting_room: 'Кабінет',

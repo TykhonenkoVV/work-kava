@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-export const CartLinkWrapper = styled.div`
+export const HistoryLinkWrapper = styled.div`
   display: flex;
 `;
 
-export const CartTitle = styled.h1`
+export const HistoryTitle = styled.h1`
   display: inline-block;
   padding-inline-start: 30px;
   padding-block-start: 10px;
@@ -28,7 +28,7 @@ export const CartTitle = styled.h1`
   }
 `;
 
-export const HistoryLink = styled(Link)`
+export const CartLink = styled(Link)`
   display: inline-block;
   padding-inline-start: 30px;
   padding-block-start: 10px;
@@ -43,16 +43,6 @@ export const HistoryLink = styled(Link)`
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     font-size: 24px;
   }
-`;
-
-export const ProductsWrapper = styled.ul`
-  margin-block-end: 16px;
-`;
-
-export const ResultTitle = styled.p`
-  margin-block-end: 16px;
-  font-size: 24px;
-  font-weight: 700;
 `;
 
 export const Img = styled.img`

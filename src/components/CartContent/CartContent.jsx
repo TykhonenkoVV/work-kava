@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductById, updateProductInCart } from 'store/cart/operations';
 import { selectCart, selectProducts } from 'store/cart/selectors';
 import {
+  CartLinkWrapper,
   CartTitle,
   EmptyTitle,
+  HistoryLink,
   Img,
   ProductsWrapper,
   ResultTitle
@@ -37,20 +39,33 @@ export const CartContent = () => {
 
   useEffect(() => {
     if (isLast !== products.length) return;
-    setNewCart(createNewCarts(products, cart, shortLocale));
-  }, [isLast, products, cart, shortLocale]);
+    setNewCart(createNewCarts(products, cart));
+  }, [isLast, products, cart]);
 
   useEffect(() => {
     if (newCart?.length !== products.length) return;
-    setTotalAmount(totalPrice(newCart));
-  }, [newCart, products]);
+    setTotalAmount(totalPrice(newCart, shortLocale));
+  }, [newCart, products, shortLocale]);
 
   const handlePay = () => {
     newCart.forEach(el => {
+      let price = { en: {}, de: {}, ua: {} };
+      if (el.standart) {
+        price.en.standart = el.en.standart;
+        price.de.standart = el.de.standart;
+        price.ua.standart = el.ua.standart;
+      }
+      if (el.xl) {
+        price.en.xl = el.en.xl;
+        price.de.xl = el.de.xl;
+        price.ua.xl = el.ua.xl;
+      }
+      const date = new Date(Date.now());
+      const receipt = `WK-${Math.floor(date / 1000)}`;
       dispatch(
         updateProductInCart({
-          id: el.id,
-          data: { archived: true, price: { ...el.price } }
+          id: el._id,
+          data: { archived: true, receipt, ...price }
         })
       );
     });
@@ -58,15 +73,16 @@ export const CartContent = () => {
 
   return (
     <>
+      <CartLinkWrapper>
+        <CartTitle>{lang[locale].cart}</CartTitle>
+        <HistoryLink to="/history">{lang[locale].history}</HistoryLink>
+      </CartLinkWrapper>
       {products.length > 0 ? (
         <>
-          <CartTitle>
-            {lang[locale].cart} ({products.length})
-          </CartTitle>
           <ProductsWrapper>
             {newCart?.length === products.length &&
               newCart.map(product => (
-                <Product key={product.id} product={product} />
+                <Product key={product._id} product={product} />
               ))}
           </ProductsWrapper>
           <ResultTitle>
@@ -80,8 +96,7 @@ export const CartContent = () => {
       ) : (
         <>
           <Img src={EMPTY_CART} alt="empty cart" />
-          <EmptyTitle>Нажаль в кошику немає товарів.</EmptyTitle>
-          <EmptyTitle>Оберіть категорію.</EmptyTitle>
+          <EmptyTitle>{lang[locale].empty_cart}</EmptyTitle>
         </>
       )}
     </>
