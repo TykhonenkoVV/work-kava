@@ -60,6 +60,11 @@ export const CartContent = () => {
         price.de.xl = el.de.xl;
         price.ua.xl = el.ua.xl;
       }
+      if (el.count) {
+        price.en.price = el.en.price;
+        price.de.price = el.de.price;
+        price.ua.price = el.ua.price;
+      }
       const date = new Date(Date.now());
       const receipt = `WK-${Math.floor(date / 1000)}`;
       dispatch(

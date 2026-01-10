@@ -4,7 +4,7 @@ import {
   CounterWrapper
 } from './Counter.styled';
 
-export const Counter = ({ quantity, onClick }) => {
+export const Counter = ({ quantity, max, onClick }) => {
   return (
     <CounterWrapper>
       <CounterButton
@@ -14,7 +14,7 @@ export const Counter = ({ quantity, onClick }) => {
       />
       <CounterContent>{quantity}</CounterContent>
       <CounterButton
-        disabled={quantity > 9}
+        disabled={quantity > max}
         id="plus"
         type="button"
         onClick={() => onClick('inc')}

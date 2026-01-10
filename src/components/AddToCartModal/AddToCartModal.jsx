@@ -112,7 +112,7 @@ export const AddToCartModal = ({
         <ContentWrapper>
           <CounterWrapper>
             <AddToCartCaption>{lang[locale].product_quantity}</AddToCartCaption>
-            <Counter quantity={quantity} onClick={onChangeQuantity} />
+            <Counter quantity={quantity} max={9} onClick={onChangeQuantity} />
           </CounterWrapper>
           <div>
             <AddToCartCaption>{lang[locale].price}</AddToCartCaption>

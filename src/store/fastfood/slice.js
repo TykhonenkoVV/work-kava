@@ -8,7 +8,7 @@ const initialState = {
     hotDogs: []
   },
   isLoading: false,
-  error: { message: '', status: '' }
+  error: null
 };
 
 const fastFoodSlice = createSlice({

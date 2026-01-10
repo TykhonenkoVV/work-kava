@@ -48,8 +48,10 @@ export const WKForm = ({
   });
 
   useEffect(() => {
-    setInputs(getFormElements(locale, dataId));
-    setFormText(getFormText(locale, dataId));
+    setInputs(
+      getFormElements(locale, dataId.toLowerCase().replaceAll(' ', '-'))
+    );
+    setFormText(getFormText(locale, dataId.toLowerCase().replaceAll(' ', '-')));
   }, [locale, dataId]);
 
   useEffect(() => {

@@ -8,9 +8,10 @@ import { AuthFormModal } from 'components/AuthFormModal/AuthFormModal';
 import { Modal } from 'components/Global/Modal/Modal';
 import { useAuth } from 'hooks/useAuth';
 import { Profile } from '../Profile/Profile';
+import { CLOUD_NAME } from 'utils/constants';
 
 export const ModalNav = ({ action, handleLangClick }) => {
-  const { isLoggedIn, locale } = useAuth();
+  const { isLoggedIn, locale, avatarURL } = useAuth();
   const {
     isModalOpen: isAuthModalOpen,
     openModal: openAuthModal,
@@ -41,7 +42,14 @@ export const ModalNav = ({ action, handleLangClick }) => {
         aria-label="user profile"
         onClick={handleUserButtonClick}
       >
-        <SvgIcon w={40} h={40} icon={'avatar'} aria-label="icon user" />
+        {avatarURL ? (
+          <img
+            src={`${CLOUD_NAME}w_36,h_36,c_fill/${avatarURL}`}
+            alt="user avatar"
+          />
+        ) : (
+          <SvgIcon w={36} h={36} icon={'avatar'} aria-label="icon user" />
+        )}
         {isLoggedIn ? lang[locale].user_profile : lang[locale].sign_in}
       </UserBtn>
       <Navigation action={action} />

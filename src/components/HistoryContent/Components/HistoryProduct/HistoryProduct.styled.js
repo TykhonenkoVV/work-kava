@@ -16,7 +16,6 @@ export const CartCaption = styled.p`
     font-size: 24px;
     line-height: 1;
   }
-  width: calc(100% - 62px);
   margin-block-end: 20px;
   font-size: 25px;
   font-weight: 700;

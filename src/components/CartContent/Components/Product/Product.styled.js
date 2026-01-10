@@ -81,6 +81,35 @@ export const CartPriceBox = styled.div`
   gap: 10px;
 `;
 
+export const PriceTitleWrapper = styled.div`
+  gap: 10px;
+  display: flex;
+`;
+
+export const PriceTitle = styled.p`
+  flex-grow: 1;
+  padding-inline-start: 5px;
+  padding-block-start: 5px;
+  padding-inline-end: 5px;
+  padding-block-end: 5px;
+  background-color: ${({ theme }) => theme.colors.whiteButtonHover};
+`;
+
+export const CountTitle = styled.p`
+  width: 74px;
+  padding-inline-start: 5px;
+  padding-block-start: 5px;
+  padding-inline-end: 5px;
+  padding-block-end: 5px;
+  background-color: ${({ theme }) => theme.colors.whiteButtonHover};
+  &.margin {
+    margin-inline-end: 46px;
+  }
+  @media screen and (${({ theme }) => theme.devices.tablet}) {
+    width: 100px;
+  }
+`;
+
 export const CartPriceWrapper = styled.div`
   position: relative;
   display: flex;

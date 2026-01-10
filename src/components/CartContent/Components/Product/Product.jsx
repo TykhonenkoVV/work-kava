@@ -5,8 +5,11 @@ import {
   CartPriceBox,
   CartPriceWrapper,
   CartWrapper,
+  CountTitle,
   Img,
   Price,
+  PriceTitle,
+  PriceTitleWrapper,
   SizeDeleteButton,
   StyledProduct
 } from './Product.styled';
@@ -26,7 +29,9 @@ export const Product = ({ product }) => {
   const dispatch = useDispatch();
 
   const { locale, shortLocale } = useAuth();
-  const [quantityStandart, setQuantityStandart] = useState(product.standart);
+  const [quantityStandart, setQuantityStandart] = useState(
+    product.standart || product.count
+  );
 
   const [quantityXl, setQuantityXl] = useState(product.xl);
 
@@ -35,13 +40,15 @@ export const Product = ({ product }) => {
   const size = ['burgers', 'hot-dogs', 'rolls'].includes(product.category);
 
   const onChangeQuantityStandart = id => {
+    let identificator = 'standart';
+    if (product.count) identificator = 'count';
     if (id === 'inc') {
       console.log('Product', product);
       setQuantityStandart(state => state + 1);
       dispatch(
         updateProductInCart({
           id: product._id,
-          data: { standart: quantityStandart + 1 }
+          data: { [identificator]: quantityStandart + 1 }
         })
       );
     }
@@ -51,7 +58,7 @@ export const Product = ({ product }) => {
       dispatch(
         updateProductInCart({
           id: product._id,
-          data: { standart: quantityStandart - 1 }
+          data: { [identificator]: quantityStandart - 1 }
         })
       );
     }
@@ -104,15 +111,26 @@ export const Product = ({ product }) => {
           style={{ backgroundColor: 'white' }}
         />
         <CartPriceBox>
-          {product?.standart && (
+          <PriceTitleWrapper>
+            <PriceTitle>Price</PriceTitle>
+            <CountTitle
+              className={product.standart && product.xl ? 'margin' : null}
+            >
+              Count
+            </CountTitle>
+          </PriceTitleWrapper>
+          {(product?.standart || product?.count) && (
             <CartPriceWrapper>
               <Price>
-                {Number(product[shortLocale].standart).toFixed(2)}
+                {Number(
+                  product[shortLocale].standart || product[shortLocale].price
+                ).toFixed(2)}
                 <Currency locale={locale} />
                 {size && ' (Standart)'}
               </Price>
               <Counter
                 quantity={quantityStandart}
+                max={product.count ? 5 : 9}
                 onClick={onChangeQuantityStandart}
               />
               {product.standart && product.xl && (
@@ -137,7 +155,11 @@ export const Product = ({ product }) => {
                 <Currency locale={locale} />
                 {size && ' (XL)'}
               </Price>
-              <Counter quantity={quantityXl} onClick={onChangeQuantityXl} />
+              <Counter
+                quantity={quantityXl}
+                max={9}
+                onClick={onChangeQuantityXl}
+              />
               {product.standart && product.xl && (
                 <SizeDeleteButton
                   id="xl"

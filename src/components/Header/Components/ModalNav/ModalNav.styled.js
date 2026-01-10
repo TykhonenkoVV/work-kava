@@ -55,28 +55,9 @@ export const SetBtn = styled.button`
 
 export const UserBtn = styled(SetBtn)`
   margin-block-end: 16px;
-  transition: fill ${({ theme }) => theme.baseTransition},
-    color ${({ theme }) => theme.baseTransition};
-  &:hover {
-    fill: ${({ theme }) => theme.colors.whiteButtonHover};
-    color: ${({ theme }) => theme.colors.whiteButtonHover};
-  }
-`;
-
-export const LangBtn = styled(SetBtn)`
-  margin-block-start: auto;
+  color: currentColor;
   transition: color ${({ theme }) => theme.baseTransition};
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.whiteButtonHover};
-    color: ${({ theme }) => theme.colors.whiteButtonHover};
-  }
   & img {
-    width: 40px;
-    height: 40px;
-    border: 2px solid ${({ theme }) => theme.colors.white};
-    transition: border-color ${({ theme }) => theme.baseTransition};
-  }
-  &:hover img {
-    border-color: ${({ theme }) => theme.colors.whiteButtonHover};
+    border: 2px solid currentColor;
   }
 `;

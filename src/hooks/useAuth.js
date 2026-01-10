@@ -14,6 +14,7 @@ export const useAuth = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const locale = useSelector(selectLocale);
   const user = useSelector(selectUser);
+  const { avatarURL } = user;
   const isRegistered = useSelector(selectIsRegistered);
   const isUpdated = useSelector(selectIsUpdated);
   const authError = useSelector(selectAuthErrors);
@@ -28,6 +29,7 @@ export const useAuth = () => {
     locale,
     shortLocale,
     user,
+    avatarURL,
     authError,
     isRegistered
   };

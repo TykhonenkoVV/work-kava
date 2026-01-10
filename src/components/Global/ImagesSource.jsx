@@ -19,7 +19,10 @@ export const ImagesSource = ({
         'desserts',
         'burgers',
         'rolls',
-        'hot-dogs'
+        'hot-dogs',
+        'workplace',
+        'meeting-room',
+        'workshop'
       ].includes(sectionId);
     });
   }, [sectionId]);

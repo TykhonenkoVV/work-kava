@@ -70,6 +70,7 @@ export const Option = styled.li`
   padding-block-end: 8px;
   padding-inline-start: 60px;
   padding-inline-end: 16px;
+  text-align: left;
   color: ${props => props.theme.colors.primary};
   cursor: pointer;
   transition: color ${props => props.theme.baseTransition},

@@ -44,7 +44,7 @@ export const WKSelect = ({
   };
 
   const onClosePicker = date => {
-    setPickerValue(formatDate(date, 'DDD DD MMM YYYY', locale));
+    setPickerValue(formatDate(date, 'DD.MM.YYYY', locale));
     setSelects({ picker: false });
   };
 

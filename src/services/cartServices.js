@@ -15,6 +15,11 @@ export const createNewCarts = (products, cartArray) => {
         res.de.xl = isExist.de.xl;
         res.ua.xl = isExist.ua.xl;
       }
+      if (el.count) {
+        res.en.price = isExist.en.price;
+        res.de.price = isExist.de.price;
+        res.ua.price = isExist.ua.price;
+      }
     }
     newCarts.push(res);
   });
@@ -53,6 +58,11 @@ export const totalPrice = (cart, locale) => {
     if (el.xl) {
       const count = Number(el.xl);
       const price = Number(el[locale].xl);
+      res.push(count * price);
+    }
+    if (el.count) {
+      const count = Number(el.count);
+      const price = Number(el[locale].price);
       res.push(count * price);
     }
   });

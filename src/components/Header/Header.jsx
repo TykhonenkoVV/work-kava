@@ -22,9 +22,10 @@ import { useSelector } from 'react-redux';
 import { selectProducts } from 'store/cart/selectors';
 import { Profile } from './Components/Profile/Profile';
 import { Link } from 'react-router-dom';
+import { CLOUD_NAME } from 'utils/constants';
 
 export const Header = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, avatarURL } = useAuth();
 
   const products = useSelector(selectProducts);
 
@@ -101,7 +102,19 @@ export const Header = () => {
                 aria-label="user profile"
                 onClick={handleUserButtonClick}
               >
-                <SvgIcon w={40} h={40} icon={'avatar'} aria-label="icon user" />
+                {avatarURL ? (
+                  <img
+                    src={`${CLOUD_NAME}w_40,h_40,c_fill/${avatarURL}`}
+                    alt="user avatar"
+                  />
+                ) : (
+                  <SvgIcon
+                    w={36}
+                    h={36}
+                    icon={'avatar'}
+                    aria-label="icon user"
+                  />
+                )}
               </UserButton>
             </SettingsWrapper>
           </>

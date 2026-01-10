@@ -26,16 +26,24 @@ export const PageContent = ({
   description,
   styles,
   linkTo,
-  showBookForm
+  showBookForm,
+  section
 }) => {
-  const { locale, isLoggedIn } = useAuth();
+  const { locale, isLoggedIn, shortLocale } = useAuth();
   const { isModalOpen, openModal, closeModal } = useModal();
-  const sectionId = title.toLowerCase().replace('_', '-');
+  let sectionId = '';
+  if (section)
+    sectionId = section.en.title
+      .toLowerCase()
+      .replace('_', '-')
+      .replace(' ', '-');
+  else sectionId = title.toLowerCase().replace('_', '-');
+
   const windowWidth = useWindowWidth();
 
   const onBookNowClick = () => {
-    if (isLoggedIn) showBookForm(sectionId);
-    else openModal('auth');
+    if (isLoggedIn) showBookForm(section._id);
+    else openModal();
   };
 
   return (
@@ -43,7 +51,7 @@ export const PageContent = ({
       <StyledContainer styles={styles}>
         <ContentContainer styles={styles}>
           <Title page={page} styles={styles}>
-            {lang[locale][title]}
+            {section ? section[shortLocale].title : lang[locale][title]}
           </Title>
           {page === 'coworking' && windowWidth > 1023 && (
             <Number styles={styles} id={id}>
@@ -56,12 +64,14 @@ export const PageContent = ({
                 {id}
               </Number>
             )}
-            {lang[locale][description]}
+            {section
+              ? section[shortLocale].description
+              : lang[locale][description]}
           </Text>
           {windowWidth < 1024 && (
             <Picture styles={styles}>
               <ImagesSource
-                imageName={sectionId}
+                imageName={title}
                 page={page}
                 sectionId={sectionId}
                 sizes={pageContentSizes}
@@ -69,12 +79,18 @@ export const PageContent = ({
                   { type: 'webp', format: 'webp' },
                   { type: 'jpeg', format: 'jpg' }
                 ]}
+                URLs={
+                  section && {
+                    imgURL: section.imgURL,
+                    webpImgURL: section.webpImgURL
+                  }
+                }
               />
               <img
                 width={358}
                 height={238}
                 src={`${CLOUD_NAME}v1/workkava/${page}/${sectionId}/jpeg/${sectionId}.jpg`}
-                alt={title}
+                alt={sectionId}
               />
             </Picture>
           )}
@@ -108,7 +124,7 @@ export const PageContent = ({
         {windowWidth > 1023 && (
           <Picture styles={styles}>
             <ImagesSource
-              imageName={sectionId}
+              imageName={title}
               page={page}
               sectionId={sectionId}
               sizes={pageContentSizes}
@@ -116,12 +132,18 @@ export const PageContent = ({
                 { type: 'webp', format: 'webp' },
                 { type: 'jpeg', format: 'jpg' }
               ]}
+              URLs={
+                section && {
+                  imgURL: section.imgURL,
+                  webpImgURL: section.webpImgURL
+                }
+              }
             />
             <img
               width={windowWidth > 1024 ? 730 : 532}
               height={windowWidth > 1024 ? 714 : 520}
               src={`${CLOUD_NAME}v1/workkava/${page}/${sectionId}/jpeg/${sectionId}.jpg`}
-              alt={title}
+              alt={sectionId}
             />
           </Picture>
         )}

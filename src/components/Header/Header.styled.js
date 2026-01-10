@@ -9,11 +9,11 @@ export const StyledHeader = styled.header`
   width: 100%;
   height: 80px;
   color: ${({ theme }) => theme.colors.white};
-
   background-color: ${({ theme }) => theme.colors.headerBackground};
 `;
 
 export const HederLogo = styled(Link)`
+  fill: currentColor;
   display: flex;
   margin-inline-end: auto;
   @media screen and (${({ theme }) => theme.devices.tablet}) {
@@ -34,13 +34,12 @@ export const CartButton = styled.button`
   position: relative;
   width: 40px;
   height: 40px;
-  color: ${({ theme }) => theme.colors.white};
   fill: currentColor;
   border: 2px solid currentColor;
   transition: color ${({ theme }) => theme.baseTransition};
 
-  &:hover,
-  &:focus {
+  &:hover {
+    fill: ${({ theme }) => theme.colors.whiteButtonHover};
     color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 
@@ -67,22 +66,23 @@ export const Count = styled.span`
 export const UserButton = styled.button`
   width: 40px;
   height: 40px;
-  transition: fill ${({ theme }) => theme.baseTransition};
+  border: 2px solid currentColor;
+  transition: color ${({ theme }) => theme.baseTransition};
 
-  &:hover,
-  &:focus {
-    fill: ${({ theme }) => theme.colors.whiteButtonHover};
+  &:hover {
+    color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;
 
 export const BurgerButton = styled.button`
   width: 40px;
   height: 40px;
-  border: 2px solid ${({ theme }) => theme.colors.white};
-  transition: fill ${({ theme }) => theme.baseTransition};
+  fill: currentColor;
+  border: 2px solid currentColor;
+  transition: color ${({ theme }) => theme.baseTransition};
 
-  &:hover,
-  &:focus {
+  &:hover {
     fill: ${({ theme }) => theme.colors.whiteButtonHover};
+    color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;

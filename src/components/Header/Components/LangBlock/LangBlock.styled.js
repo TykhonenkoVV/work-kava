@@ -11,10 +11,9 @@ export const LangButton = styled.button`
   font-size: 32px;
   line-height: 1.25;
   color: ${({ theme }) => theme.colors.white};
-  transition: border-color ${({ theme }) => theme.baseTransition};
-
+  transition: color ${({ theme }) => theme.baseTransition};
   & img {
-    border: 2px solid ${({ theme }) => theme.colors.white};
+    border: 2px solid currentColor;
   }
 
   @media screen and (${({ theme }) => theme.devices.tablet}) {
@@ -22,8 +21,7 @@ export const LangButton = styled.button`
     height: 40px;
   }
 
-  &:hover,
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.whiteButtonHover};
+  &:hover {
+    color: ${({ theme }) => theme.colors.whiteButtonHover};
   }
 `;

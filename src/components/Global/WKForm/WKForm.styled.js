@@ -57,20 +57,29 @@ export const DivlStyled = styled.div`
 
 export const InputWrapper = styled.div`
   position: relative;
-  fill: ${({ theme }) => theme.colors.darkSectionBefore};
   transition: fill ${({ theme }) => theme.baseTransition};
+  & svg {
+  }
   &:has(input:disabled) {
     & button {
       pointer-events: none;
     }
   }
+
   &:has(input:enabled) {
     fill: ${({ theme }) => theme.colors.darkGray};
+    &:hover input {
+      border-color: ${({ theme }) => theme.colors.accent};
+    }
     &:hover {
       fill: ${({ theme }) => theme.colors.accent};
     }
-    &:hover input {
-      border-color: ${({ theme }) => theme.colors.accent};
+    & .arrow {
+      transition: border-color ${({ theme }) => theme.baseTransition};
+    }
+    &:hover .arrow {
+      border-top-color: ${({ theme }) => theme.colors.accent};
+      border-bottom-color: ${({ theme }) => theme.colors.accent};
     }
   }
   & > .js-class {
@@ -152,11 +161,6 @@ export const InputStyled = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.primary};
 
   transition: border-color ${({ theme }) => theme.baseTransition};
-  /* &:hover,
-  :focus,
-  :active {
-    border-color: ${({ theme }) => theme.colors.accent};
-    } */
   &:disabled {
     cursor: not-allowed;
     color: ${({ theme }) => theme.colors.darkSectionBefore};

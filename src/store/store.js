@@ -14,6 +14,7 @@ import { authReducer } from './auth/slice';
 import { cafeReducer } from './cafe/slice';
 import { fastFoodReducer } from './fastfood/slice';
 import { cartReducer } from './cart/slice';
+import { roomsReducer } from './rooms/slice';
 
 const authPersistConfig = {
   key: 'wk-auth',
@@ -26,6 +27,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     cafe: cafeReducer,
     fastFood: fastFoodReducer,
+    rooms: roomsReducer,
     cart: cartReducer
   },
   middleware: getDefaultMiddleware =>

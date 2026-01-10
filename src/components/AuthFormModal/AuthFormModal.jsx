@@ -42,6 +42,7 @@ export const AuthFormModal = ({ action }) => {
         register({
           ...formData,
           locale: locale,
+          role: ['USER'],
           avatarURL: false,
           avatarURLsmall: false
         })

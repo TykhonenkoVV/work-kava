@@ -8,7 +8,7 @@ const initialState = {
     desserts: []
   },
   isLoading: false,
-  error: { message: '', status: '' }
+  error: null
 };
 
 const cafeSlice = createSlice({
