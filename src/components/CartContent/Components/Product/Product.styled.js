@@ -16,7 +16,7 @@ export const CartCaption = styled.p`
     font-size: 24px;
     line-height: 1;
   }
-  width: calc(100% - 62px);
+  width: calc(100% - 60px);
   margin-block-end: 20px;
   font-size: 25px;
   font-weight: 700;
@@ -38,6 +38,11 @@ const DeleteButton = styled.button`
   border-width: 2px;
   border-style: solid;
   border-color: ${({ theme }) => theme.colors.primaryText};
+  fill: currentColor;
+  transition: color ${({ theme }) => theme.baseTransition};
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent};
+  }
 `;
 
 export const CartDeleteButton = styled(DeleteButton)`
@@ -60,13 +65,17 @@ export const CartWrapper = styled.div`
   }
 `;
 
-export const Img = styled.img`
+export const CartPicture = styled.picture`
+  display: block;
+  width: 235px;
   margin-inline-start: auto;
   margin-inline-end: auto;
   border-radius: 6px;
-  background-color: #ffffff;
+  overflow: hidden;
+  background-color: #fff8e7;
   margin-block-end: 16px;
   @media screen and (${({ theme }) => theme.devices.tablet}) {
+    width: 268px;
     margin-inline-start: 0;
     margin-inline-end: 0;
     margin-block-end: 0;
@@ -88,6 +97,7 @@ export const PriceTitleWrapper = styled.div`
 
 export const PriceTitle = styled.p`
   flex-grow: 1;
+  font-size: 16px;
   padding-inline-start: 5px;
   padding-block-start: 5px;
   padding-inline-end: 5px;

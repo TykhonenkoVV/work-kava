@@ -97,18 +97,16 @@ export const Dish = ({ data, index, title, page, styles }) => {
         <Img
           color={backgroundColors[index]}
           title={title}
-          src={`${CLOUD_NAME}w_${windowWidth < 415 ? 358 : 470},h_${
-            windowWidth < 415 ? 198 : 260
+          src={`${CLOUD_NAME}w_${windowWidth < 1023 ? 358 : 470},h_${
+            windowWidth < 1023 ? 198 : 260
           },c_fill/${data.imgURL}`}
           alt={data?.[shortLocale]?.title}
-          width={windowWidth < 415 ? 358 : 470}
-          height={windowWidth < 415 ? 198 : 260}
+          width={windowWidth < 1023 ? 358 : 470}
+          height={windowWidth < 1023 ? 198 : 260}
         />
       </picture>
       <PriceWrapper styles={styles}>
-        <DishName styles={styles}>
-          {data?.[shortLocale]?.title || 'test'}
-        </DishName>
+        <DishName styles={styles}>{data?.[shortLocale]?.title}</DishName>
         <Price>
           {price}
           <Currency locale={locale} />

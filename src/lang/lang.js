@@ -35,6 +35,7 @@ export const lang = {
     book_now_meeting_room: 'Book a meeting room',
     book_now_workshop: 'Book a workshop',
     price: 'Price',
+    product_qty: 'Qty.',
     add_to_cart: 'Are you sure you want to add this item to your cart?',
     product_quantity: 'Quantity',
     add: 'Add',
@@ -137,6 +138,7 @@ export const lang = {
     add_to_cart:
       'Möchten Sie diesen Artikel wirklich Ihrem Warenkorb hinzufügen?',
     product_quantity: 'Menge',
+    product_qty: 'Anz.',
     add: 'Hinzufügen',
     empty_cart: 'Ihr Warenkorb ist leer.',
     empty_hisory: 'Kaufhistorie ist leer',
@@ -234,6 +236,7 @@ export const lang = {
     book_now_meeting_room: 'Бронювати кабінет',
     book_now_workshop: 'Бронювати аудиторію',
     price: 'Вартість',
+    product_qty: 'Кільк.',
     add_to_cart: 'Ви дійсно хочете додати цей товар у кошик?',
     product_quantity: 'Кількість',
     add: 'Додати',

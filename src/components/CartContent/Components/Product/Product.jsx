@@ -1,12 +1,12 @@
-import { CLOUD_NAME } from 'utils/constants';
+import { CLOUD_NAME, JPEG, JPG, PNG, WEBP } from 'utils/constants';
 import {
   CartCaption,
   CartDeleteButton,
+  CartPicture,
   CartPriceBox,
   CartPriceWrapper,
   CartWrapper,
   CountTitle,
-  Img,
   Price,
   PriceTitle,
   PriceTitleWrapper,
@@ -24,6 +24,9 @@ import {
   updateProductInCart
 } from 'store/cart/operations';
 import { Currency } from 'components/Global/Currency/Currency';
+import { lang } from 'lang/lang';
+import { ImagesSource } from 'components/Global/ImagesSource';
+import { cartImgSizes } from 'utils/imagesUtils';
 
 export const Product = ({ product }) => {
   const dispatch = useDispatch();
@@ -105,18 +108,36 @@ export const Product = ({ product }) => {
         />
       </CartDeleteButton>
       <CartWrapper>
-        <Img
-          src={`${CLOUD_NAME}w_235,h_130,c_fill/${product.imgURL}`}
-          alt={product.title}
-          style={{ backgroundColor: 'white' }}
-        />
+        <CartPicture>
+          <ImagesSource
+            imageName={product._id}
+            sectionId="cart"
+            sizes={cartImgSizes}
+            URLs={{ webpImgURL: product.webpImgURL, imgURL: product.imgURL }}
+            types={[
+              { type: WEBP, format: WEBP },
+              {
+                type: product.category === 'desserts' ? JPEG : PNG,
+                format: product.category === 'desserts' ? JPG : PNG
+              }
+            ]}
+          />
+          <img
+            src={`${CLOUD_NAME}w_${windowWidth < 1024 ? 235 : 268},h_${
+              windowWidth < 1024 ? 130 : 138
+            },c_fill/${product.imgURL}`}
+            alt={product.title}
+            width={windowWidth < 1024 ? 235 : 268}
+            height={windowWidth < 1024 ? 130 : 138}
+          />
+        </CartPicture>
         <CartPriceBox>
           <PriceTitleWrapper>
-            <PriceTitle>Price</PriceTitle>
+            <PriceTitle>{lang[locale].price}</PriceTitle>
             <CountTitle
               className={product.standart && product.xl ? 'margin' : null}
             >
-              Count
+              {lang[locale].product_qty}
             </CountTitle>
           </PriceTitleWrapper>
           {(product?.standart || product?.count) && (

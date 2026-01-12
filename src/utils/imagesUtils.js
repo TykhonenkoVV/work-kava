@@ -68,3 +68,21 @@ export const productSizes = [
     height: 260
   }
 ];
+
+export const cartImgSizes = [
+  {
+    media: devices.desktop,
+    width: 536,
+    height: 296
+  },
+  {
+    media: devices.tablet,
+    width: 536,
+    height: 296
+  },
+  {
+    media: devices.mobile,
+    width: 470,
+    height: 260
+  }
+];

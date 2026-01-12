@@ -30,13 +30,17 @@ export const CartWrapper = styled.div`
   }
 `;
 
-export const Img = styled.img`
+export const HistoryPicture = styled.picture`
+  display: block;
+  width: 235px;
   margin-inline-start: auto;
   margin-inline-end: auto;
   border-radius: 6px;
-  background-color: #ffffff;
+  overflow: hidden;
+  background-color: #fff8e7;
   margin-block-end: 16px;
   @media screen and (${({ theme }) => theme.devices.tablet}) {
+    width: 268px;
     margin-inline-start: 0;
     margin-inline-end: 0;
     margin-block-end: 0;

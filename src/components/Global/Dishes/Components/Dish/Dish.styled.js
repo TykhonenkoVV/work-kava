@@ -70,9 +70,13 @@ export const ButtonAddToCart = styled.button`
   fill: ${({ theme }) => theme.colors.primary};
   background-color: ${({ styles, theme }) =>
     styles === 'dark' && theme.colors.accent};
+  transition: scale ${({ theme }) => theme.baseTransition};
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     right: 20px;
     bottom: 10px;
+  }
+  &:hover {
+    scale: 1.2;
   }
 `;
 

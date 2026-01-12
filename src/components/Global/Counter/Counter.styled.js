@@ -19,6 +19,7 @@ export const CounterButton = styled.button`
   border-start-start-radius: 50%;
   border-end-start-radius: 50%;
   background-color: ${({ theme }) => theme.colors.primary};
+  transition: background-color ${({ theme }) => theme.baseTransition};
   @media screen and (${({ theme }) => theme.devices.tablet}) {
     width: 30px;
     height: 30px;
@@ -35,6 +36,7 @@ export const CounterButton = styled.button`
     width: 10px;
     height: 2px;
     background-color: ${({ theme }) => theme.colors.white};
+    transition: background-color ${({ theme }) => theme.baseTransition};
   }
   &#plus::after {
     content: '';
@@ -43,10 +45,20 @@ export const CounterButton = styled.button`
     height: 2px;
     rotate: 90deg;
     background-color: ${({ theme }) => theme.colors.white};
+    transition: background-color ${({ theme }) => theme.baseTransition};
   }
   &:disabled {
     cursor: no-drop;
     background-color: ${({ theme }) => theme.colors.darkGray};
+  }
+  &:not(:disabled) {
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.darkButtonHover};
+    }
+    &:hover::before,
+    &:hover#plus::after {
+      background-color: ${({ theme }) => theme.colors.accent};
+    }
   }
 `;
 
