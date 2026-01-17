@@ -67,6 +67,7 @@ export const UserButton = styled.button`
   width: 40px;
   height: 40px;
   border: 2px solid currentColor;
+  fill: currentColor;
   transition: color ${({ theme }) => theme.baseTransition};
 
   &:hover {
